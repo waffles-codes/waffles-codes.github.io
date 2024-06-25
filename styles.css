@@ -1,13 +1,10 @@
 body {
-    background-color: powderblue;
+    background-color: #3a2000;
 }
 h1 {
-    color: blue;
+    color: #ffbe37;
 }
-/* p {
-    color: red;
-} */
-#hugepp { 
-    color: cyan; 
+p {
+    color: #603e00;
 }
   
