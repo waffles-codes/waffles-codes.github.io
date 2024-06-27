@@ -4,6 +4,16 @@
         <link rel="stylesheet" href="styles.css">
         <link href='https://fonts.googleapis.com/css?family=Lexend Deca' rel='stylesheet'>
         <title>The Waffle Iron</title>
+
+        <script>
+            function change_black() {
+                document.getElementById("github-img").src="images/github_black.png";
+            }
+            function change_white() {
+                document.getElementById("github-img").src="images/github_white.png";
+            }
+        </script>
+          
     </head>
 
     <body>
@@ -12,18 +22,56 @@
                 The Waffle Iron
             </h1>
             <p id="center">
-                Made by Evan Lu &nbsp  
-                <span style="font-size:70%; vertical-align:12%;">The one and only WafflesYT</span>
-                <!-- everything in here is on the same line -->
+                Made by Evan Lu
+                &nbsp  
+                <span style="font-size:75%; vertical-align:10%;">
+                    The one and only WafflesYT
+                </span>
+                <!-- everything in here is on the same line on the website -->
             </p>
         </div>
 
-        <div id="main-content">
-            <p>
-                HELLLLLLLLO THEREEEEEEE
-            </p>
+        <div id="body-div">
+            <div id="main-content">
+                <p>
+                    HELLLLLLLLO THEREEEEEEE
+                </p>
+                <p>
+                    This is the hub for (pretty much) everything I do, 
+                    you will be able to find links to all my stuff from this webpage eventually.
+                </p>
+            </div>
+        </div>
+
+        <div class="navbar">
+            <!-- link one -->
+            <!-- target="_blank" make the link open a new tab -->
+            <a target="_blank" href="https://www.youtube.com/@WafflesYTonYT"> 
+                <img
+                src="images/youtube.png"
+                alt="YouTube Logo"
+                height="14px"
+                width="auto"
+                vertical-align="-10px"
+                />
+                YouTube
+            </a> 
+
+            <!-- link two -->
+            <a target="_blank"
+            href="https://github.com/waffles-codes"
+            id="github-link"
+            onmouseover="change_black()"
+            onmouseleave="change_white()"> 
+                <img
+                src="images/github_white.png"
+                alt="GitHub Logo"
+                id="github-img"
+                />
+                GitHub
+            </a>
+
         </div>
 
     </body>
-
 </html>
