@@ -1,13 +1,12 @@
 body {
+    margin: auto;
     background-color: #3a2000;
 }
 h1 {
-    margin: auto;
     text-align: center;
     color: #ffbe37;
 }
 p {
-    margin: auto;
     text-align: center;
     color: #603e00;
 }
