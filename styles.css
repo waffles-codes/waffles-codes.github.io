@@ -1,13 +1,22 @@
 body {
-    margin: auto;
     background-color: #3a2000;
 }
 h1 {
-    text-align: center;
     color: #ffbe37;
 }
 p {
-    text-align: center;
     color: #603e00;
+}
+#special {
+    padding: 20px;
+    border-style: solid;
+    border-color: #B6C7D6;
+    border-radius: 20px;
+    background-color: #EAF0F6;
+}
+#center {
+    width: 400px; 
+    margin: auto; 
+    text-align: center;
 }
   
