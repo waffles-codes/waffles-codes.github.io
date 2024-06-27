@@ -1,22 +1,29 @@
 body {
     background-color: #ffbe37;
+    padding-top: 5px;
+    padding-left: 3%;
+    padding-right: 3%;
 }
 h1 {
     font-family: 'Lexend Deca', sans-serif; 
     color: #3a2000;
 }
 p {
+    font-family: 'Lexend Deca', sans-serif;
     color: #603e00;
 }
-#special {
-    padding: 50px;
+#title {
+    padding-bottom: 18px;
+}
+#main-content {
+    padding: 2%;
+    /* this is internal padding, not external */
     border-style: solid;
-    border-color: #B6C7D6;
-    border-radius: 20px;
-    background-color: #EAF0F6;
+    border-color: #603e00;
+    border-radius: 15px;
+    background-color: #FFF1DA;
 }
 #center {
-    width: 400px; 
     margin: auto; 
     text-align: center;
 }
