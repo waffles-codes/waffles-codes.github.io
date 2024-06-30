@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
 
         <script>
+            // for the github color change on hover
             function change_black() {
                 document.getElementById("github-img").src="images/github_black.png";
             }
@@ -37,7 +38,7 @@
         </div>
 
 
-        <div id="main-content">
+        <div id="description">
             <p>
                 HELLLLLLLLO THEREEEEEEE
             </p>
@@ -45,24 +46,49 @@
                 This is the hub for (pretty much) everything I do, 
                 you will be able to find links to all my stuff from this webpage eventually.
             </p>
-            <!-- boxy, good looking links -->
-            <div class="sub-content">
-                <a target="_blank" href="https://waffles-codes.github.io/cursed-pokemon/">
-                    Cursed Who's That Pokemon THE GAME
-                    <br>
-                    <img
-                    src="images/pokemon_the_game.png"
-                    alt="pokemon_thumbnail"
-                    id="pokemon-thumbnail"
-                    width="280px"
-                    left="0px"
-                    />
-                </a>
+        </div>
+
+        <!-- this contains the 3 sections -->
+        <div class="container">
+            <!-- this contains a column of content -->
+            <div class="column">
+                <!-- collapsible bullshit -->
+                <input type="checkbox" id="collapsible">
+                <label for="collapsible">
+                    <h2>
+                        Youtube Stuff (click to close)
+                    </h2>
+                </label>
+                <!-- content to be collapsed -->
+                <div class="content">
+                    <div class="link">
+                        <a target="_blank" href="https://waffles-codes.github.io/cursed-pokemon/">
+                            Cursed Who's That Pokemon THE GAME
+                            <br>
+                            <img
+                            src="images/pokemon_the_game.png"
+                            alt="pokemon_thumbnail"
+                            id="pokemon-thumbnail"
+                            width="308px"
+                            left="0px"
+                            />
+                        </a>
+                    </div>
+                    <div class="link">
+                        <a target="_blank" href="https://github.com/waffles-codes/cursed-pokemon"> 
+                            Github repository for pokemon game
+                        </a>
+                    </div>
+                </div>
             </div>
-            <div class="sub-content">
-                <a target="_blank" href="https://github.com/waffles-codes/timelapser/tree/timelapser_v1.0"> 
-                    Github release for timelapser_v1.0
-                </a>
+                
+
+            <div class="column">
+                <div class="link">
+                    <a target="_blank" href="https://github.com/waffles-codes/timelapser/tree/timelapser_v1.0"> 
+                        Github release for timelapser_v1.0
+                    </a>
+                </div>
             </div>
         </div>
 
