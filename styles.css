@@ -59,14 +59,14 @@ p {
     clear: both;
 }
 .column {
-    float: left;
+    /* float: left; */
     padding-top: 0px;
     padding-bottom: 5px;
     /* this is internal padding, external padding is called a margin*/
     margin-right: 1%;
     margin-top: 5px;
 
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     border-style: solid;
     border-color: #603e00;
     border-radius: 15px;
@@ -82,12 +82,32 @@ input#collapsible {
     display: none;
 }
 input:checked ~ .content {
-    max-height: 100%;
+    max-height: 0;
+}
+input#collapsible0 {
+    display: none;
+}
+input:checked ~ .content0 {
+    max-height: 0;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Old versions of Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome, Edge, Opera and Firefox */
 }
 /* sub-content area */
 .content {
     padding: 0 18px;
-    max-height: 0;  
+    max-height: 100%;  
+    overflow: hidden;
+}
+.content0 {
+    padding: 0 18px;
+    max-height: 100%;  
     overflow: hidden;
 }
 .link {
