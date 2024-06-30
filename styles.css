@@ -25,19 +25,23 @@ p {
     vertical-align: -10%;
 }
 #main-content {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 2%;
+    padding-right: 2%;
     padding-top: 0px;
     padding-bottom: 5px;
     /* this is internal padding, external padding is called a margin*/
-    margin-left: 3%;
-    margin-right: 3%;
+    margin-left: 2%;
+    margin-right: 2%;
     margin-top: 5px;
 
+    box-sizing: border-box;
     border-style: solid;
     border-color: #603e00;
     border-radius: 15px;
     background-color: #FFF1DA;
+}
+#pokemon-thumbnail {
+    width: fit-content();
 }
 
 /* sub-content area */
@@ -54,14 +58,10 @@ p {
 }
 .sub-content a {
     float: left;
-    display: block;
-    width: 100%;
     color: #603e00;
     text-align: left;
     font-size: 1rem;
-    padding: 14px 18px;
-    /* padding-left: 6%;
-    padding-right: 6%; */
+    padding: 12px 16px;
     text-decoration: none;
 }
 .sub-content a:hover {
