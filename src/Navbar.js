@@ -26,10 +26,10 @@ return (
         
         <div className="navbar-right">
             <a href="mailto:evalu802@gmail.com" className="mailto">
-                <img></img>
+                <img href="public\logo192.png"></img>
             </a>
                 <a href="https://www.linkedin.com/in/waffles-codes/" className="linkedin">
-                <img></img>
+                <img href="public\logo192.png"></img>
             </a>
         </div>
     </nav>
