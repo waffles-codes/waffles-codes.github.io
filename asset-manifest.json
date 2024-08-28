@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/waffles-codes.github.io,/static/css/main.d529e256.css",
+    "main.js": "/waffles-codes.github.io,/static/js/main.86c17fac.js",
+    "static/js/453.eee6856d.chunk.js": "/waffles-codes.github.io,/static/js/453.eee6856d.chunk.js",
+    "static/media/ProfessionalPfp.jpg": "/waffles-codes.github.io,/static/media/ProfessionalPfp.9f9f79132df428734985.jpg",
+    "index.html": "/waffles-codes.github.io,/index.html",
+    "main.d529e256.css.map": "/waffles-codes.github.io,/static/css/main.d529e256.css.map",
+    "main.86c17fac.js.map": "/waffles-codes.github.io,/static/js/main.86c17fac.js.map",
+    "453.eee6856d.chunk.js.map": "/waffles-codes.github.io,/static/js/453.eee6856d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d529e256.css",
+    "static/js/main.86c17fac.js"
+  ]
+}
