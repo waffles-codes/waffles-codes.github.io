@@ -1,5 +1,5 @@
 {
-  "homepage": "waffles-codes.github.io",
+  "homepage": "https://waffles-codes.github.io",
   "name": "waffles-codes.github.io",
   "version": "0.1.0",
   "private": true,
@@ -10,6 +10,7 @@
     "gh-pages": "^6.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.1",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
