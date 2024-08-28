@@ -1,0 +1,53 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+.navbar-left {
+    font-size: 1.3rem;
+    align-items: left;
+    color: #000000;
+    text-decoration: none;
+    padding-left: 1.6rem;
+}
+
+.navbar-center .nav-links {
+    list-style-type: none;
+    display: flex;
+    font-size: medium;
+    font-weight: lighter;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-center .nav-links a:hover {
+    color: #bbbbbb;
+  }
+
+.navbar-center .nav-links li {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+
+.navbar-center .nav-links a {
+    color: #000000;
+    text-decoration: none;
+}
+
+
+.navbar-right {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    padding-left: 120px;
+}
+
+.navbar-right .mailto,
+.navbar-right .linkedin {
+    text-decoration: none;
+    margin-left: 1rem;
+    position: relative;
+}

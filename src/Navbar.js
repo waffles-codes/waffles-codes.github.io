@@ -13,10 +13,10 @@ return (
         <div className="navbar-center">
             <ul className="nav-links">
             <li>
-                <a href="/products">Github</a>
+                <a href="/about">About Me</a>
             </li>
             <li>
-                <a href="/about">About Us</a>
+                <a href="/projects">Projects</a>
             </li>
             <li>
                 <a href="/contact">Contact</a>
@@ -25,12 +25,11 @@ return (
         </div>
         
         <div className="navbar-right">
-            <a href="/cart" className="cart-icon">
-            <i className="fas fa-shopping-cart"></i>
-            <span className="cart-count">0</span>
+            <a href="mailto:evalu802@gmail.com" className="mailto">
+                <img></img>
             </a>
-            <a href="/account" className="user-icon">
-            <i className="fas fa-user"></i>
+                <a href="https://www.linkedin.com/in/waffles-codes/" className="linkedin">
+                <img></img>
             </a>
         </div>
     </nav>
