@@ -51,6 +51,8 @@
     position: relative;
 }
 
-.navbar-right .image-links a:hover svg:hover path {
-    fill: white;
+.navbar-right .image-links #email:hover,
+.navbar-right .image-links #linkedin:hover,
+.navbar-right .image-links #github:hover {
+    filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
 }

@@ -13,6 +13,9 @@ return (
         <div className="navbar-center">
             <ul className="nav-links">
                 <li>
+                    <a href="/">Home</a>
+                </li>
+                <li>
                     <a href="/about">About&nbsp;Me</a>
                 </li>
                 <li>
