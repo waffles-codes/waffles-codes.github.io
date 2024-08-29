@@ -1,13 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #ffffff;
+    background-color: #f9e6cd;
     color: #000000;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
 .navbar-left {
-    font-size: 1.3rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300;
+    font-size: 1.5rem;
     color: #000000;
     text-decoration: none;
     padding-left: 1.6rem;
