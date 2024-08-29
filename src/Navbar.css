@@ -10,9 +10,8 @@
 
 .navbar-left {
     font-family: "Montserrat", sans-serif;
-    font-weight: 300;
-    font-size: 1.5rem;
-    color: #000000;
+    font-weight: 400;
+    font-size: 1.6rem;
     text-decoration: none;
     padding-left: 1.6rem;
 }
@@ -29,7 +28,7 @@
     font-weight: lighter;
 }
 .navbar-center .nav-links a:hover {
-    color: #bbbbbb;
+    color: #aa9174;
 }
 .navbar-center .nav-links li {
     margin-left: 0.5rem;
@@ -50,4 +49,8 @@
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     position: relative;
+}
+
+.navbar-right .image-links a:hover svg:hover path {
+    fill: white;
 }

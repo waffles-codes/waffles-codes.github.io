@@ -26,13 +26,13 @@ return (
         
         <div className="navbar-right">
             <a href="mailto:evalu802@gmail.com" className="image-links">
-                <img src="email.svg" width="20" alt='mailto link'/>
+                <img src="email.svg" width="25" alt='mailto link' id='email'/>
             </a>
             <a href="https://www.linkedin.com/in/waffles-codes/" className="image-links">
-                <img src="linkedin.svg" width="20" alt='linkedin link'/>
+                <img src="linkedin.svg" width="20" alt='linkedin link' id='linkedin'/>
             </a>
             <a href="https://github.com/waffles-codes" className="image-links">
-                <img src="github.svg" width="20" alt='github link'/>
+                <img src="github.svg" width="20" alt='github link' id='github'/>
             </a>
         </div>
     </nav>
