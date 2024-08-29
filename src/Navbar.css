@@ -1,58 +1,122 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f9e6cd;
-    color: #000000;
-    box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-}
 
-.navbar-left {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 400;
-    font-size: 1.6rem;
-    text-decoration: none;
-    padding-left: 1.6rem;
-}
+/* FOR MOBILE */
+@media only screen and (orientation: portrait) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f9e6cd;
+        color: #000000;
+        font-size: small;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    }
 
-.navbar-center {
-    position: relative;
-    padding: 0px;
-}
-.navbar-center .nav-links {
-    list-style-type: none;
-    padding-inline-start: 0px;
-    display: flex;
-    font-size: medium;
-    font-weight: lighter;
-}
-.navbar-center .nav-links a:hover {
-    color: #aa9174;
-}
-.navbar-center .nav-links li {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-}
-.navbar-center .nav-links a {
-    color: #000000;
-    text-decoration: none;
-}
+    .navbar-left {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: medium;
+        text-decoration: none;
+        padding-left: 10px;
+    }
 
-.navbar-right {
-    list-style-type: none;
-    display: flex;
-    padding-right: 1.4rem;
-}
-.navbar-right .image-links {
-    text-decoration: none;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-    position: relative;
-}
+    .navbar-center {
+        position: relative;
+        padding: 0px;
+    }
+    .navbar-center .nav-links {
+        list-style-type: none;
+        padding-inline-start: 0px;
+        display: flex;
+        font-weight: lighter;
+    }
+    .navbar-center .nav-links a:hover {
+        color: #aa9174;
+    }
+    .navbar-center .nav-links li {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .navbar-center .nav-links a {
+        color: #000000;
+        text-decoration: none;
+    }
 
-.navbar-right .image-links #email:hover,
-.navbar-right .image-links #linkedin:hover,
-.navbar-right .image-links #github:hover {
-    filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
+    .navbar-right {
+        list-style-type: none;
+        display: flex;
+        padding-right: 30px;
+    }
+    .navbar-right .image-links {
+        text-decoration: none;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .navbar-right .image-links #email:hover,
+    .navbar-right .image-links #linkedin:hover,
+    .navbar-right .image-links #github:hover {
+        filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
+    }
+}
+   
+/* FOR DESKTOP */
+@media only screen and (orientation: landscape) {
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #f9e6cd;
+        color: #000000;
+        box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+    }
+
+    .navbar-left {
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 1.6rem;
+        text-decoration: none;
+        padding-left: 1.6rem;
+    }
+
+    .navbar-center {
+        position: relative;
+        padding: 0px;
+    }
+    .navbar-center .nav-links {
+        list-style-type: none;
+        padding-inline-start: 0px;
+        display: flex;
+        font-size: medium;
+        font-weight: lighter;
+    }
+    .navbar-center .nav-links a:hover {
+        color: #aa9174;
+    }
+    .navbar-center .nav-links li {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    .navbar-center .nav-links a {
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .navbar-right {
+        list-style-type: none;
+        display: flex;
+        padding-right: 1.4rem;
+    }
+    .navbar-right .image-links {
+        text-decoration: none;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        position: relative;
+    }
+
+    .navbar-right .image-links #email:hover,
+    .navbar-right .image-links #linkedin:hover,
+    .navbar-right .image-links #github:hover {
+        filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
+    }
 }

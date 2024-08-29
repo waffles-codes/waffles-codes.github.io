@@ -16,9 +16,6 @@ return (
                     <a href="/">Home</a>
                 </li>
                 <li>
-                    <a href="/about">About&nbsp;Me</a>
-                </li>
-                <li>
                     <a href="/projects">Projects</a>
                 </li>
                 <li>
