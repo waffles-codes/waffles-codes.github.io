@@ -25,11 +25,14 @@ return (
         </div>
         
         <div className="navbar-right">
-            <a href="mailto:evalu802@gmail.com" className="mailto">
-                <img href="public\logo192.png"></img>
+            <a href="mailto:evalu802@gmail.com" className="image-link">
+                <img src="email.svg" width="20"/>
             </a>
-                <a href="https://www.linkedin.com/in/waffles-codes/" className="linkedin">
-                <img href="public\logo192.png"></img>
+            <a href="https://www.linkedin.com/in/waffles-codes/" className="image-link">
+                <img src="linkedin.svg" width="20"></img>
+            </a>
+            <a href="https://github.com/waffles-codes" className="image-link">
+                <img src="github.svg" width="20"></img>
             </a>
         </div>
     </nav>

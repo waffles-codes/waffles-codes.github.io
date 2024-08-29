@@ -45,8 +45,7 @@
     padding-left: 120px;
 }
 
-.navbar-right .mailto,
-.navbar-right .linkedin {
+.navbar-right .image-link {
     text-decoration: none;
     margin-left: 1rem;
     position: relative;
