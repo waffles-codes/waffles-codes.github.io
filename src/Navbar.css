@@ -46,17 +46,12 @@
         list-style-type: none;
         display: flex;
         padding-right: 30px;
+        padding-left: 10px;
     }
     .navbar-right .image-links {
         text-decoration: none;
         margin-left: 5%;
         margin-right: 5%;
-    }
-
-    .navbar-right .image-links #email:hover,
-    .navbar-right .image-links #linkedin:hover,
-    .navbar-right .image-links #github:hover {
-        filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
     }
 }
    
@@ -113,10 +108,10 @@
         margin-right: 0.5rem;
         position: relative;
     }
+}
 
-    .navbar-right .image-links #email:hover,
-    .navbar-right .image-links #linkedin:hover,
-    .navbar-right .image-links #github:hover {
-        filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
-    }
+.navbar-right .image-links #email:hover,
+.navbar-right .image-links #linkedin:hover,
+.navbar-right .image-links #github:hover {
+    filter: invert(63%) sepia(21%) saturate(478%) hue-rotate(352deg) brightness(91%) contrast(87%);
 }
