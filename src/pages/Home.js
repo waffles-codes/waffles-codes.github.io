@@ -5,28 +5,50 @@ import './Home.css';
 const Home = () => {
   return (
     <div className='bodydiv'>
-        <img src={face} className="pfp"/>
-        <div className='container'>
-          <div className='infodiv'>
-            <p className='text' id='info'>
-              Website was bulit by me from scratch using React.js and create-react-app.
+      <img src={face} className="pfp" alt='profile'/>
+      <div className='container'>
+
+        <div className='infodiv'>
+          <p id='info'>
+            Website was bulit by me from scratch using React.js and create-react-app.
+          </p>
+        </div>
+
+        <div className='textdiv'>
+          <div className='textcontainer'>
+            <p id='aboutme'>
+                About Me
+            </p>
+            <p className="walloftext">
+              My name is Evan Lu, and I'm a second-year student at UC Merced studying Computer Science & Engineering. I was born and raised in Alameda, California, where my passion for technology and problem-solving started.
+              <br/><br/>
+              Ever since I was little, I've been fascinated by the intersection of hardware and software. This curiosity led me to explore various aspects of computer science and robotics throughout my academic journey. One of my most exciting projects was creating a rock-paper-scissors robot using a Raspberry Pi, which allowed me to delve into machine learning, computer vision, and low-level motor control.
+              <br/><br/>
+              As the Lead Programmer for The Aztechs robotics team, I also honed my skills in Java and Kotlin, developing innovative solutions for robot aiming, balancing, and positioning. This experience not only sharpened my technical abilities but also taught me the value of collaboration and mentorship.
+              <br/><br/>
+              At UC Merced, I'm expanding my knowledge in algorithm design, probability and statistics, and various mathematical disciplines. When I'm not coding or studying, you can find me exploring graphic design, creating videos, playing games, or learning to dance.
+              <br/><br/>
+              I'm always eager to take on new challenges and learn from every experience. Feel free to reach out if you'd like to discuss potential opportunities or simply chat about the latest developments in the computing world!
+              <br/><br/>
             </p>
           </div>
 
-          <div className='textdiv'>
-            <header className='text'>
-                <h1>Home Page</h1>
-            </header>
-            <p>
-            My name is Evan Lu, and I'm a second-year student at UC Merced pursuing a Bachelor of Science in Computer Science and Engineering. I was born and raised in Alameda, California, where my passion for technology and problem-solving began to flourish.<br/><br/>
-From an early age, I've been fascinated by the intersection of hardware and software. This curiosity led me to explore various aspects of computer science and robotics throughout my academic journey. During high school, I channeled my enthusiasm into creating a rock-paper-scissors robot using a Raspberry Pi, which allowed me to delve into machine learning, computer vision, and low-level motor control.<br/><br/>
-My experience as the Lead Programmer for The Aztechs robotics team further honed my skills in Java and Kotlin, while also teaching me the value of collaboration and mentorship. This role allowed me to develop innovative solutions for robot aiming, balancing, and positioning, pushing the boundaries of what our team could achieve.<br/><br/>
-Currently, I'm expanding my knowledge in algorithm design, probability and statistics, and various mathematical disciplines at UC Merced. When I'm not coding or studying, you can find me exploring graphic design, creating videos, or learning new programming languages.<br/><br/>
-I'm always eager to take on new challenges and learn from every experience. Whether it's developing a custom timelapse app or building a responsive website, I approach each project with creativity, attention to detail, and a drive for continuous improvement.<br/><br/>
-Feel free to reach out if you'd like to discuss potential opportunities, collaborate on interesting projects, or simply chat about the latest developments in computer science and engineering!
-          </p>
+          <div className='spacer'/>
+
+          <div className='textcontainer'>
+            <p className='center' id='areasofinterest'>
+              Areas of Interest
+            </p>
+            <p id='listaoi'>
+              • Software Engineering <br/>
+              • Software Engineering <br/>
+              • Software Engineering <br/>
+              • Software Engineering <br/>
+              • Software Engineering <br/>
+            </p>
           </div>
         </div>
+      </div>
     </div>
   );
 }
