@@ -5,18 +5,18 @@ import './Home.css';
 const Home = () => {
   return (
     <div className='bodydiv'>
-      <img src={face} className="pfp" alt='profile'/>
-      <div className='container'>
-
-        <div className='infodiv'>
+      <div className='infodiv'>
+        <img src={face} className="pfp" alt='profile'/>
           <p id='info'>
-            Website was bulit by me from scratch using React.js and create-react-app.
+            Website was bulit by me from scratch using React.js and create&#8209;react&#8209;app.
           </p>
         </div>
 
+      <div className='container'>
+
         <div className='textdiv'>
           <div className='textcontainer'>
-            <p id='aboutme'>
+            <p className='title'>
                 About Me
             </p>
             <p className="walloftext">
@@ -29,22 +29,22 @@ const Home = () => {
               At UC Merced, I'm expanding my knowledge in algorithm design, probability and statistics, and various mathematical disciplines. When I'm not coding or studying, you can find me exploring graphic design, creating videos, playing games, or learning to dance.
               <br/><br/>
               I'm always eager to take on new challenges and learn from every experience. Feel free to reach out if you'd like to discuss potential opportunities or simply chat about the latest developments in the computing world!
-              <br/><br/>
+              <br/>
             </p>
           </div>
 
           <div className='spacer'/>
 
           <div className='textcontainer'>
-            <p className='center' id='areasofinterest'>
+            <p className='title' id='center'>
               Areas of Interest
             </p>
             <p id='listaoi'>
               • Software Engineering <br/>
-              • Software Engineering <br/>
-              • Software Engineering <br/>
-              • Software Engineering <br/>
-              • Software Engineering <br/>
+              • Computer Vision <br/>
+              • Graphic Design <br/>
+              • Placeholder <br/>
+              • Robotics <br/>
             </p>
           </div>
         </div>
