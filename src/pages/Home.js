@@ -1,10 +1,13 @@
 import face from '../Evan_Lu_Professional_Profile_Cropped.png';
 import resume_image from '../Evan Lu - 2024 Resume B&W 9-26-24-1.png';
 import resume from '../Evan_Lu_2024_Resume_B&W_9-26-24.pdf';
-import React from 'react';
+import React, { useState } from 'react';
 import './Home.css';
+import PDFModal from '../components/PDFModal.js';
 
 const Home = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className='bodydiv'>
       <div className='infodiv'>
@@ -42,12 +45,19 @@ const Home = () => {
               Resume
             </p>
 
-            <img src={resume_image} className='resume' alt='resume'>
-            </img>
-{/* 
             <div>
-              <iframe src={resume} width='100%' height='500px'/>
-            </div> */}
+              <img 
+                src={resume_image} 
+                className='resume' 
+                title="Click me to open PDF Preview" 
+                onClick={() => setIsModalOpen(true)}
+              />
+              <PDFModal 
+                pdfUrl={resume}
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+              />
+            </div>
 
           </div>
         </div>
