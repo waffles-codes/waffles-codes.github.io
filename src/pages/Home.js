@@ -1,4 +1,6 @@
-import face from '../ProfessionalPfp.jpg';
+import face from '../Evan_Lu_Professional_Profile_Cropped.png';
+import resume_image from '../Evan Lu - 2024 Resume B&W 9-26-24-1.png';
+import resume from '../Evan_Lu_2024_Resume_B&W_9-26-24.pdf';
 import React from 'react';
 import './Home.css';
 
@@ -36,16 +38,17 @@ const Home = () => {
           <div className='spacer'/>
 
           <div className='textcontainer'>
-            <p className='title' id='center'>
-              Areas of Interest
+            <p className='title'>
+              Resume
             </p>
-            <p id='listaoi'>
-              • Software Engineering <br/>
-              • Computer Vision <br/>
-              • Graphic Design <br/>
-              • Placeholder <br/>
-              • Robotics <br/>
-            </p>
+
+            <img src={resume_image} className='resume' alt='resume'>
+            </img>
+{/* 
+            <div>
+              <iframe src={resume} width='100%' height='500px'/>
+            </div> */}
+
           </div>
         </div>
       </div>

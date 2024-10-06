@@ -13,7 +13,7 @@ return (
         <div className="navbar-center">
             <ul className="nav-links">
                 <li>
-                    <a href="/#/">Home</a>
+                    <a href="/">Home</a>
                 </li>
                 <li>
                     <a href="/#/projects">Projects</a>
@@ -26,13 +26,13 @@ return (
         
         <div className="navbar-right">
             <a href="mailto:evalu802@gmail.com" className="image-links">
-                <img src="email.svg" width="25" alt='mailto link' id='email'/>
+                <img src="email.svg" width="25" alt='mailto' id='email'/>
             </a>
             <a href="https://www.linkedin.com/in/waffles-codes/" className="image-links">
-                <img src="linkedin.svg" width="20" alt='linkedin link' id='linkedin'/>
+                <img src="linkedin.svg" width="20" alt='linkedin' id='linkedin'/>
             </a>
             <a href="https://github.com/waffles-codes" className="image-links">
-                <img src="github.svg" width="20" alt='github link' id='github'/>
+                <img src="github.svg" width="20" alt='github' id='github'/>
             </a>
         </div>
     </nav>
