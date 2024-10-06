@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.975bb3cc.css",
+    "main.css": "/static/css/main.a0235400.css",
     "main.js": "/static/js/main.97b3ea68.js",
     "static/js/453.eee6856d.chunk.js": "/static/js/453.eee6856d.chunk.js",
     "static/media/Evan_Lu_Professional_Profile_Cropped.png": "/static/media/Evan_Lu_Professional_Profile_Cropped.14f357c4c547ee5a6451.png",
     "static/media/Evan Lu - 2024 Resume B&W 9-26-24-1.png": "/static/media/Evan Lu - 2024 Resume B&W 9-26-24-1.94f873d97e0b996c38e2.png",
     "static/media/Evan_Lu_2024_Resume_B&W_9-26-24.pdf": "/static/media/Evan_Lu_2024_Resume_B&W_9-26-24.80aed59a094fd898a504.pdf",
     "index.html": "/index.html",
-    "main.975bb3cc.css.map": "/static/css/main.975bb3cc.css.map",
+    "main.a0235400.css.map": "/static/css/main.a0235400.css.map",
     "main.97b3ea68.js.map": "/static/js/main.97b3ea68.js.map",
     "453.eee6856d.chunk.js.map": "/static/js/453.eee6856d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.975bb3cc.css",
+    "static/css/main.a0235400.css",
     "static/js/main.97b3ea68.js"
   ]
 }
