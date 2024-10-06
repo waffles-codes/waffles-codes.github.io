@@ -4,6 +4,9 @@
 @media only screen and (orientation: landscape) {
     .navbar {
         display: flex;
+        position: fixed;
+        top: 0;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         background-color: #f9e6cd;
@@ -65,6 +68,9 @@
 @media only screen and (orientation: portrait) {
     .navbar {
         display: flex;
+        position: fixed;
+        top: 0;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         background-color: #f9e6cd;

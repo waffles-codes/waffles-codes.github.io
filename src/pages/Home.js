@@ -49,7 +49,7 @@ const Home = () => {
               <img 
                 src={resume_image} 
                 className='resume' 
-                title="Click me to open PDF Preview" 
+                title="Click me to open PDF preview" 
                 onClick={() => setIsModalOpen(true)}
               />
               <PDFModal 
