@@ -23,6 +23,9 @@
 }
 
 .resume {
+    position: relative;
+    top: 0;
+    transition: top 0.5s ease;
     min-width: none;
     max-width: 90%;
     height: min-content;
@@ -30,6 +33,11 @@
     margin-left: 5%;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
+
+.resume:hover{ position: relative;
+    position: relative;
+    top: -5px;
+} 
 
 #listaoi {
     line-height: 170%;
@@ -55,6 +63,7 @@
     .pfp {
         min-width: none;
         max-width: 300px;
+        /* vw sets the width to a percentage of the Viewport Width!! */
         width: 25vw;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     }
