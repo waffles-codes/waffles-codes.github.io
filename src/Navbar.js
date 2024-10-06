@@ -25,13 +25,13 @@ return (
         </div>
         
         <div className="navbar-right">
-            <a href="mailto:evalu802@gmail.com" className="image-links">
+            <a href="mailto:evalu802@gmail.com" className="image-links" target='blank'>
                 <img src="email.svg" width="25" alt='mailto' id='email'/>
             </a>
-            <a href="https://www.linkedin.com/in/waffles-codes/" className="image-links">
+            <a href="https://www.linkedin.com/in/waffles-codes/" className="image-links" target='blank'>
                 <img src="linkedin.svg" width="20" alt='linkedin' id='linkedin'/>
             </a>
-            <a href="https://github.com/waffles-codes" className="image-links">
+            <a href="https://github.com/waffles-codes" className="image-links" target='blank'>
                 <img src="github.svg" width="20" alt='github' id='github'/>
             </a>
         </div>
