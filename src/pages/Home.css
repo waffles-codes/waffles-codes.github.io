@@ -55,7 +55,7 @@
     .pfp {
         min-width: none;
         max-width: 300px;
-        height: min-content;
+        width: 25vw;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     }
     
@@ -65,7 +65,7 @@
     }
 
     .container {
-        display: inline-block;
+        display: flex;
         text-align: center;
         margin: 1.6rem;
         margin-bottom: 0;
@@ -73,6 +73,7 @@
     }
 
     .textcontainer {
+        min-width: 300px;
         display: inline-block;
         width: 48%;
     }

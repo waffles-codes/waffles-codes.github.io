@@ -41,9 +41,9 @@ const Home = () => {
           <div className='spacer'/>
 
           <div className='textcontainer'>
-            <p className='title'>
+            {/* <p className='title'>
               Resume
-            </p>
+            </p> */}
 
             <div>
               <img 
