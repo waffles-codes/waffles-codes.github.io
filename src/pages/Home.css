@@ -24,10 +24,10 @@
 
 .resume {
     min-width: none;
-    max-width: 80%;
+    max-width: 90%;
     height: min-content;
     margin-top: 1rem;
-    margin-left: 10%;
+    margin-left: 5%;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
