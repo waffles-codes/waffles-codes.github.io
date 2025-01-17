@@ -4,10 +4,11 @@ const Projects = () => {
   return (
     <div>
         <header>
-            <h1>Contact page.</h1>
+            <h1>Details:</h1>
         </header>
         <main>
-            <p>I don't even know what I'm going to use this for to be honest...</p>
+            <p>evalu802@gmail.com</p>
+            <p>form?</p>
         </main>
     </div>
   );
