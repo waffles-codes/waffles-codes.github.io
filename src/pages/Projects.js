@@ -7,17 +7,14 @@ const Projects = () => {
   return (
       <div className="project-body">
         {/* Robot Hand Project Card */}
-        <div className="card">
+        <a className="card" target='blank'
+            href="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
+        >
           <div className="card-header">
             <h2>Wooden Robot Hand</h2>
             <img src={robotImage} 
               className="card-image" 
               alt='wooden robot hand with all of its internals exposed'/>
-            <a  className='project-details-link' target='blank'
-                href="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
-            >
-                Project Presentation
-            </a>
           </div>
 
           <div className="card-body">
@@ -46,20 +43,17 @@ const Projects = () => {
               Oh, and I forgot to mention, it also uses a vintage webcam from the WINDOWS XP ERA for its computer vision.
             </p>
           </div>
-        </div>
+        </a>
 
         {/* NASA Spaceapps Project Card */}
-        <div className="card">
+        <a className="card" target='blank'
+            href="https://github.com/Shyam-723/NasaExoSkyChallenge"
+        >
           <div className="card-header">
             <h2>NASA SpaceApps Exosky!</h2>
             <img src={spaceAppsImage} 
               className="card-image" 
-              alt='my nasa spaceapps team posing in front of our presentation for the local win'/>
-            <a  className='project-details-link' target='blank'
-                href="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
-            >
-                
-            </a>
+              alt='My team posing in front of our presentation after our local win'/>
           </div>
 
           <div className="card-body">
@@ -79,7 +73,7 @@ const Projects = () => {
                 WIP
             </p>
           </div>
-        </div>
+        </a>
 
 
 

@@ -34,6 +34,8 @@
     max-width: 350px;
     margin-top: 1.2rem;
     margin-bottom: 1.5rem;
+    text-decoration: none;
+    color: #000000;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0,0,0,.2);
