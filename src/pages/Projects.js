@@ -8,6 +8,7 @@ const Projects = () => {
         </header>
         <main>
             <p>rah!!!!!!!!!!!!!!!!</p>
+            <p>For the robot hand write something about embedded systems</p>
         </main>
     </div>
   );
