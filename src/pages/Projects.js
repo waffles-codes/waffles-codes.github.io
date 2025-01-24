@@ -43,36 +43,35 @@ const Projects = () => {
       />
 
       <Card
-        title="H-enry"
+        title="H-enry (FRC Robotics)"
         image={henryImage}
-        altText="Wooden robot hand with all of its internals exposed"
-        link="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
+        altText="H-enry robot from Team 4186 The Aztechs"
+        link=""
         sections={[
           {
             header: 'Project Overview',
             type: 'paragraph',
             content:
-              'This project was created for the sole purpose of beating my friend in rock-paper-scissors. During the process, I developed proficiency in embedded systems, as I focused on learning parallel processing, machine learning models, and writing code at the lowest levels.',
+              'This robot was made during my time with FRC Team 4186, The Aztechs, where I first found passion in embedded systems programming. I took it upon myself to program the robot and learn the intricacies of the FRC libraries, devise an ergonomic and intuitive control scheme, and create responsive autonomous routines.',
           },
           {
-            header: 'Software Features',
+            header: 'Notable Acheivements',
             type: 'list',
             content: [
-              'Rock paper scissors mode',
-              'Copy hand motion mode',
-              'Computer vision using OpenCV & Google’s MediaPipe for gesture recognition',
-              'Multi-core parallel processing to enhance both computational and temporal efficiency',
-              'Low-level motor control with GPIO pins',
-              'Reset back to starting state upon exit',
+              'Lead Programmer',
+              'Programmed the robot by myself, while also teaching potential future programmers',
+              'Computer vision and auto-targeting utilizing a Limelight',
+              'Programmed in Kotlin',
             ],
           },
           {
-            header: 'What Makes it Cool',
+            header: 'Previous Years',
             type: 'paragraph',
             content:
-              'The hand uses custom CAD-designed living hinges. Not only can it beat you in rock paper scissors (albeit by cheating a lot), but it also has a "copy hand mode" to mimic the actions of your hand. Oh, and I forgot to mention, it also uses a vintage webcam from the WINDOWS XP ERA for its computer vision.',
+              'WWURM'
           },
         ]}
+        modalContent={""}
       />
 
       {/* NASA SpaceApps Exosky! Card */}

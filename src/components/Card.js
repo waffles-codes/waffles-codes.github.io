@@ -9,6 +9,19 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
     setIsModalOpen(!isModalOpen);
   };
 
+  {/* Modal Component */}
+  {isModalOpen && modalContent && (
+    <div className="modal-overlay" onClick={toggleModal}>
+      {/* e.stopPropagation() prevents  */}
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="close-button" onClick={toggleModal}>
+          Close
+        </button>
+        {modalContent}
+      </div>
+    </div>
+  )}
+
   return (
     // this <> </> syntax is NOT valid HTML, but it IS valid React
     // it allows for grouping of the entire card component without using <React.Fragment>
