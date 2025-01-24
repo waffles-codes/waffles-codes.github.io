@@ -10,8 +10,10 @@ const Card = ({ title, image, altText, link, sections }) => {
         </div>
   
         <div className="card-body">
+          {/* map sections onto card */}
           {sections.map((section, index) => (
             <div key={index}>
+              {/* For each section, if that section exists, show that section */}
               {section.header && <h3>{section.header}</h3>}
               {section.type === 'paragraph' && (
                 <p className="project-description">{section.content}</p>

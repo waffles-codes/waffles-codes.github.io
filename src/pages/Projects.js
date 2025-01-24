@@ -21,6 +21,11 @@ const Projects = () => {
               'This project was created for the sole purpose of beating my friend in rock-paper-scissors. During the process, I developed proficiency in embedded systems, as I focused on learning parallel processing, machine learning models, and writing code at the lowest levels.',
           },
           {
+            header: 'TEST additional section',
+            type: 'paragraph',
+            content: 'balh blah blah'
+          },
+          {
             header: 'Software Features',
             type: 'list',
             content: [
