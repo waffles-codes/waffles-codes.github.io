@@ -13,7 +13,7 @@ const Home = () => {
       <div className='infodiv'>
         <img src={face} className="pfp" alt='profile'/>
           <p id='info'>
-            Website was bulit by me from scratch using React.js and create&#8209;react&#8209;app.
+            This website was bulit without the use of any website building tools, other than VS Code, React.js, Github Pages, gh-pages, and many sleepless nights.
           </p>
         </div>
 
@@ -48,6 +48,7 @@ const Home = () => {
             <div>
               <img 
                 src={resume_image} 
+                alt="resume preview"
                 className='resume' 
                 title="Click me to open PDF preview" 
                 onClick={() => setIsModalOpen(true)}
