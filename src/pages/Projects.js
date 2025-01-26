@@ -46,7 +46,6 @@ const Projects = () => {
         title="H-enry (FRC Robotics)"
         image={henryImage}
         altText="H-enry robot from Team 4186 The Aztechs"
-        link=""
         sections={[
           {
             header: 'Project Overview',
@@ -58,9 +57,9 @@ const Projects = () => {
             header: 'Notable Acheivements',
             type: 'list',
             content: [
-              'Lead Programmer',
-              'Programmed the robot by myself, while also teaching potential future programmers',
-              'Computer vision and auto-targeting utilizing a Limelight',
+              'H-enry won CalGames 2023 (First win since 2017!)',
+              'Programmed H-enry by myself, while also teaching potential future programmers',
+              'Auto-targeting and positioning utilizing a Limelight for computer vision',
               'Programmed in Kotlin',
             ],
           },
@@ -71,7 +70,13 @@ const Projects = () => {
               'WWURM'
           },
         ]}
-        modalContent={""}
+        modalContent={
+          <div>
+            <h2>Modal Content</h2>
+            <p>this should show up in a modal</p>
+          </div>
+        }
+
       />
 
       {/* NASA SpaceApps Exosky! Card */}

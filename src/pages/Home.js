@@ -26,13 +26,22 @@ const Home = () => {
                 About Me
             </p>
             <p className="walloftext">
-              My name is Evan Lu, and I'm a second-year student at UC Merced studying Computer Science & Engineering. 
+              My name is Evan Lu, and I'm a second-year student at UC Merced studying Computer Science & Engineering.
+              If you'd like to see what I'm capable of, 
+              <b> check out my <a id="project-link" href="/#/projects">Projects</a> page! </b>
               <br/><br/>
-              * Not AI Generated Description * (come up with something soon)
-              {/* <br/><br/>
-              <br/><br/> */}
+              Currently, I'm working advancing my computer science career in the 
+              direction of embedded systems because I enjoy seeing my code come to 
+              life as it interacts with the physical world.
               <br/><br/>
-              I'm always eager to take on new challenges and learn from every experience. Feel free to reach out if you'd like to discuss potential opportunities or simply chat about the latest developments in the computing world!
+              I am the most proficient when it comes to C++, because that's most of my 
+              classes are taught in, but I've also programmed robots in Java, Kotlin, 
+              and Python, worked on multiple websites (including this one) 
+              with React.js, and implemented database systems with SQL.              
+              <br/><br/>
+              I'm always eager to take on new challenges and learn from every experience. 
+              Feel free to reach out if you'd like to discuss potential internship 
+              opportunities or nerd out about computer stuff!
               <br/>
             </p>
           </div>
@@ -40,10 +49,6 @@ const Home = () => {
           <div className='spacer'/>
 
           <div className='textcontainer'>
-            {/* <p className='title'>
-              Resume
-            </p> */}
-
             <div>
               <img 
                 src={resume_image} 

@@ -22,15 +22,24 @@
     font-weight: 400;
 }
 
+.walloftext #project-link {
+    color: #000000;
+    text-decoration: underline;
+}
+
+.walloftext #project-link:hover {
+    color: #aa9174;
+}
+
 .resume {
-    position: relative;
     top: 0;
+    position: relative;
     transition: top 0.5s ease;
     min-width: none;
     max-width: 90%;
-    height: min-content;
     margin-top: 1rem;
     margin-left: 5%;
+    margin-bottom: 5%;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     z-index: 0;
 }

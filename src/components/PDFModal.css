@@ -1,4 +1,4 @@
-.modal-overlay {
+.pdf-modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -13,7 +13,7 @@
     z-index: 9999;
 }
 
-.modal-content {
+.pdf-modal-content {
     background-color: white;
     width: 90%;
     height: 90%;

@@ -6,21 +6,10 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
+    console.log("toggling modal");
     setIsModalOpen(!isModalOpen);
+    console.log("modal state " + isModalOpen)
   };
-
-  {/* Modal Component */}
-  {isModalOpen && modalContent && (
-    <div className="modal-overlay" onClick={toggleModal}>
-      {/* e.stopPropagation() prevents  */}
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <button className="close-button" onClick={toggleModal}>
-          Close
-        </button>
-        {modalContent}
-      </div>
-    </div>
-  )}
 
   return (
     // this <> </> syntax is NOT valid HTML, but it IS valid React
@@ -56,7 +45,7 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
         </div>
       </a>
     ) : (
-      // if there is a modalContent, open modal on click
+      // else, if there is a modalContent, open modal on click
       <div className="card" onClick={toggleModal}>
         <div className="card-header">
           <h2>{title}</h2>
@@ -83,6 +72,15 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
       </div>
     )}
 
+    {/* Modal Component */}
+    {isModalOpen && modalContent && (
+      <div className="card-modal-overlay" onClick={toggleModal}>
+        {/* e.stopPropagation() prevents the click event from activating the card componenet itself */}
+        <div className="card-modal-content" onClick={(e) => e.stopPropagation()}>
+          {modalContent}
+        </div>
+      </div>
+    )}
     </>
   );
 };
