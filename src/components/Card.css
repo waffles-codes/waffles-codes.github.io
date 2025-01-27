@@ -65,6 +65,7 @@
 }
 
 /* Modal Overlay */
+/* make modal styling work for mobile (specifically safari?) */
 .card-modal-overlay {
   position: fixed;
   top: 0;

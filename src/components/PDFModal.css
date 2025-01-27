@@ -28,3 +28,5 @@
 iframe {
     border: none;
 }
+
+/* make modal styling work for mobile (specifically safari?) */
