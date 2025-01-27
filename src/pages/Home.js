@@ -1,6 +1,6 @@
 import face from '../Evan_Lu_Professional_Profile_Cropped.png';
-import resume_image from '../Evan Lu - 2025 Resume 1-6.jpg';
-import resume from '../Evan Lu - 2025 Resume 1-6.pdf';
+import resume_image from '../1-26 Evan Lu - 2025 Resume.jpg';
+import resume from '../1-26 Evan Lu - 2025 Resume.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
@@ -30,11 +30,11 @@ const Home = () => {
               If you'd like to see what I'm capable of, 
               <b> check out my <a id="project-link" href="/#/projects">Projects</a> page! </b>
               <br/><br/>
-              Currently, I'm working advancing my computer science career in the 
+              Currently, I'm working on advancing my computer science career in the 
               direction of embedded systems because I enjoy seeing my code come to 
               life as it interacts with the physical world.
               <br/><br/>
-              I am the most proficient when it comes to C++, because that's most of my 
+              I am most proficient when it comes to C++, because that's what most of my 
               classes are taught in, but I've also programmed robots in Java, Kotlin, 
               and Python, worked on multiple websites (including this one) 
               with React.js, and implemented database systems with SQL.              
