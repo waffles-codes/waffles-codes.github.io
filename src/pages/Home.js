@@ -13,7 +13,8 @@ const Home = () => {
       <div className='infodiv'>
         <img src={face} className="pfp" alt='profile'/>
           <p id='info'>
-            This website was bulit without the use of any website building tools, other than VS Code, React.js, Github Pages, gh-pages, and many sleepless nights.
+            This website was bulit without the use of any website building tools, 
+            other than VS Code, React.js, Github Pages, gh-pages, and many sleepless nights.
           </p>
         </div>
 
