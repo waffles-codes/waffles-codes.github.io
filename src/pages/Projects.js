@@ -1,8 +1,8 @@
 import React from 'react';
 import Card from '../components/Card';
-import robotImage from '../robot hand raspberry pi side.jpg';
-import henryImage from '../H-enry frc 4186 robot 2023.jpg';
-import spaceAppsImage from '../WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.jpg'
+import robotImage from '../assets/robot hand raspberry pi side.jpg';
+import henryImage from '../assets/H-enry frc 4186 robot 2023.jpg';
+import spaceAppsImage from '../assets/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.jpg'
 import './Projects.css';
 
 const Projects = () => {

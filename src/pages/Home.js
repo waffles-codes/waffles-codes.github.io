@@ -1,6 +1,6 @@
-import face from '../Evan_Lu_Professional_Profile_Cropped.png';
-import resume_image from '../1-26 Evan Lu - 2025 Resume.jpg';
-import resume from '../1-26 Evan Lu - 2025 Resume.pdf';
+import face from '../assets/Evan_Lu_Professional_Profile_Cropped.png';
+import resume_image from '../assets/1-26 Evan Lu - 2025 Resume.jpg';
+import resume from '../assets/1-26 Evan Lu - 2025 Resume.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
@@ -34,9 +34,9 @@ const Home = () => {
               direction of embedded systems because I enjoy seeing my code come to 
               life as it interacts with the physical world.
               <br/><br/>
-              I am most proficient when it comes to C++, because that's what most of my 
-              classes are taught in, but I've also programmed robots in Java, Kotlin, 
-              and Python, worked on multiple websites (including this one) 
+              I'm the most proficient when it comes to C++, because that's what almost 
+              all of my classes are taught in, but I've also programmed robots in Java, 
+              Kotlin, and Python, worked on multiple websites (including this one) 
               with React.js, and implemented database systems with SQL.              
               <br/><br/>
               I'm always eager to take on new challenges and learn from every experience. 
