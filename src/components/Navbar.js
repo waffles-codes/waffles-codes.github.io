@@ -28,7 +28,7 @@ return (
             <a href="mailto:evalu802@gmail.com" className="image-links" target='blank'>
                 <img src="email.svg" width="25" alt='mailto' id='email'/>
             </a>
-            <a href="https://www.linkedin.com/in/waffles-codes/" className="image-links" target='blank'>
+            <a href="https://www.linkedin.com/in/evan-lu-tw/" className="image-links" target='blank'>
                 <img src="linkedin.svg" width="20" alt='linkedin' id='linkedin'/>
             </a>
             <a href="https://github.com/waffles-codes" className="image-links" target='blank'>

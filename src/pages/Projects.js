@@ -57,7 +57,7 @@ const Projects = () => {
             header: 'Notable Acheivements',
             type: 'list',
             content: [
-              'H-enry won CalGames 2023 (First win since 2017!)',
+              'H-enry won CalGames 2023 (First win for the team since 2017!)',
               'Programmed H-enry by myself, while also teaching potential future programmers',
               'Auto-targeting and positioning utilizing a Limelight for computer vision',
               'Programmed in Kotlin',

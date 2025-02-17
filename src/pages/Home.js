@@ -14,7 +14,7 @@ const Home = () => {
         <img src={face} className="pfp" alt='profile'/>
           <p id='info'>
             This website was bulit without the use of any website building tools, 
-            other than VS Code, React.js, Github Pages, gh-pages, and many sleepless nights.
+            other than VS Code, React.js, gh-pages, and many sleepless nights.
           </p>
         </div>
 
@@ -38,7 +38,7 @@ const Home = () => {
               I'm the most proficient when it comes to C++, because that's what almost 
               all of my classes are taught in, but I've also programmed robots in Java, 
               Kotlin, and Python, worked on multiple websites (including this one) 
-              with React.js, and implemented database systems with SQL.              
+              with React.js, and implemented database systems with SQL & their C++ API.              
               <br/><br/>
               I'm always eager to take on new challenges and learn from every experience. 
               Feel free to reach out if you'd like to discuss potential internship 
