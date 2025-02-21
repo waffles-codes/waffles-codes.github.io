@@ -1,6 +1,6 @@
 import face from '../assets/Evan_Lu_Professional_Profile_Cropped.png';
-import resume_image from '../assets/1-26 Evan Lu - 2025 Resume.jpg';
-import resume from '../assets/1-26 Evan Lu - 2025 Resume.pdf';
+import resume_image from '../assets/Evan_Lu_Resume_Feb16_2025.jpg';
+import resume from '../assets/Evan_Lu_Resume_Feb16_2025.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
