@@ -28,7 +28,7 @@ const Home = () => {
             </p>
             <p className="walloftext">
               I'm a second year Computer Science & Engineering student at UC Merced 
-              trying to speedrun college by winter junior year (only two and a half years!).<br/>
+              trying to speedrun college by winter junior year (only two and a half years!). 
               If you'd like to see what I'm capable of, 
               <b> check out my <a id="project-link" href="/#/projects">Projects</a> page! </b>
               <br/><br/>
