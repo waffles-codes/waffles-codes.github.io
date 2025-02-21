@@ -1,11 +1,22 @@
-import Navbar from './components/Navbar.js';
-import PageSwitcher from './PageSwitcher';
+import React, { useState } from "react";
+import Navbar from "./components/Navbar.js";
+import PageSwitcher from "./PageSwitcher";
+import IntroAnimation from "./components/IntroAnimation";
 
 function App() {
+  const [showIntro, setShowIntro] = useState(true);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
   return (
-    <div className="App">
-      <Navbar/>
-      <PageSwitcher/>
+    <div>
+      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+      <div className="app-content">
+        <Navbar />
+        <PageSwitcher />
+      </div>
     </div>
   );
 }

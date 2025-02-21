@@ -27,7 +27,8 @@ const Home = () => {
                 About Me
             </p>
             <p className="walloftext">
-              My name is Evan Lu, and I'm a second-year student at UC Merced studying Computer Science & Engineering.
+              I'm a second year Computer Science & Engineering student at UC Merced 
+              trying to speedrun college by winter junior year (only two and a half years!).<br/>
               If you'd like to see what I'm capable of, 
               <b> check out my <a id="project-link" href="/#/projects">Projects</a> page! </b>
               <br/><br/>
