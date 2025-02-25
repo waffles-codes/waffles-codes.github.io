@@ -1,5 +1,5 @@
-import face from '../assets/Evan_Lu_Professional_Profile_Cropped.png';
-import resume_image from '../assets/Evan_Lu_Resume_Feb24_2025.jpg';
+import face from '../assets/Evan_Lu_Professional_Profile_Cropped.webp';
+import resume_image from '../assets/Evan_Lu_Resume_Feb24_2025.webp';
 import resume from '../assets/Evan_Lu_Resume_Feb24_2025.pdf';
 import React, { useState } from 'react';
 import './Home.css';
