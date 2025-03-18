@@ -51,11 +51,14 @@ if(newest_filepath != ""):
     # store image as .jpg in assets 
     # (pix.save only supports 'png', 'pnm', 'pgm', 'ppm', 'pbm', 'pam', 'psd', 'ps', 'jpg', 'jpeg' NOT webp)
     path = f"D:/Programming/Github Desktop/waffles-codes.github.io/src/assets/{newest_file}.jpg"
+    pix.save(path) #delete the jpg later
 
     img = Image.open(path)
         
     # Save as .webp with multiple standard sizes to the same filepath
     img.save(f"D:/Programming/Github Desktop/waffles-codes.github.io/src/assets/{newest_file}.webp", format='webp')
+
+    os.remove(path) #this should delete the jpg
 
     # copy pdf to assets
     # DESTINATION MUST BE A FILE NOT A DIRECTORY
