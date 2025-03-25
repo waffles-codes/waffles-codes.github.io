@@ -1,0 +1,24 @@
+/* to hide scrollbar on chrome, safari, or any webkit browser */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  padding-top: 80px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -ms-overflow-style: none;  /* IE and Edge */
+
+  background-color:#fef3dd;
+}
+
+@media only screen and (orientation: portrait) {
+  body {
+    padding-top: 20px;
+  }
+}
