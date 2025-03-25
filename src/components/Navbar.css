@@ -2,6 +2,9 @@
 
 /* FOR DESKTOP */
 @media only screen and (orientation: landscape) {
+    .mobile {
+        display: none;
+    }
     .navbar {
         display: flex;
         position: fixed;
@@ -68,20 +71,24 @@
 /* FOR MOBILE */
 @media only screen and (orientation: portrait) {
     .navbar {
+        display: none;
+    }
+    .mobile {
         display: flex;
+        flex-direction: column;
         position: fixed;
         top: 0;
-        width: 100%;
+        width: 21%;
+        height: 100%;
         z-index: 100;
-        justify-content: space-between;
-        align-items: center;
+        align-items: left;
         background-color: #f9e6cd;
         color: #000000;
         font-size: small;
         box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
     }
 
-    .navbar-left {
+    .mobile-top {
         font-family: "Montserrat", sans-serif;
         font-weight: 400;
         font-size: medium;
@@ -89,35 +96,38 @@
         padding-left: 10px;
     }
 
-    .navbar-center {
+    .mobile-middle {
+        font-size: medium;
         position: relative;
         padding: 0px;
     }
-    .navbar-center .nav-links {
+    .mobile-middle .mobile-links {
         list-style-type: none;
         padding-inline-start: 0px;
         display: flex;
+        flex-direction: column;
         font-weight: lighter;
     }
-    .navbar-center .nav-links a:hover {
+    .mobile-middle .mobile-links a:hover {
         color: #aa9174;
     }
-    .navbar-center .nav-links li {
+    .mobile-middle .mobile-links li {
         margin-left: 5%;
         margin-right: 5%;
     }
-    .navbar-center .nav-links a {
+    .mobile-middle .mobile-links a {
         color: #000000;
         text-decoration: none;
     }
 
-    .navbar-right {
+    .mobile-bottom {
         list-style-type: none;
         display: flex;
+        flex-direction: column;
         padding-right: 30px;
         padding-left: 10px;
     }
-    .navbar-right .image-links {
+    .mobile-bottom .image-links {
         text-decoration: none;
         margin-left: 5%;
         margin-right: 5%;

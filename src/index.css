@@ -1,4 +1,4 @@
-/* to hide scrollbar on chrome */
+/* to hide scrollbar on chrome, safari, or any webkit browser */
 body::-webkit-scrollbar {
   display: none;
 }
@@ -13,13 +13,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -ms-overflow-style: none;  /* IE and Edge */
-  /* unable to hide scrollbar on firefox */
 
   background-color:#fef3dd;
 }
 
 @media only screen and (orientation: portrait) {
   body {
-    padding-top: 50px;
+    padding-top: 20px;
   }
 }
