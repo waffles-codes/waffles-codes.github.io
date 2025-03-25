@@ -19,6 +19,6 @@ body {
 
 @media only screen and (orientation: portrait) {
   body {
-    padding-top: 20px;
+    padding-top: 10px;
   }
 }

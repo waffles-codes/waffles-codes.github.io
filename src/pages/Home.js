@@ -4,7 +4,7 @@ import resume from '../assets/Evan_Lu_Resume_Mar24_2025.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
-import IntroAnimation from "../components/IntroAnimation";
+// import IntroAnimation from "../components/IntroAnimation";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
