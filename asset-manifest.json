@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.820effe9.css",
-    "main.js": "/static/js/main.2c793a20.js",
+    "main.css": "/static/css/main.9a121353.css",
+    "main.js": "/static/js/main.2e8625a1.js",
     "static/js/453.eee6856d.chunk.js": "/static/js/453.eee6856d.chunk.js",
     "static/media/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.webp": "/static/media/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.80a0d3dd349e9175b271.webp",
     "static/media/robot hand raspberry pi side.webp": "/static/media/robot hand raspberry pi side.12481336fb07d1d5ef84.webp",
@@ -9,13 +9,14 @@
     "static/media/H-enry frc 4186 robot 2023.webp": "/static/media/H-enry frc 4186 robot 2023.6b1a9ae1648a5ede3697.webp",
     "static/media/Evan_Lu_Resume_Mar24_2025.webp": "/static/media/Evan_Lu_Resume_Mar24_2025.33c4ee2e8aae4ed08a65.webp",
     "static/media/Evan_Lu_Professional_Profile_Cropped.webp": "/static/media/Evan_Lu_Professional_Profile_Cropped.d723c92d0047f1a62bf1.webp",
+    "static/media/Market Mayhem Winner.webp": "/static/media/Market Mayhem Winner.1da5e4b440ac024938ec.webp",
     "index.html": "/index.html",
-    "main.820effe9.css.map": "/static/css/main.820effe9.css.map",
-    "main.2c793a20.js.map": "/static/js/main.2c793a20.js.map",
+    "main.9a121353.css.map": "/static/css/main.9a121353.css.map",
+    "main.2e8625a1.js.map": "/static/js/main.2e8625a1.js.map",
     "453.eee6856d.chunk.js.map": "/static/js/453.eee6856d.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.820effe9.css",
-    "static/js/main.2c793a20.js"
+    "static/css/main.9a121353.css",
+    "static/js/main.2e8625a1.js"
   ]
 }
