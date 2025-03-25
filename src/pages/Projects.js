@@ -13,13 +13,37 @@ const Projects = () => {
         title="Wooden Robot Hand"
         image={robotImage}
         altText="Wooden robot hand with all of its internals exposed"
-        link="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
+        link = ""
+        modalContent={
+          <div>
+              {/* styling requires {{}} */}
+            <h2 /*style={{margin:0}}*/>Modal Content</h2>
+            {/* <p>this should show up in a modal</p> */}
+            <a
+              href="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
+              target='blank'
+            >
+              Presentation
+            </a>
+            <br/>
+            <a
+              href="https://github.com/waffles-codes/robot-hand-backup"
+              target='blank'
+            >
+              Github For Robot Hand Code Backups
+            </a>
+          </div>
+        }
         sections={[
           {
             header: 'Project Overview',
             type: 'paragraph',
             content:
-              'This project was created for the sole purpose of beating my friend in rock-paper-scissors. During the process, I developed proficiency in embedded systems, as I focused on learning parallel processing, machine learning models, and writing code at the lowest levels.',
+              [
+                'This project was initially created for the sole purpose of beating my friend in rock-paper-scissors. ',
+                'During the process, I developed proficiency in embedded systems, as I focused on learning parallel ',
+                'processing, machine learning models, and writing code at the lowest levels.',
+              ]
           },
           {
             header: 'Software Features',
@@ -46,12 +70,20 @@ const Projects = () => {
         title="H-enry (FRC Robotics)"
         image={henryImage}
         altText="H-enry robot from Team 4186 The Aztechs"
+        link="https://github.com/team4186/season-2023"
         sections={[
           {
             header: 'Project Overview',
             type: 'paragraph',
             content:
-              'This robot was made during my time with FRC Team 4186, The Aztechs, where I first found passion in embedded systems programming. I took it upon myself to program the robot and learn the intricacies of the FRC libraries, devise an ergonomic and intuitive control scheme, and create responsive autonomous routines.',
+            //making this an array allows for the <i>"AztechsTeam"</i> part to be rendered properly
+            [
+              'This robot was made during my time with FRC Team 4186, The Aztechs,',
+              'where I first found passion in robotics programming. I took it upon myself to program',
+              'the robot and learn the intricacies of the FRC libraries, devise an ergonomic and',
+              'intuitive control scheme, and create responsive autonomous routines.\n',
+              'Almost all of my commits to our repository were under the ',<i>"AztechsTeam"</i>,' account.'
+            ]
           },
           {
             header: 'Notable Acheivements',
@@ -67,15 +99,9 @@ const Projects = () => {
             header: 'Previous Years',
             type: 'paragraph',
             content:
-              'WWURM'
+              'In previous years, '
           },
         ]}
-        modalContent={
-          <div>
-            <h2>Modal Content</h2>
-            <p>this should show up in a modal</p>
-          </div>
-        }
 
       />
 

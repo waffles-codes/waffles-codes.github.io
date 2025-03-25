@@ -1,15 +1,25 @@
 import face from '../assets/Evan_Lu_Professional_Profile_Cropped.webp';
-import resume_image from '../assets/Evan_Lu_Resume_Mar17_2025.webp';
-import resume from '../assets/Evan_Lu_Resume_Mar17_2025.pdf';
+import resume_image from '../assets/Evan_Lu_Resume_Mar24_2025.webp';
+import resume from '../assets/Evan_Lu_Resume_Mar24_2025.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
+import IntroAnimation from "../components/IntroAnimation";
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [showIntro, setShowIntro] = useState(true);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+  };
+
   return (
+    
     <div className='bodydiv'>
+      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
+
       <div className='infodiv'>
         <img src={face} className="pfp" alt='profile'/>
           <p id='info'>
@@ -22,7 +32,6 @@ const Home = () => {
 
         <div className='textdiv'>
           <div className='textcontainer'>
-            {/* make this not AI next */}
             <p className='title'>
                 About Me
             </p>
@@ -30,7 +39,7 @@ const Home = () => {
               I'm a second year Computer Science & Engineering student at UC Merced 
               trying to speedrun college by winter junior year (only two and a half years!). 
               If you'd like to see what I'm capable of, 
-              <b> check out my <a id="project-link" href="/#/projects">Projects</a> page! </b>
+              <strong> check out my <a id="project-link" href="/#/projects">Projects</a> page! </strong>
               <br/><br/>
               Currently, I'm working on advancing my computer science career in the 
               direction of embedded systems because I enjoy seeing my code come to 

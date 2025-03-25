@@ -82,7 +82,8 @@
 }
 
 .card-modal-content {
-  background-color: white;
+  background-color: #fff9f3;
+  padding: 20px;  
   width: 90%;
   height: 90%;
   max-width: 1200px;
@@ -103,4 +104,13 @@
 
 .close-button:hover {
   background-color: #b30000;
+}
+
+.card-modal-overlay a {
+  color: #000000;
+  text-decoration: underline;
+}
+
+.card-modal-overlay a:hover {
+  color: #aa9174;
 }

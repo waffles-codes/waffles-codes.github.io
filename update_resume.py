@@ -46,7 +46,7 @@ if(newest_filepath != ""):
 
     doc = pymupdf.open(newest_filepath) # open a document
     page = doc[0]
-    pix = page.get_pixmap(dpi=300)  # render page to an image
+    pix = page.get_pixmap(dpi=100)  # render page to an image (adjust dpi to change quality)
 
     # store image as .jpg in assets 
     # (pix.save only supports 'png', 'pnm', 'pgm', 'ppm', 'pbm', 'pam', 'psd', 'ps', 'jpg', 'jpeg' NOT webp)
@@ -55,8 +55,10 @@ if(newest_filepath != ""):
 
     img = Image.open(path)
         
-    # Save as .webp with multiple standard sizes to the same filepath
-    img.save(f"D:/Programming/Github Desktop/waffles-codes.github.io/src/assets/{newest_file}.webp", format='webp')
+    # Save as .webp with multiple optimized file size to the same filepath
+    img.save(f"D:/Programming/Github Desktop/waffles-codes.github.io/src/assets/{newest_file}.webp", 
+             format='webp', 
+             quality=25)
 
     os.remove(path) #this should delete the jpg
 
