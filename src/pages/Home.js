@@ -9,16 +9,8 @@ import IntroAnimation from "../components/IntroAnimation";
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [showIntro, setShowIntro] = useState(true);
-
-  const handleIntroComplete = () => {
-    setShowIntro(false);
-  };
-
   return (
-    
     <div className='bodydiv'>
-      {showIntro && <IntroAnimation onComplete={handleIntroComplete} />}
 
       <div className='infodiv'>
         <img src={face} className="pfp" alt='profile'/>
