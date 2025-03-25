@@ -1,6 +1,11 @@
 /* Import Montserrat font */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+.projects-container {
+    padding-left: 6vw;
+    padding-right: 6vw;
+}
+
 .project-body {
     display: flex;
     justify-content: center;
@@ -26,7 +31,7 @@
     .project-body {
         display: flex;
         flex-direction: row;
-        justify-content: space-evenly;
+        justify-content: space-between;
         width: auto; /* Adjust layout for desktop */
     }
 }
