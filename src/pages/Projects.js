@@ -10,7 +10,7 @@ const Projects = () => {
     <div className="project-body">
       {/* Wooden Robot Hand Card */}
       <Card
-        title="Wooden Robot Hand"
+        title="Wooden Robot Hand 👋"
         image={robotImage}
         altText="Wooden robot hand with all of its internals exposed"
         link = ""
@@ -67,7 +67,7 @@ const Projects = () => {
       />
 
       <Card
-        title="H-enry (FRC Robotics)"
+        title="H-enry (FRC Robotics) 🤖"
         image={henryImage}
         altText="H-enry robot from Team 4186 The Aztechs"
         link="https://github.com/team4186/season-2023"
@@ -78,28 +78,38 @@ const Projects = () => {
             content:
             //making this an array allows for the <i>"AztechsTeam"</i> part to be rendered properly
             [
-              'This robot was made during my time with FRC Team 4186, The Aztechs,',
-              'where I first found passion in robotics programming. I took it upon myself to program',
-              'the robot and learn the intricacies of the FRC libraries, devise an ergonomic and',
-              'intuitive control scheme, and create responsive autonomous routines.\n',
-              'Almost all of my commits to our repository were under the ',<i>"AztechsTeam"</i>,' account.'
+              'H-enry was made during my time with FRC Team 4186, The Aztechs, ',
+              'where I first found my passion in robotics programming. I took it upon myself to program ',
+              'the robot and learn the intricacies of the FRC libraries, devise an ergonomic and ',
+              'intuitive control scheme, and create responsive autonomous routines.', <br/>,
+              'Note: Almost all of my commits to our repository were under the ',<i>"AztechsTeam"</i>,' account. '
             ]
           },
           {
-            header: 'Notable Acheivements',
+            header: 'Acheivements & Notes',
             type: 'list',
             content: [
-              'H-enry won CalGames 2023 (First win for the team since 2017!)',
+              ['H-enry won CalGames 2023 🏆',<br/>,'(First win for the team since 2017!)'],
               'Programmed H-enry by myself, while also teaching potential future programmers',
               'Auto-targeting and positioning utilizing a Limelight for computer vision',
               'Programmed in Kotlin',
+              'Created for FRC Season 2023: Charged Up!',
             ],
           },
           {
             header: 'Previous Years',
             type: 'paragraph',
             content:
-              'In previous years, '
+              [
+                'The other robot I had a large part in programming was WWYRM, ',
+                'which ',<i>unofficially</i>,' stands for ', <i>"We Want YouR Money"</i>, 
+                ' (due to our robot needing a name in order to get sponsorships) and ', 
+                <i>officially</i>, ' being some type of dragon. ',
+                'WWYRM was programmed in Java and didn\'t have significant autonomous capabilities. ',
+                'During one of the competitions, auto-targeting functionality was implemented but never used ',
+                'due to the volatility of newly implemented and not-very-tested code. ',
+                'This robot was built to compete in FRC Season 2022: Rapid React'
+              ]
           },
         ]}
 
@@ -107,7 +117,7 @@ const Projects = () => {
 
       {/* NASA SpaceApps Exosky! Card */}
       <Card
-        title="NASA SpaceApps Exosky!"
+        title="NASA SpaceApps Exosky! 🌃"
         image={spaceAppsImage}
         altText="My team posing in front of our presentation after our local win"
         link="https://github.com/Shyam-723/NasaExoSkyChallenge"
@@ -116,21 +126,25 @@ const Projects = () => {
             header: 'Project Overview',
             type: 'paragraph',
             content:
-              'This project was a team effort with my friends at UC Merced.',
+              'This project was a team effort with my friends at UC Merced as part of the NASA SpaceApps 2024 Challenge. We picked this project because we thought it would be fun to be able to see the stars from other planets as if you were there. This was also my first hackathon experience ever!',
           },
           {
-            header: 'Software Features',
+            header: 'Acheivements',
             type: 'list',
             content: [
+              'Local Challenge Winner at UC Merced 🏆',
+              '2024 Global Nominee for the NASA SpaceApps Challenge 🏆',
+              '2024 People\'s Choice for the NASA SpaceApps Challenge 🏆',
               'Integration with Aladin Lite Viewer',
               'Python Flask backend with React.js frontend',
+              'Simulating the sky from another planet'
             ],
           },
           {
             header: 'What I learned from the event',
             type: 'paragraph',
             content:
-              'WIP'
+              'Mostly, I learned that hackathons are actually quite fun, and that I wanted to do more in the future. I also gained valuable experience in working on a tight schedule (just 24 hours minus sleep for the whole thing) as well as making decisions and communicating them with my teammates on short notice in order to move our project forward.'
           },
         ]}
       />
