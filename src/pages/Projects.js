@@ -110,12 +110,12 @@ const Projects = () => {
                 content:
                   [
                     'The other robot I had a large part in programming was WWYRM, ',
-                    'which ',<i>unofficially</i>,' stands for ', <i>"We Want YouR Money"</i>, 
+                    'which ',<i>unofficially</i>,' stands for "We Want YouR Money"', //<i>"We Want YouR Money"</i>, 
                     ' (due to our robot needing a name in order to get sponsorships) and ', 
-                    <i>officially</i>, ' being some type of dragon. ',
+                    <i>officially</i>, ' being "some type of medieval dragon." ',
                     'WWYRM was programmed in Java and didn\'t have significant autonomous capabilities. ',
                     'Auto-targeting functionality was implemented during one of the competitions, but never used ',
-                    'due to the volatility of using minimally field-tested code. ',
+                    'due to the risks of using minimally field-tested code to compete. ',
                     'WWYRM was built to compete in FRC Season 2022: Rapid React and obtained its highest rank (Rank 15) during CalGames.'
                   ]
               },
