@@ -35,17 +35,17 @@ const Navbar = () => {
                 <div className="navbar-center">
                     <ul className="nav-links">
                         <li>
-                            <ScrollLink to="home" smooth={true} duration={500} offset={-100}>
+                            <ScrollLink to="home" smooth={true} duration={300} offset={-100}>
                                 Home
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink to="projects" smooth={true} duration={500} offset={-100}>
+                            <ScrollLink to="projects" smooth={true} duration={300} offset={-100}>
                                 Projects
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink to="skills" smooth={true} duration={500} offset={-100}>
+                            <ScrollLink to="skills" smooth={true} duration={300} offset={-100}>
                                 Skills
                             </ScrollLink>
                         </li>
@@ -90,17 +90,17 @@ const Navbar = () => {
                     <div className="mobile-middle">
                         <ul className="mobile-links">
                             <li>
-                                <ScrollLink to="home" smooth={true} duration={500} offset={-50}>
+                                <ScrollLink to="home" smooth={true} duration={300} offset={-50}>
                                     Home
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="projects" smooth={true} duration={500} offset={-50}>
+                                <ScrollLink to="projects" smooth={true} duration={300} offset={-50}>
                                     Projects
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="skills" smooth={true} duration={500} offset={-50}>
+                                <ScrollLink to="skills" smooth={true} duration={300} offset={-50}>
                                     Skills
                                 </ScrollLink>
                             </li>
