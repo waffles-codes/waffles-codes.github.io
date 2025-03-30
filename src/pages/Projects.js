@@ -212,7 +212,7 @@ const Projects = () => {
               header: 'Acheivements',
               type: 'list',
               content: [
-                'Second Runner Up in Best Tehcnical Implementation 🏆',
+                'Second Runner Up in Best Technical Implementation 🏆',
               ],
             },
             // {
