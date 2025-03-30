@@ -16,6 +16,9 @@ const PageSwitcher = () => {
       <Home/>
       <Projects/>
       <Skills/>
+      <footer>
+        <p>© 2024 Evan Lu. All rights reserved.</p>
+      </footer>
     </>
   );
 }

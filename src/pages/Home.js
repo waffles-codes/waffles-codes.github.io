@@ -4,6 +4,7 @@ import resume from '../assets/Evan_Lu_Resume_Mar25_2025.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
+import { Link as ScrollLink } from 'react-scroll'; // for Project page link
 
 const Home = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -29,7 +30,11 @@ const Home = () => {
               I'm a second year Computer Science & Engineering student at UC Merced 
               trying to speedrun college by winter of my junior year (only two and a half years!). 
               If you'd like to see what I'm capable of, 
-              <strong> check out my <a id="project-link" href="/#/projects">Projects</a> page! </strong>
+              {/* <a id="project-link" href="/#/projects">Projects</a> */}
+              <strong> check out my <ScrollLink id="project-link" to="projects" smooth={true} duration={300} offset={-100}>
+                    Projects
+                  </ScrollLink> page! 
+              </strong>
               <br/><br/>
               Currently, I'm working on advancing my computer science career in the 
               direction of embedded systems because I enjoy seeing my code come to 

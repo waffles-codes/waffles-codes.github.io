@@ -17,6 +17,11 @@ body {
   background-color:#fef3dd;
 }
 
+footer {
+  text-align: center;
+  color: #7e7e7e;
+}
+
 .section-title {
   margin: 0;
   font-weight: 600;

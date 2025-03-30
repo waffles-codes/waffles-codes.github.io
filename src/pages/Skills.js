@@ -1,4 +1,5 @@
 import React from 'react';
+import Card from '../components/Card';
 
 const Projects = () => {
   return (
@@ -8,13 +9,21 @@ const Projects = () => {
           Skills
         </p>
       </div>
-      <div>
-        <header>
-            <h1>i have a lot of them</h1>
-        </header>
-        <main>
-            <p>work in progress</p>
-        </main>
+      <div className='projects-container'>
+        <Card
+              title="Languages 💻"
+              sections={[
+                {
+                  type: 'list',
+                  content: [
+                    'C++',
+                    'Python',
+                    'Java',
+                    'Kotlin',
+                  ],
+                },
+              ]}
+          />
       </div>
     </>
   );

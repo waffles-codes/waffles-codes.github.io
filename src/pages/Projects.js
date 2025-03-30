@@ -25,7 +25,7 @@ const Projects = () => {
             modalContent={
               <div>
                   {/* styling requires {{}} */}
-                <h2 /*style={{margin:0}}*/>Modal Content</h2>
+                <h2 /*style={{margin:0}}*/>Wooden Robot Hand 👋</h2>
                 {/* <p>this should show up in a modal</p> */}
                 <a
                   href="https://docs.google.com/presentation/d/1H-vKABQXgFmLuaNdNsZt5CzbKaZLlPPrXXgHJjh5Lb0/edit?usp=sharing"
@@ -75,7 +75,7 @@ const Projects = () => {
           />
 
           <Card
-            title="H-enry (FRC Robotics) 🤖"
+            title="H-enry 🤖"
             image={henryImage}
             altText="H-enry robot from Team 4186 The Aztechs"
             link="https://github.com/team4186/season-2023"
@@ -125,7 +125,7 @@ const Projects = () => {
 
           {/* NASA SpaceApps Exosky! Card */}
           <Card
-            title="NASA SpaceApps Exosky! 🌃"
+            title="Exosky! 🌃"
             image={spaceAppsImage}
             altText="My team posing in front of our presentation after our local win"
             // link="https://github.com/Shyam-723/NasaExoSkyChallenge"
@@ -133,7 +133,7 @@ const Projects = () => {
             modalContent={
               <div>
                   {/* styling requires {{}} */}
-                <h2 /*style={{margin:0}}*/>Modal Content</h2>
+                <h2 /*style={{margin:0}}*/>NASA SpaceApps Exosky! 🌃</h2>
                 {/* <p>this should show up in a modal</p> */}
                 <a
                   href="https://github.com/Shyam-723/NasaExoSkyChallenge"
@@ -184,13 +184,13 @@ const Projects = () => {
         <div className="project-body">
           {/* SacHacks VI Card */}
           <Card
-            title="SacHacks VI - Market Mayhem"
+            title="Market Mayhem 📈"
             image={sachacksImage}
             altText="The stock market simulator game shown with all panels"
             modalContent={
               <div>
                   {/* styling requires {{}} */}
-                <h2 /*style={{margin:0}}*/>Modal Content</h2>
+                <h2 /*style={{margin:0}}*/>SacHacks VI - Market Mayhem 📈</h2>
                 {/* <p>this should show up in a modal</p> */}
                 <a
                   href="https://github.com/DDH2004/SacHacksVI_TheCowsOverYonder"
