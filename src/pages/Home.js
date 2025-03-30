@@ -10,14 +10,13 @@ const Home = () => {
 
   return (
     <div id="home" className='bodydiv'>
-
       <div className='infodiv'>
         <img src={face} className="pfp" alt='profile'/>
-          <p id='info'>
-            This website was bulit without the use of any website building tools, 
-            other than VS Code, React.js, gh-pages, and many sleepless nights.
-          </p>
-        </div>
+        <p id='info'>
+          This website was bulit without the use of any website building tools, 
+          other than VS Code, React.js, gh-pages, and many sleepless nights.
+        </p>
+      </div>
 
       <div className='container'>
 
@@ -50,7 +49,7 @@ const Home = () => {
 
           <div className='spacer'/>
 
-          <div className='textcontainer'>
+          <div className='resumecontainer'>
             <div>
               <img 
                 src={resume_image} 
@@ -65,7 +64,6 @@ const Home = () => {
                 onClose={() => setIsModalOpen(false)}
               />
             </div>
-
           </div>
         </div>
       </div>

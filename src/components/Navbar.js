@@ -35,26 +35,29 @@ const Navbar = () => {
                 <div className="navbar-center">
                     <ul className="nav-links">
                         <li>
-                            <ScrollLink to="home" smooth={true} duration={500}>
+                            <ScrollLink to="home" smooth={true} duration={500} offset={-100}>
                                 Home
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink to="projects" smooth={true} duration={500}>
+                            <ScrollLink to="projects" smooth={true} duration={500} offset={-100}>
                                 Projects
                             </ScrollLink>
                         </li>
                         <li>
-                            <ScrollLink to="skills" smooth={true} duration={500}>
+                            <ScrollLink to="skills" smooth={true} duration={500} offset={-100}>
                                 Skills
                             </ScrollLink>
+                        </li>
+                        {/* <li>
+                            <a href="/#">Home Page</a>
                         </li>
                         <li>
                             <a href="/#/projects">Projects Page</a>
                         </li>
                         <li>
                             <a href="/#/skills">Skills Page</a>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
 
@@ -87,33 +90,45 @@ const Navbar = () => {
                     <div className="mobile-middle">
                         <ul className="mobile-links">
                             <li>
-                                <ScrollLink to="home" smooth={true} duration={500} onClick={toggleMobileMenu}>
+                                <ScrollLink to="home" smooth={true} duration={500} offset={-50}>
                                     Home
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="projects" smooth={true} duration={500} onClick={toggleMobileMenu}>
+                                <ScrollLink to="projects" smooth={true} duration={500} offset={-50}>
                                     Projects
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="skills" smooth={true} duration={500} onClick={toggleMobileMenu}>
+                                <ScrollLink to="skills" smooth={true} duration={500} offset={-50}>
                                     Skills
                                 </ScrollLink>
+                            </li>
+                            {/* <li>
+                                <a href="/#">Home Page</a>
                             </li>
                             <li>
                                 <a href="/#/projects">Projects Page</a>
                             </li>
                             <li>
                                 <a href="/#/skills">Skills Page</a>
-                            </li>
+                            </li> */}
                         </ul>
                     </div>
-
-                    {/* Social Links */}
-                    <div className="mobile-bottom">
-                        {/* Add your social links here */}
-                    </div>
+                </div>
+                <div className="mobile-bottom">
+                    <a href="mailto:evalu802@gmail.com" className="image-links" target='blank'>
+                        <img src="email.svg" width="20" alt='mailto' id='email'/>
+                        &nbsp;&nbsp;Email
+                    </a>
+                    <a href="https://www.linkedin.com/in/evan-lu-tw/" className="image-links" target='blank'>
+                        <img src="linkedin.svg" width="20" alt='linkedin' id='linkedin'/>
+                        &nbsp;&nbsp;LinkedIn
+                    </a>
+                    <a href="https://github.com/waffles-codes" className="image-links" target='blank'>
+                        <img src="github.svg" width="20" alt='github' id='github'/>
+                        &nbsp;&nbsp;GitHub
+                    </a>
                 </div>
             </div>
         </>
