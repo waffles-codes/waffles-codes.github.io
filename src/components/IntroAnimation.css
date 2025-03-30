@@ -15,7 +15,7 @@
     z-index: 9999; /* make sure its on top of everything */
     opacity: 1; /* set opacity of entire component */
     visibility: visible; /* Initial visibility */
-    transition: opacity 1s ease-in-out, visibility 1s ease-in-out; /* Smooth fade-out */
+    transition: opacity 2s ease-out, visibility 2s ease-out; /* Smooth fade-out */
 }
 
 .intro-overlay.fade-out {

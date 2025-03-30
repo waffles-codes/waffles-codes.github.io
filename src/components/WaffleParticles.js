@@ -18,13 +18,14 @@ const WaffleParticles = () => {
     containerRef.current.appendChild(renderer.domElement);
 
     // New grid configuration
-    const OUTER_RADIUS = 4; // Outer bound of the circle
-    const INNER_RADIUS = 3.5; // Inner bound of the circle
+    const SCALING = 0.7;
+    const OUTER_RADIUS = 4 * SCALING; // Outer bound of the circle
+    const INNER_RADIUS = 3.5  * SCALING; // Inner bound of the circle
     const PARTICLE_COUNT = 5000; // Total number of particles
-    const RECTANGLE_WIDTH = 0.5;  // Horizontal size of rectangle
-    const RECTANGLE_LENGTH = 7;  // Vertical size of rectangle
-    const RECTANGLES = 3;
-    const SPACING = 0.9;
+    const RECTANGLE_WIDTH = 0.5 * SCALING;  // Horizontal size of rectangle
+    const RECTANGLE_LENGTH = 7  * SCALING;  // Vertical size of rectangle
+    const RECTANGLES = 3; //Number of rectangles per "half"
+    const SPACING = 0.9  * SCALING;
     
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(PARTICLE_COUNT * 3);
@@ -53,95 +54,99 @@ const WaffleParticles = () => {
       
       positions[index * 3] = radius * Math.cos(angle);
       positions[index * 3 + 1] = radius * Math.sin(angle);
-      positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5;
+      positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5 * SCALING;
       index++;
     }
     
     // Generate rectangular section particles
     for (let i = 0; i < rectangleParticles; i++) {
-        for (let j = 0; j < RECTANGLES; j++){
-            const x = (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5;
-            const y = (Math.random() - 0.5) * RECTANGLE_LENGTH;
-            
-            // Ensure rectangle stays within outer circle
-            const distance = Math.sqrt(x**2 + y**2);
-            if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
-            
-            positions[index * 3] = x;
-            positions[index * 3 + 1] = y;
-            positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5;
-            index++;
-            
-            // Regenerate if we skipped some particles
-            if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
-                i--;
-            }
+      for (let j = 0; j < RECTANGLES; j++){
+        const x = (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5;
+        const y = (Math.random() - 0.5) * RECTANGLE_LENGTH;
+        
+        // Ensure rectangle stays within outer circle
+        const distance = Math.sqrt(x**2 + y**2);
+        if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
+        
+        positions[index * 3] = x;
+        positions[index * 3 + 1] = y;
+        positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5 * SCALING;
+        index++;
+        
+        // Regenerate if we skipped some particles
+        if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
+          i--;
         }
-        for (let j = 0; j < RECTANGLES; j++){
-            const x = (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5;
-            const y = (Math.random() - 0.5) * RECTANGLE_LENGTH;
-            
-            // Ensure rectangle stays within outer circle
-            const distance = Math.sqrt(x**2 + y**2);
-            if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
-            
-            positions[index * 3] = x;
-            positions[index * 3 + 1] = y;
-            positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5;
-            index++;
-            
-            // Regenerate if we skipped some particles
-            if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
-                i--;
-            }
+      }
+      for (let j = 1; j < RECTANGLES; j++){
+        const x = (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5;
+        const y = (Math.random() - 0.5) * RECTANGLE_LENGTH;
+        
+        // Ensure rectangle stays within outer circle
+        const distance = Math.sqrt(x**2 + y**2);
+        if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
+        
+        positions[index * 3] = x;
+        positions[index * 3 + 1] = y;
+        positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5 * SCALING;
+        index++;
+        
+        // Regenerate if we skipped some particles
+        if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
+          i--;
         }
-        for (let j = 0; j < RECTANGLES; j++){
-            const x = (Math.random() - 0.5) * RECTANGLE_LENGTH;
-            const y = (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5;
-            
-            // Ensure rectangle stays within outer circle
-            const distance = Math.sqrt(x**2 + y**2);
-            if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
-            
-            positions[index * 3] = x;
-            positions[index * 3 + 1] = y;
-            positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5;
-            index++;
-            
-            // Regenerate if we skipped some particles
-            if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
-                i--;
-            }
+      }
+      for (let j = 0; j < RECTANGLES; j++){
+        const x = (Math.random() - 0.5) * RECTANGLE_LENGTH;
+        const y = (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5;
+        
+        // Ensure rectangle stays within outer circle
+        const distance = Math.sqrt(x**2 + y**2);
+        if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
+        
+        positions[index * 3] = x;
+        positions[index * 3 + 1] = y;
+        positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5 * SCALING;
+        index++;
+        
+        // Regenerate if we skipped some particles
+        if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
+          i--;
         }
-        for (let j = 0; j < RECTANGLES; j++){
-            const x = (Math.random() - 0.5) * RECTANGLE_LENGTH;
-            const y = (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5;
-            
-            // Ensure rectangle stays within outer circle
-            const distance = Math.sqrt(x**2 + y**2);
-            if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
-            
-            positions[index * 3] = x;
-            positions[index * 3 + 1] = y;
-            positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5;
-            index++;
-            
-            // Regenerate if we skipped some particles
-            if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
-                i--;
-            }
+      }
+      for (let j = 1; j < RECTANGLES; j++){
+        const x = (Math.random() - 0.5) * RECTANGLE_LENGTH;
+        const y = (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5;
+        
+        // Ensure rectangle stays within outer circle
+        const distance = Math.sqrt(x**2 + y**2);
+        if (distance > INNER_RADIUS) continue;  // Skip points outside middle of circle
+        
+        positions[index * 3] = x;
+        positions[index * 3 + 1] = y;
+        positions[index * 3 + 2] = (Math.random() - 0.5) * 0.5 * SCALING;
+        index++;
+        
+        // Regenerate if we skipped some particles
+        if (index < PARTICLE_COUNT && i === rectangleParticles - 1) {
+          i--;
         }
+      }
     }
     
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    
 
     // Create waffle-colored material
     const material = new THREE.PointsMaterial({
       size: 0.03,
-      color: new THREE.Color(0.6667, 0.5686, 0.4549), // Golden waffle color
-      transparent: false,
-      opacity: 1,
+      // color: new THREE.Color(0, 0, 0), // black
+      // color: new THREE.Color(0.45, 0.45, 0.4), // experimental
+      color: new THREE.Color(0.6667, 0.5686, 0.4549), // same as text highlight color
+      // color: new THREE.Color(0.26, 0.17, 0.10), // another brownish color
+      // color: new THREE.Color(1, 0.74, 0.23), // bright yellow
+      // color: new THREE.Color(0.239, 0.145, 0.004), // another brownish color
+      transparent: true,
+      opacity: 0.9,
     });
 
     // Create particle system
@@ -191,22 +196,22 @@ const WaffleParticles = () => {
 
     // Cleanup on component unmount
     return () => {
-    // window.removeEventListener('mousemove', handleMouseMove);
-    window.removeEventListener('resize', handleResize);
-    
-    // Use captured container reference for cleanup
-    if (container) {
-      container.removeChild(renderer.domElement);
-    }
-    
-    geometry.dispose();
-    material.dispose();
-    renderer.dispose();
-    
-    // Clean up scene objects
-    scene.clear();
-    
-    console.log("Cleanup completed");
+      // window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('resize', handleResize);
+      
+      // Use captured container reference for cleanup
+      if (container) {
+        container.removeChild(renderer.domElement);
+      }
+      
+      geometry.dispose();
+      material.dispose();
+      renderer.dispose();
+      
+      // Clean up scene objects
+      scene.clear();
+      
+      console.log("Cleanup completed");
     };
   }, []);
 

@@ -28,8 +28,8 @@ const IntroAnimation = ({ onComplete }) => {
         }
         setTimeout(() => {
           setIsFadingOut(true); // Start fade-out after blinking starts
-          setTimeout(onComplete, 1500); // Trigger onComplete after fade-out
-        }, 7500); // Pause before fade-out
+          setTimeout(onComplete, 2500); // Trigger onComplete after fade-out
+        }, 8000); // Let animation keep going for a little bit before fade-out
       }
     };
 
