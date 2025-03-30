@@ -35,19 +35,26 @@ const Navbar = () => {
                 <div className="navbar-center">
                     <ul className="nav-links">
                         <li>
-                            <ScrollLink to="home" smooth={true} duration={300} offset={-100}>
-                                Home
-                            </ScrollLink>
+                            <a href="">
+                                <ScrollLink to="home" smooth={true} duration={300} offset={-100}>
+                                    Home
+                                </ScrollLink>
+                            </a>
                         </li>
                         <li>
-                            <ScrollLink to="projects" smooth={true} duration={300} offset={-100}>
-                                Projects
-                            </ScrollLink>
+                            <a href="">
+                                <ScrollLink to="projects" smooth={true} duration={300} offset={-100}>
+                                    Projects
+                                </ScrollLink>
+                            </a>
+
                         </li>
                         <li>
-                            <ScrollLink to="skills" smooth={true} duration={300} offset={-100}>
-                                Skills
-                            </ScrollLink>
+                            <a href="">
+                                <ScrollLink to="skills" smooth={true} duration={300} offset={-100}>
+                                    Skills
+                                </ScrollLink>
+                            </a>
                         </li>
                         {/* <li>
                             <a href="/#">Home Page</a>

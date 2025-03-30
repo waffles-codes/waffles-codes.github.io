@@ -10,21 +10,26 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
     console.log("modal state " + isModalOpen);
   };
 
+  // disable hover if the card is not clickable
+  const disableHover = !link && !modalContent;
+
   return (
     <>
       {link ? (
-        // If a link is provided, set the card to open the link in a new tab
-        <a className="card" rel="noreferrer" target="_blank" href={link}>
+        <a
+          className={`card ${disableHover ? 'no-hover' : ''}`}
+          rel="noreferrer"
+          target="_blank"
+          href={link}
+        >
           <div className="card-header">
             <h2>{title}</h2>
             {image && <img src={image} className="card-image" alt={altText || "Card image"} />}
           </div>
 
           <div className="card-body">
-            {/* Maps all sections onto card */}
             {sections.map((section, index) => (
               <div key={index}>
-                {/* Render section content */}
                 {section.header && <h3>{section.header}</h3>}
                 {section.type === 'paragraph' && (
                   <p className="project-description">{section.content}</p>
@@ -41,8 +46,10 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
           </div>
         </a>
       ) : (
-        // Else, if there is modalContent, open modal on click
-        <div className="card" onClick={toggleModal}>
+        <div
+          className={`card ${disableHover ? 'no-hover' : ''}`}
+          onClick={modalContent ? toggleModal : undefined}
+        >
           <div className="card-header">
             <h2>{title}</h2>
             {image && <img src={image} className="card-image" alt={altText || "Card image"} />}
@@ -68,10 +75,8 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
         </div>
       )}
 
-      {/* Modal Component */}
       {isModalOpen && modalContent && (
         <div className="card-modal-overlay" onClick={toggleModal}>
-          {/* e.stopPropagation() prevents the click event from activating the card component itself */}
           <div className="card-modal-content" onClick={(e) => e.stopPropagation()}>
             {modalContent}
           </div>

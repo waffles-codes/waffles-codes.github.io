@@ -8,9 +8,15 @@
 
 .project-body {
     display: flex;
-    justify-content: center;
-    align-items: left;
-    flex-direction: column;
+    flex-wrap: wrap; /* Allows wrapping of items */
+    justify-content: space-between; /* Spreads items evenly */
+    align-items: flex-start; /* Aligns items to the top */
+    gap: 10px; /* Adds spacing between cards */
+}
+
+.project-card {
+    flex-basis: calc(33.33% - 10px); /* Ensures 3 cards per row with spacing */
+    box-sizing: border-box; /* Includes padding and border in width calculation */
 }
 
 .projects-header {
@@ -30,9 +36,10 @@
 @media only screen and (orientation: landscape) {
     .project-body {
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: auto; /* Adjust layout for desktop */
+        flex-wrap: wrap; /* Allows wrapping of items */
+        justify-content: space-between; /* Spreads items evenly */
+        align-items: flex-start; /* Aligns items to the top */
+        gap: 10px; /* Adds spacing between cards */
     }
 }
 

@@ -17,6 +17,11 @@
   transition: top 0.5s ease;
 }
 
+.no-hover {
+  pointer-events: none; /* Prevent hover interactions */
+  transition: none; /* Disable hover transitions */
+}
+
 .card-image {
   max-height: 230px;
   max-width: 300px;

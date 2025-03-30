@@ -177,11 +177,6 @@ const Projects = () => {
               },
             ]}
           />
-        </div>
-
-        {/* ROW TWO -- EACH PROJECT BODY SHOULD ONLY CONTAIN 3 ELEMENTS MAX */}
-        {/* another implementation would be to put all of the cards into an array and then map 3 to each row */}
-        <div className="project-body">
           {/* SacHacks VI Card */}
           <Card
             title="Market Mayhem 📈"
