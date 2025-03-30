@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./IntroAnimation.css";
+import WaffleParticles from './WaffleParticles';
+
 
 const IntroAnimation = ({ onComplete }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
@@ -27,7 +29,7 @@ const IntroAnimation = ({ onComplete }) => {
         setTimeout(() => {
           setIsFadingOut(true); // Start fade-out after blinking starts
           setTimeout(onComplete, 1500); // Trigger onComplete after fade-out
-        }, 1500); // Pause before fade-out
+        }, 7500); // Pause before fade-out
       }
     };
 
@@ -53,6 +55,7 @@ const IntroAnimation = ({ onComplete }) => {
       <div className="bottom-text">
         <p>(click to skip animation)</p>
       </div>
+      <WaffleParticles />
     </div>
   );
 };
