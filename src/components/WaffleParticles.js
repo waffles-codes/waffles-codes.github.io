@@ -155,8 +155,9 @@ const WaffleParticles = () => {
 
     // Camera positioning
     camera.position.z = 5;
+    const cameraDistance = 5; // Match your defined distance
 
-    // // Mouse interaction variables
+    // Mouse interaction variables
     let mouseX = 0;
     let mouseY = 0;
 
@@ -171,17 +172,36 @@ const WaffleParticles = () => {
     const animate = () => {
       requestAnimationFrame(animate);
 
-      // Rotate the particle system slightly for dynamic effect
-      // particles.rotation.x += 0.0005;
+      // Keep particle rotation
       particles.rotation.y += 0.002;
       particles.rotation.z += 0.001;
 
-      // Smooth camera movement based on mouse position
-      camera.position.x += (mouseX * -2 - camera.position.x) * 0.005;
-      camera.position.y += (mouseY * -1.5 - camera.position.y) * 0.005;
+      // Calculate orbital position
+      const verticalAngle = -mouseY * Math.PI * 0.3;
+      const horizontalAngle = -mouseX * Math.PI * 0.3;
+      
+      // Calculate new camera position
+      const newX = cameraDistance * Math.sin(horizontalAngle) * Math.cos(verticalAngle);
+      const newY = cameraDistance * Math.sin(verticalAngle);
+      const newZ = cameraDistance * Math.cos(horizontalAngle) * Math.cos(verticalAngle);
+      
+      // Apply smooth movement with your existing easing factor
+      camera.position.x += (newX - camera.position.x) * 0.005;
+      camera.position.y += (newY - camera.position.y) * 0.005;
+      camera.position.z += (newZ - camera.position.z) * 0.005;
+      
+      // Force correct distance after interpolation
+      // This ensures the camera stays exactly at distance 5 from center
+      const currentPosition = new THREE.Vector3().copy(camera.position);
+      const direction = currentPosition.normalize();
+      camera.position.copy(direction.multiplyScalar(cameraDistance));
+      
+      // Always look at center
+      camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
     };
+
 
     animate();
 

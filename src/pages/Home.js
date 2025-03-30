@@ -31,7 +31,7 @@ const Home = () => {
               trying to speedrun college by winter of my junior year (only two and a half years!). 
               If you'd like to see what I'm capable of, 
               {/* <a id="project-link" href="/#/projects">Projects</a> */}
-              <strong> check out my <a href="">
+              <strong> check out my <a href="/">
                   <ScrollLink id="project-link" to="projects" smooth={true} duration={300} offset={-100}>
                     Projects
                   </ScrollLink>
