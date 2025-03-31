@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c0b0cfcf.css",
-    "main.js": "/static/js/main.80382573.js",
+    "main.js": "/static/js/main.6174905b.js",
     "static/js/453.eee6856d.chunk.js": "/static/js/453.eee6856d.chunk.js",
     "static/media/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.webp": "/static/media/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.80a0d3dd349e9175b271.webp",
     "static/media/robot hand raspberry pi side.webp": "/static/media/robot hand raspberry pi side.12481336fb07d1d5ef84.webp",
@@ -12,11 +12,11 @@
     "static/media/Market Mayhem Winner.webp": "/static/media/Market Mayhem Winner.1da5e4b440ac024938ec.webp",
     "index.html": "/index.html",
     "main.c0b0cfcf.css.map": "/static/css/main.c0b0cfcf.css.map",
-    "main.80382573.js.map": "/static/js/main.80382573.js.map",
+    "main.6174905b.js.map": "/static/js/main.6174905b.js.map",
     "453.eee6856d.chunk.js.map": "/static/js/453.eee6856d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0b0cfcf.css",
-    "static/js/main.80382573.js"
+    "static/js/main.6174905b.js"
   ]
 }
