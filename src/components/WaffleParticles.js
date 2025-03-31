@@ -186,9 +186,9 @@ const WaffleParticles = () => {
       const newZ = cameraDistance * Math.cos(horizontalAngle) * Math.cos(verticalAngle);
       
       // Apply smooth movement with your existing easing factor
-      camera.position.x += (newX - camera.position.x) * 0.005;
-      camera.position.y += (newY - camera.position.y) * 0.005;
-      camera.position.z += (newZ - camera.position.z) * 0.005;
+      camera.position.x += (newX - camera.position.x) * 0.01;
+      camera.position.y += (newY - camera.position.y) * 0.01;
+      camera.position.z += (newZ - camera.position.z) * 0.01;
       
       // Force correct distance after interpolation
       // This ensures the camera stays exactly at distance 5 from center
