@@ -1,7 +1,7 @@
 import os
 from PIL import Image
 
-file = "Market Mayhem Winner.webp"
+file = "Evan_Lu_Professional_Profile_Confident.webp"
 
 directory = "D:/Programming/Github Desktop/waffles-codes.github.io/src/assets"
 print(f'Current working directory = {directory}')
@@ -13,4 +13,4 @@ for filename in os.scandir(directory):
         img = Image.open(filename.path)
         
         # Save as a webp of lower quality
-        img.save(f'{os.path.splitext(filename.path)[0]}.webp', format='webp', quality=2)
+        img.save(f'{os.path.splitext(filename.path)[0]}.webp', format='webp', quality=20)
