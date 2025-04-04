@@ -1,6 +1,6 @@
 import face from '../assets/Evan_Lu_Professional_Profile_Confident_Cropped.webp';
-import resume_image from '../assets/Evan_Lu_Resume_Mar25_2025.webp';
-import resume from '../assets/Evan_Lu_Resume_Mar25_2025.pdf';
+import resume_image from '../assets/Evan_Lu_Resume_Apr03_2025.webp';
+import resume from '../assets/Evan_Lu_Resume_Apr03_2025.pdf';
 import React, { useState } from 'react';
 import './Home.css';
 import PDFModal from '../components/PDFModal.js';
@@ -39,8 +39,8 @@ const Home = () => {
               </strong>
               <br/><br/>
               Currently, I'm working on advancing my computer science career in the 
-              direction of embedded systems because I enjoy seeing my code come to 
-              life as it interacts with the physical world.
+              direction of robotics and embedded systems because I enjoy seeing my 
+              code come to life as it interacts with the physical world.
               <br/><br/>
               I'm the most proficient when it comes to C++, because that's what almost 
               all of my classes are taught in, but I've also programmed robots in Java, 
