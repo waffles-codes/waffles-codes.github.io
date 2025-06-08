@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.c0b0cfcf.css",
-    "main.js": "/static/js/main.2782f3fc.js",
+    "main.js": "/static/js/main.d29858c0.js",
     "static/js/453.eee6856d.chunk.js": "/static/js/453.eee6856d.chunk.js",
     "static/media/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.webp": "/static/media/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.80a0d3dd349e9175b271.webp",
     "static/media/Evan_Lu_Professional_Profile_Confident_Cropped.webp": "/static/media/Evan_Lu_Professional_Profile_Confident_Cropped.46e91b8128e849ba8668.webp",
@@ -12,11 +12,11 @@
     "static/media/Market Mayhem Winner.webp": "/static/media/Market Mayhem Winner.1da5e4b440ac024938ec.webp",
     "index.html": "/index.html",
     "main.c0b0cfcf.css.map": "/static/css/main.c0b0cfcf.css.map",
-    "main.2782f3fc.js.map": "/static/js/main.2782f3fc.js.map",
+    "main.d29858c0.js.map": "/static/js/main.d29858c0.js.map",
     "453.eee6856d.chunk.js.map": "/static/js/453.eee6856d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0b0cfcf.css",
-    "static/js/main.2782f3fc.js"
+    "static/js/main.d29858c0.js"
   ]
 }
