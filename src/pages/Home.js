@@ -15,7 +15,7 @@ const Home = () => {
         <img src={face} className="pfp" alt='profile'/>
         <p id='info'>
           This website was bulit without the use of any GUI-based website building tools, 
-          other than VS Code, React.js, gh-pages, and many sleepless nights.
+          other than VS Code, the React.js library, packages like gh-pages, and many sleepless nights.
         </p>
       </div>
 
