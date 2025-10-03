@@ -10,20 +10,34 @@ const Projects = () => {
         </p>
       </div>
       <div className='projects-container'>
-        <Card
-              title="Languages 💻"
-              sections={[
-                {
-                  type: 'list',
-                  content: [
-                    'C++',
-                    'Python',
-                    'Java',
-                    'Kotlin',
-                  ],
-                },
-              ]}
-          />
+        <div className='projects-body'>
+          <Card
+                title="Languages 💻"
+                sections={[
+                  {
+                    type: 'list',
+                    content: [
+                      'C++',
+                      'Python',
+                      'Java',
+                      'Kotlin',
+                    ],
+                  },
+                ]}
+            />
+            <Card
+                title="Languages 🔊"
+                sections={[
+                  {
+                    type: 'list',
+                    content: [
+                      'English - Fluent',
+                      'Mandarin - Fluent',
+                    ],
+                  },
+                ]}
+            />
+          </div>
       </div>
     </>
   );

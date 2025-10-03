@@ -69,7 +69,7 @@ const Projects = () => {
                 header: 'What Makes it Cool',
                 type: 'paragraph',
                 content:
-                  'The hand uses custom CAD-designed living hinges. Not only can it beat you in rock paper scissors (albeit by cheating a lot), but it also has a "copy hand mode" to mimic the actions of your hand. Oh, and I forgot to mention, it also uses a vintage webcam from the WINDOWS XP ERA for its computer vision.',
+                  'The hand uses custom CAD-designed living hinges. Not only can it beat you in rock paper scissors (albeit by cheating a lot), but it also has a "copy hand mode" to mimic the actions of your hand. Oh, and I forgot to mention, it also uses a vintage webcam from the Windows XP era for its computer vision.',
               },
             ]}
           />
@@ -214,6 +214,60 @@ const Projects = () => {
                 type: 'list',
                 content: [
                   'Second Runner Up in Best Technical Implementation 🏆',
+                ],
+              },
+              // {
+              //   header: 'What I learned/Cool Stuff/Experiences',
+              //   type: 'paragraph',
+              //   content:
+              //     'Work in progress...'
+              // },
+            ]}
+          />
+          {/* SASEHacks Card */}
+          <Card
+            title="GreenProof"
+            image={sachacksImage}
+            altText="web app homepage"
+            modalContent={
+              <div>
+                  {/* styling requires {{}} */}
+                <h2 /*style={{margin:0}}*/>SASEHacks - GreenProof 🌱</h2>
+                {/* <p>this should show up in a modal</p> */}
+                <a
+                  href="https://github.com/DDH2004/SASEHacks-UCM2025_The-dApperBoys"
+                  target='blank'
+                >
+                  Github Repo
+                </a>
+                <br/>
+                <a
+                  href="https://devpost.com/software/greenproof"
+                  target='blank'
+                >
+                  Devpost Project Website
+                </a>
+                <br/>
+                <a
+                  href="https://docs.google.com/presentation/d/14daPIrDnnZVHFgTfVfJ5nMYyQ2gOw0-hIo1BTlHfEbw/edit?usp=sharing"
+                  target='blank'
+                >
+                  Presentation
+                </a>
+              </div>
+            }
+            sections={[
+              {
+                header: 'Project Overview',
+                type: 'paragraph',
+                content:
+                  'This project was a team effort with my friends as part of the SASEHacks 2025 hackathon at UC Merced.',
+              },
+              {
+                header: 'Acheivements',
+                type: 'list',
+                content: [
+                  'Third Place in Environmental Technology 🏆',
                 ],
               },
               // {
