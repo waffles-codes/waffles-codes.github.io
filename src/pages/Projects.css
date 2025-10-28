@@ -7,16 +7,17 @@
 }
 
 .project-body {
-    display: flex;
-    flex-wrap: wrap; /* Allows wrapping of items */
-    justify-content: space-between; /* Spreads items evenly */
-    align-items: flex-start; /* Aligns items to the top */
-    gap: 10px; /* Adds spacing between cards */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center;
+    column-gap: 50px;
+    width: 100%;
+    margin-right: auto;
 }
 
 .project-card {
-    flex-basis: calc(33.33% - 10px); /* Ensures 3 cards per row with spacing */
-    box-sizing: border-box; /* Includes padding and border in width calculation */
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .projects-header {
@@ -32,24 +33,17 @@
     color: #aa9174;
 }
 
-/* FOR DESKTOP */
-@media only screen and (orientation: landscape) {
-    .project-body {
-        display: flex;
-        flex-wrap: wrap; /* Allows wrapping of items */
-        justify-content: space-between; /* Spreads items evenly */
-        align-items: flex-start; /* Aligns items to the top */
-        gap: 10px; /* Adds spacing between cards */
-    }
-}
-
 /* FOR MOBILE */
 @media only screen and (orientation: portrait) {
     .project-body {
         display: flex;
         flex-direction: column;
-        flex-wrap: wrap;
         justify-content: center;
         align-items: center;
+        gap: 10px;
+    }
+
+    .project-card {
+        width: 100%;
     }
 }

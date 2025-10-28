@@ -1,7 +1,8 @@
 import React from 'react';
 import Card from '../components/Card';
+import './Projects.css';
 
-const Projects = () => {
+const Skills = () => {
   return (
     <>
       <div id="skills">
@@ -10,7 +11,7 @@ const Projects = () => {
         </p>
       </div>
       <div className='projects-container'>
-        <div className='projects-body'>
+        <div className='project-body'>
           <Card
                 title="Languages 💻"
                 sections={[
@@ -21,6 +22,8 @@ const Projects = () => {
                       'Python',
                       'Java',
                       'Kotlin',
+                      'React JS',
+                      'CSS'
                     ],
                   },
                 ]}
@@ -32,7 +35,7 @@ const Projects = () => {
                     type: 'list',
                     content: [
                       'English - Fluent',
-                      'Mandarin - Fluent',
+                      'Mandarin Chinese - Fluent',
                     ],
                   },
                 ]}
@@ -43,4 +46,4 @@ const Projects = () => {
   );
 }
 
-export default Projects;
+export default Skills;

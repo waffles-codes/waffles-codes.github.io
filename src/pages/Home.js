@@ -27,29 +27,30 @@ const Home = () => {
                 About Me
             </p>
             <p className="walloftext">
-              I'm a second year Computer Science & Engineering student at UC Merced 
-              trying to speedrun college by winter of my junior year (only two and a half years!). 
+              I'm a third year Computer Science & Engineering student at UC Merced with
+              a minor in Electrical Engineering, though I'm planning on graduating by May 2026
+              (in only 3 years).
               If you'd like to see what I'm capable of, 
               {/* <a id="project-link" href="/#/projects">Projects</a> */}
               <strong> check out my <a href="/">
                   <ScrollLink id="project-link" to="projects" smooth={true} duration={300} offset={-100}>
                     Projects
                   </ScrollLink>
-                </a> page! 
+                </a> section! 
               </strong>
               <br/><br/>
-              Currently, I'm working on advancing my computer science career in the 
+              Currently, I'm working on moving my computer science and electrical engineering studies in the 
               direction of robotics and embedded systems because I enjoy seeing my 
               code come to life as it interacts with the physical world.
               <br/><br/>
               I'm the most proficient when it comes to C++, because that's what almost 
-              all of my classes are taught in, but I've also programmed robots in Java, 
-              Kotlin, and Python, worked on multiple websites (including this one) 
-              with React.js, and implemented database systems with SQL & their C++ API.              
+              all of my classes are taught in, but I also have lots of experience in multiple other languages.
+              I've programmed multiple robots in Java, Kotlin, and Python, I've worked on multiple websites
+              (including this one) with React.js, and implemented database systems with SQLite and C++.              
               <br/><br/>
               I'm always eager to take on new challenges and learn from every experience. 
-              Feel free to reach out if you'd like to discuss potential internship 
-              opportunities or nerd out about computer stuff!
+              Feel free to reach out if you'd like to discuss potential job 
+              opportunities or just nerd out about making robots!
               <br/>
             </p>
           </div>

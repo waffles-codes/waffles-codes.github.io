@@ -2,8 +2,9 @@ import React from 'react';
 import Card from '../components/Card';
 import robotImage from '../assets/robot hand raspberry pi side.webp';
 import henryImage from '../assets/H-enry frc 4186 robot 2023.webp';
-import spaceAppsImage from '../assets/WINNING_SPACEAPPS_HAHAHAHAHAHAHAH.webp'
+import spaceAppsImage from '../assets/Spaceapps 2024 Winner.webp'
 import sachacksImage from '../assets/Market Mayhem Winner.webp'
+import sasehacksImage from '../assets/GreenProof Winner.webp'
 import './Projects.css';
 
 const Projects = () => {
@@ -78,7 +79,20 @@ const Projects = () => {
             title="H-enry 🤖"
             image={henryImage}
             altText="H-enry robot from Team 4186 The Aztechs"
-            link="https://github.com/team4186/season-2023"
+            link=""
+            modalContent={
+              <div>
+                  {/* styling requires {{}} */}
+                <h2 /*style={{margin:0}}*/>H-enry 🤖</h2>
+                <a
+                  href="https://github.com/team4186/season-2023"
+                  target='blank'
+                >
+                  Github Repo
+                </a>
+                <br/>
+              </div>
+            }
             sections={[
               {
                 header: 'Project Overview',
@@ -97,8 +111,8 @@ const Projects = () => {
                 header: 'Acheivements & Notes',
                 type: 'list',
                 content: [
-                  ['H-enry won CalGames 2023 🏆',<br/>,'(First win for the team since 2017!)'],
-                  'Programmed H-enry by myself, while also teaching potential future programmers',
+                  ['H-enry won CalGames 2023 🏆',<br/>,'(First win for our team since 2017)'],
+                  'Programmed H-enry while also teaching potential future programmers',
                   'Auto-targeting and positioning utilizing a Limelight for computer vision',
                   'Programmed in Kotlin',
                   'Created for FRC Season 2023: Charged Up!',
@@ -114,9 +128,9 @@ const Projects = () => {
                     ' (due to our robot needing a name in order to get sponsorships) and ', 
                     <i>officially</i>, ' being "some type of medieval dragon." ',
                     'WWURM was programmed in Java and didn\'t have significant autonomous capabilities. ',
-                    'Auto-targeting functionality was implemented during one of the competitions, but never used ',
+                    'Auto-targeting functionality was implemented during one of the competitions, but it was never used ',
                     'due to the risks of using minimally field-tested code to compete. ',
-                    'WWYRM was built to compete in FRC Season 2022: Rapid React and obtained its highest rank (Rank 15) during CalGames.'
+                    'WWURM was built to compete in FRC Season 2022: Rapid React and obtained its highest rank (Rank 15) during CalGames.'
                   ]
               },
             ]}
@@ -134,7 +148,6 @@ const Projects = () => {
               <div>
                   {/* styling requires {{}} */}
                 <h2 /*style={{margin:0}}*/>NASA SpaceApps Exosky! 🌃</h2>
-                {/* <p>this should show up in a modal</p> */}
                 <a
                   href="https://github.com/Shyam-723/NasaExoSkyChallenge"
                   target='blank'
@@ -186,7 +199,6 @@ const Projects = () => {
               <div>
                   {/* styling requires {{}} */}
                 <h2 /*style={{margin:0}}*/>SacHacks VI - Market Mayhem 📈</h2>
-                {/* <p>this should show up in a modal</p> */}
                 <a
                   href="https://github.com/DDH2004/SacHacksVI_TheCowsOverYonder"
                   target='blank'
@@ -226,14 +238,13 @@ const Projects = () => {
           />
           {/* SASEHacks Card */}
           <Card
-            title="GreenProof"
-            image={sachacksImage}
+            title="GreenProof 🌱"
+            image={sasehacksImage}
             altText="web app homepage"
             modalContent={
               <div>
                   {/* styling requires {{}} */}
                 <h2 /*style={{margin:0}}*/>SASEHacks - GreenProof 🌱</h2>
-                {/* <p>this should show up in a modal</p> */}
                 <a
                   href="https://github.com/DDH2004/SASEHacks-UCM2025_The-dApperBoys"
                   target='blank'
@@ -261,7 +272,7 @@ const Projects = () => {
                 header: 'Project Overview',
                 type: 'paragraph',
                 content:
-                  'This project was a team effort with my friends as part of the SASEHacks 2025 hackathon at UC Merced.',
+                  'SASEHacks 2025 at UC Merced',
               },
               {
                 header: 'Acheivements',

@@ -1,0 +1,16 @@
+/* mostly redundant due to projects having the same card structure */
+
+.skills-container {
+    display: flex;
+    padding-left: 6vw;
+    padding-right: 6vw;
+}
+
+.skills-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    justify-items: center;
+    gap: 50px;
+    width: 100%;
+    margin-right: auto;
+}
