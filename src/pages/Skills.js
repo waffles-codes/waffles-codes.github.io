@@ -29,7 +29,7 @@ const Skills = () => {
                 ]}
             />
             <Card
-                title="Languages 🔊"
+                title="Languages 🗣️"
                 sections={[
                   {
                     type: 'list',

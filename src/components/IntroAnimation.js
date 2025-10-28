@@ -53,7 +53,7 @@ const IntroAnimation = ({ onComplete }) => {
         <span ref={cursorRef} className="cursor">|</span>
       </h1>
       <div className="bottom-text">
-        <p>(click to skip animation)</p>
+        <p>(move your mouse around, or click to skip animation)</p>
       </div>
       <WaffleParticles />
     </div>

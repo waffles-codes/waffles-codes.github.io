@@ -70,7 +70,12 @@ const Projects = () => {
                 header: 'What Makes it Cool',
                 type: 'paragraph',
                 content:
-                  'The hand uses custom CAD-designed living hinges. Not only can it beat you in rock paper scissors (albeit by cheating a lot), but it also has a "copy hand mode" to mimic the actions of your hand. Oh, and I forgot to mention, it also uses a vintage webcam from the Windows XP era for its computer vision.',
+                  ['The hand uses custom CAD-designed & laser-cut living hinges. ',
+                  'Not only can it beat you in rock paper scissors (albeit by cheating a lot), ',
+                  'but it also has a "copy hand mode" to mimic the actions of your hand. ',
+                  'It also uses a vintage webcam from the Windows XP era for its computer vision, ',
+                  'which made getting any recognition working at all a miracle by itself. '
+                  ]
               },
             ]}
           />
@@ -186,7 +191,12 @@ const Projects = () => {
                 header: 'What I learned from the event',
                 type: 'paragraph',
                 content:
-                  'Mostly, I learned that hackathons are actually quite fun, and that I wanted to do more in the future. I also gained valuable experience in working on a tight schedule (just 24 hours minus sleep for the whole thing) as well as making decisions and communicating them with my teammates on short notice in order to move our project forward.'
+                  [
+                  'Mostly that hackathons are actually quite fun, and that I wanted to do more in the future. ',
+                  'I also gained valuable experience in working on a tight schedule ',
+                  '(just 36 hours for the whole thing) as well as making decisions and communicating ',
+                  'them with my teammates on short notice in order to move our project forward.'
+                  ]
               },
             ]}
           />
