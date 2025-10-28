@@ -83,7 +83,7 @@ const Navbar = () => {
 
             {/* MOBILE SECTION */}
             <button className="menu-icon" onClick={toggleMobileMenu}>
-                <MenuIcon />
+                <MenuIcon id="menu-icon-shadow"/>
             </button>
             <div ref={mobileMenuRef} className={`mobile ${isMobileMenuOpen ? 'mobile-open' : 'mobile-hidden'}`}>
                 <div className='top-two-container'>
@@ -97,17 +97,17 @@ const Navbar = () => {
                     <div className="mobile-middle">
                         <ul className="mobile-links">
                             <li>
-                                <ScrollLink to="home" smooth={true} duration={300} offset={-50}>
+                                <ScrollLink to="home" smooth={true} duration={300} offset={-50} onClick={toggleMobileMenu}>
                                     Home
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="projects" smooth={true} duration={300} offset={-50}>
+                                <ScrollLink to="projects" smooth={true} duration={300} offset={-50} onClick={toggleMobileMenu}>
                                     Projects
                                 </ScrollLink>
                             </li>
                             <li>
-                                <ScrollLink to="skills" smooth={true} duration={300} offset={-50}>
+                                <ScrollLink to="skills" smooth={true} duration={300} offset={-50} onClick={toggleMobileMenu}>
                                     Skills
                                 </ScrollLink>
                             </li>

@@ -79,6 +79,13 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
         <div className="card-modal-overlay" onClick={toggleModal}>
           <div className="card-modal-content" onClick={(e) => e.stopPropagation()}>
             {modalContent}
+            <button
+              className="modal-close-button"
+              onClick={toggleModal}
+              aria-label="Close modal"
+            >
+              x
+            </button>
           </div>
         </div>
       )}

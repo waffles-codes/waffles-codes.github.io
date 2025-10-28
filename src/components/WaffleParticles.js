@@ -145,6 +145,7 @@ const WaffleParticles = () => {
       // color: new THREE.Color(0.26, 0.17, 0.10), // another brownish color
       // color: new THREE.Color(1, 0.74, 0.23), // bright yellow
       // color: new THREE.Color(0.239, 0.145, 0.004), // another brownish color
+      // color: new THREE.Color(1, 0.882, 0.729), // same as navbar color after 10/28/25
       transparent: true,
       opacity: 0.9,
     });

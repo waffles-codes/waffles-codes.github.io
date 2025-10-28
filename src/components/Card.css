@@ -86,28 +86,35 @@
 }
 
 .card-modal-content {
-  background-color: #fff9f3;
+  background-color: #fef3dd;
   padding: 20px;  
-  width: 90%;
-  height: 90%;
+  width: 80%;
+  height: 80%;
   max-width: 1200px;
   max-height: 800px;
+  display: flex;
   position: relative;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.card-close-button {
-  background-color: #ff0000;
-  color: white;
+.modal-close-button {
+  background-color: #ffe1ba;
+  color: #443a2e;
   border: none;
+  width: 40px;
+  height: 40px;
   padding: 10px;
   border-radius: 5px;
+  font-size: large;
+  margin-left: auto;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
 }
 
-.close-button:hover {
-  background-color: #b30000;
+.modal-close-button:hover {
+  background-color: #aa9174;
+  color: #000000;
 }
 
 .card-modal-overlay a {
