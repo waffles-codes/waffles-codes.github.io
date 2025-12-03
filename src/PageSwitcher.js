@@ -3,6 +3,7 @@ import React from 'react';
 import Home from './pages/Home.js';
 import Projects from './pages/Projects.js';
 import Skills from './pages/Skills.js';
+import Experience from './pages/Experience.js';
 
 
 const PageSwitcher = () => {
@@ -14,6 +15,7 @@ const PageSwitcher = () => {
     // </Routes>
     <>
       <Home/>
+      <Experience/>
       <Projects/>
       <Skills/>
       <footer>

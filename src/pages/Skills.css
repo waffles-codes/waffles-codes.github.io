@@ -1,4 +1,4 @@
-/* mostly redundant due to projects having the same card structure */
+/* redundant due to projects having the same card structure */
 
 .skills-container {
     display: flex;
@@ -14,3 +14,5 @@
     width: 100%;
     margin-right: auto;
 }
+
+/* can be deleted */

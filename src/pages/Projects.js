@@ -88,7 +88,7 @@ const Projects = () => {
             modalContent={
               <div>
                   {/* styling requires {{}} */}
-                <h2 /*style={{margin:0}}*/>H-enry 🤖</h2>
+                <h2 /*style={{margin:0}}*/>Team 4186 - H-enry 🤖</h2>
                 <a
                   href="https://github.com/team4186/season-2023"
                   target='blank'
@@ -152,7 +152,7 @@ const Projects = () => {
             modalContent={
               <div>
                   {/* styling requires {{}} */}
-                <h2 /*style={{margin:0}}*/>NASA SpaceApps Exosky! 🌃</h2>
+                <h2 /*style={{margin:0}}*/>NASA SpaceApps - Exosky! 🌃</h2>
                 <a
                   href="https://github.com/Shyam-723/NasaExoSkyChallenge"
                   target='blank'

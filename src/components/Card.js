@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Card.css';
 
-const Card = ({ title, image, altText, link, sections, modalContent }) => {
+const Card = ({ title, subheader, image, altText, link, sections, modalContent }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => {
@@ -24,6 +24,7 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
         >
           <div className="card-header">
             <h2>{title}</h2>
+            {subheader && <h5>{subheader}</h5>}
             {image && <img src={image} className="card-image" alt={altText || "Card image"} />}
           </div>
 
@@ -52,6 +53,7 @@ const Card = ({ title, image, altText, link, sections, modalContent }) => {
         >
           <div className="card-header">
             <h2>{title}</h2>
+            {subheader && <h5>{subheader}</h5>}
             {image && <img src={image} className="card-image" alt={altText || "Card image"} />}
           </div>
 
