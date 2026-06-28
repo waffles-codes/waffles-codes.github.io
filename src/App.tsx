@@ -24,24 +24,46 @@ const PLANE_TRAVEL = 2600;
 export default function App() {
   const [isTilted, setIsTilted] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(0);
 
   useEffect(() => {
-    const update = () => setScrollY(window.scrollY);
+    let rafId = 0;
 
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          update();
-          ticking = false;
-        });
-        ticking = true;
-      }
+    const readViewportHeight = () => {
+      const vv = window.visualViewport;
+      const nextHeight = Math.round(vv?.height ?? window.innerHeight);
+      setViewportHeight((prev) => (prev !== nextHeight ? nextHeight : prev));
     };
 
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const readScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    const scheduleViewportRead = () => {
+      if (rafId) return;
+      rafId = window.requestAnimationFrame(() => {
+        readViewportHeight();
+        readScroll();
+        rafId = 0;
+      });
+    };
+
+    readViewportHeight();
+    readScroll();
+
+    window.addEventListener("scroll", scheduleViewportRead, { passive: true });
+    window.addEventListener("resize", scheduleViewportRead);
+    window.visualViewport?.addEventListener("resize", scheduleViewportRead);
+    window.visualViewport?.addEventListener("scroll", scheduleViewportRead);
+
+    return () => {
+      window.removeEventListener("scroll", scheduleViewportRead);
+      window.removeEventListener("resize", scheduleViewportRead);
+      window.visualViewport?.removeEventListener("resize", scheduleViewportRead);
+      window.visualViewport?.removeEventListener("scroll", scheduleViewportRead);
+
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   const progress = Math.max(0, Math.min(1, scrollY / SCROLL_LENGTH));
@@ -51,23 +73,23 @@ export default function App() {
     const base = [...(isTilted ? TILTED_MATRIX : IDENTITY_MATRIX)];
 
     if (isTilted) {
-      base[12] += -0.6 * planeOffsetY; // tx
-      base[13] +=  0.6 * planeOffsetY; // ty
-      base[14] +=  0.6 * planeOffsetY; // tz
+      base[12] += -planeOffsetY; // tx
+      base[13] += planeOffsetY;  // ty
+      base[14] += planeOffsetY;  // tz
     } else {
-      base[13] += planeOffsetY; // just translateY
+      base[13] += planeOffsetY;  // translateY only
     }
 
     return base;
   }, [isTilted, planeOffsetY]);
 
-  const planeTransform = useMemo(() => {
-    return matrixToCss(activeMatrix);
-  }, [activeMatrix]);
+  const planeTransform = useMemo(() => matrixToCss(activeMatrix), [activeMatrix]);
+
+  const stableViewportHeight = viewportHeight || 800;
 
   return (
     <div className="bg-[#f4f1ea] text-[#111111] selection:bg-[#111111] selection:text-[#f4f1ea]">
-      <header className="sticky top-0 z-50 bg-[#f4f1ea]/90 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.1)] border-b border-black/15 py-4 px-5 sm:px-8 lg:px-12">
+      <header className="sticky top-0 z-50 border-b border-black/15 bg-[#f4f1ea]/90 px-5 py-4 shadow-[0_1px_0_rgba(0,0,0,0.1)] backdrop-blur-md sm:px-8 lg:px-12">
         <div className="flex items-start justify-between gap-6">
           <div>
             <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-black/55">
@@ -88,7 +110,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="hidden text-right md:block space-y-2">
+          <div className="hidden space-y-2 text-right md:block">
             <p className="max-w-[50rem] break-all font-mono text-[11px] uppercase text-black/45">
               {planeTransform}
             </p>
@@ -103,14 +125,20 @@ export default function App() {
       </header>
 
       <main className="relative">
-        <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div
+          className="pointer-events-none fixed left-0 top-0 w-full overflow-hidden"
+          style={{ height: stableViewportHeight }}
+        >
           <div className="absolute inset-0 px-5 pt-24 pb-8 sm:px-8 lg:px-12">
-            <div className="relative mx-auto w-full max-w-[1600px] h-full">
-              <div className="relative px-6 py-10 sm:px-10 lg:px-16 h-full">
+            <div className="relative mx-auto h-full w-full max-w-[1600px]">
+              <div className="relative h-full px-6 py-10 sm:px-10 lg:px-16">
                 <div className="mx-auto w-full max-w-[1320px] [perspective:2200px]">
                   <div
-                    className="relative origin-center will-change-transform transition-transform duration-300 ease-out [transform-style:preserve-3d]"
-                    style={{ transform: planeTransform }}
+                    className="relative origin-center will-change-transform [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]"
+                    style={{
+                      transform: planeTransform,
+                      transformOrigin: "50% 50%",
+                    }}
                   >
                     <div className="pointer-events-none absolute -inset-4 border border-black/12 sm:-inset-6" />
                     <div className="pointer-events-none absolute -inset-8 border border-black/8 sm:-inset-10" />
@@ -195,15 +223,9 @@ export default function App() {
 
         <div
           aria-hidden="true"
-          className="opacity-0 pointer-events-none select-none"
-          style={{ height: `${SCROLL_LENGTH + window.innerHeight}px` }}
+          className="pointer-events-none select-none opacity-0"
+          style={{ height: SCROLL_LENGTH + stableViewportHeight }}
         />
-
-        <section className="relative z-10 px-5 py-6 sm:px-8 lg:px-12">
-          <div className="font-mono text-[11px] uppercase tracking-[0.25em] text-black/30">
-            Invisible scroll rail active
-          </div>
-        </section>
       </main>
     </div>
   );
