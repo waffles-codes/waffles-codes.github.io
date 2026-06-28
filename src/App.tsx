@@ -11,7 +11,7 @@ const TILTED_MATRIX = [
   0.9, 0.6, 0.6, 0,
   -0.5, 0.9, 0.5, 0,
   0, -0.5, 0.9, 0,
-  -500, -300, 0, 1,
+  0, 200, 0, 1,
 ];
 
 const BUTTON_TILTED_MATRIX = [
@@ -21,8 +21,8 @@ const BUTTON_TILTED_MATRIX = [
   0, 0, 0, 1
 ];
 
-const SCROLL_LENGTH = 7000;
-const PLANE_TRAVEL = 2600;
+const SCROLL_LENGTH = 4000;
+const PLANE_TRAVEL = 4000;
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
@@ -188,7 +188,7 @@ export default function App() {
                     className="relative origin-center transform-gpu will-change-transform [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [contain:layout_paint_style] transition-transform duration-500 ease-out"
                     style={{
                       transform: "translate3d(0, 0, 0)",
-                      transformOrigin: "50% 50%",
+                      transformOrigin: "top center",
                     }}
                   >
                     <div className="pointer-events-none absolute -inset-4 border border-black/12 sm:-inset-6" />
