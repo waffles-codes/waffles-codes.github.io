@@ -60,7 +60,7 @@ export default function App() {
         base[14] += 0.5 * planeOffsetY;
         transform = matrixToCss(base);
       } else {
-        transform = `translate3d(0, ${planeOffsetY}px, 0)`;
+        transform = `translate(0, ${planeOffsetY}px)`;
       }
 
       if (planeRef.current) {
@@ -160,7 +160,9 @@ export default function App() {
                 <h1 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl">
                   EVAN LU
                 </h1>
-                <p className="text-sm text-black/60">Inspired by y-n10.com</p>
+                <p className="text-sm text-black/60">
+                  ← Inspired by y-n10.com
+                </p>
               </div>
             </div>
           </div>
@@ -187,7 +189,7 @@ export default function App() {
                     ref={planeRef}
                     className="relative origin-center transform-gpu will-change-transform [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [contain:layout_paint_style] transition-transform duration-500 ease-out"
                     style={{
-                      transform: "translate3d(0, 0, 0)",
+                      transform: "translate(0, 0)",
                       transformOrigin: "top center",
                     }}
                   >
