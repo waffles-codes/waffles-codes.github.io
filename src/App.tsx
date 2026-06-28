@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import emailSvg from './assets/email.svg';
+import githubSvg from './assets/github.svg';
+import linkedinSvg from './assets/linkedin.svg';
 
 const IDENTITY_MATRIX = [
   1, 0, 0, 0,
@@ -137,7 +140,7 @@ export default function App() {
       <header className="sticky top-0 z-50 border-b border-black/15 bg-[#f4f1ea]/90 px-5 py-4 shadow-[0_1px_0_rgba(0,0,0,0.1)] backdrop-blur-md sm:px-8 lg:px-12">
         <div className="flex items-start justify-between gap-6">
           <div>
-            <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-black/55">
+            <p className="hidden font-mono text-[11px] uppercase tracking-[0.35em] text-black/55 md:block">
               waffles-codes.github.io
             </p>
 
@@ -147,7 +150,11 @@ export default function App() {
                 onClick={() => setIsTilted((prev) => !prev)}
                 aria-pressed={isTilted}
                 aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
-                className="grid h-11 w-11 place-items-center border border-black/80 text-[12px] font-semibold transition-transform duration-500 ease-out hover:shadow-lg hover:bg-[#f6f3ec] shadow-[0_1px_0_rgba(0,0,0,0.1)]"
+                className="grid h-11 w-11 place-items-center border border-black/80 text-[12px] font-semibold 
+                            transition-transform duration-500 ease-out
+                            hover:shadow-lg
+                            hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)]
+                            shadow-[0_1px_0_rgba(0,0,0,0.1)]"
                 style={{
                   transform: matrixToCss(isTilted ? BUTTON_TILTED_MATRIX : IDENTITY_MATRIX),
                   transformOrigin: "50% 50%",
@@ -167,11 +174,43 @@ export default function App() {
             </div>
           </div>
 
-          <div className="hidden space-y-2 text-right md:block">
-            <p
-              ref={headerTransformTextRef}
-              className="max-w-[58vw] h-[30px] overflow-hidden font-mono text-[11px] uppercase text-black/45"
-            />
+          <div className="space-y-2 text-right">
+            <div className="max-w-[58vw] h-[24px]">
+              <p
+                ref={headerTransformTextRef}
+                className="hidden overflow-hidden font-mono text-[11px] uppercase text-black/45 md:block"
+              />
+            </div>
+            <div className="mt-3 flex items-center justify-end">
+              <a
+                href="mailto:evalu802@gmail.com"
+                target="_blank"
+                aria-label="Email"
+                className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
+              >
+                <img src={emailSvg} alt="" className="h-5 w-5 shrink-0" />
+              </a>
+
+              <a
+                href="https://github.com/waffles-codes"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
+              >
+                <img src={githubSvg} alt="" className="h-5 w-5 shrink-0" />
+              </a>
+
+              <a
+                href="https://linkedin.com/in/evan-lu-tw"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
+              >
+                <img src={linkedinSvg} alt="" className="h-5 w-5 shrink-0" />
+              </a>
+            </div>
           </div>
         </div>
       </header>
