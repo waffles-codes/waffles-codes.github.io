@@ -67,7 +67,7 @@ export default function App() {
   }, []);
 
   const progress = Math.max(0, Math.min(1, scrollY / SCROLL_LENGTH));
-  const planeOffsetY = -progress * PLANE_TRAVEL;
+  const planeOffsetY = Math.round(-progress * PLANE_TRAVEL);
 
   const activeMatrix = useMemo(() => {
     const base = [...(isTilted ? TILTED_MATRIX : IDENTITY_MATRIX)];
@@ -111,7 +111,7 @@ export default function App() {
           </div>
 
           <div className="hidden space-y-2 text-right md:block">
-            <p className="max-w-[50rem] break-all font-mono text-[11px] uppercase text-black/45">
+            <p className="max-w-[50vw] max-h-[24px] font-mono text-[11px] uppercase text-black/45">
               {planeTransform}
             </p>
             <button
@@ -183,11 +183,11 @@ export default function App() {
                             </div>
                           </div>
 
-                          <div className="mt-8 border-t border-black/20 pt-3">
+                          <div className="mt-8 hidden border-t border-black/20 pt-3 md:block">
                             <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-black/45">
                               Current transformation
                             </p>
-                            <p className="mt-2 break-all font-mono text-[12px] leading-6 text-black/55">
+                            <p className="mt-2 h-[24px] break-all font-mono text-[12px] leading-6 text-black/55">
                               {planeTransform}
                             </p>
                           </div>
