@@ -1,1 +1,6 @@
 @import "tailwindcss";
+
+html.intro-scroll-lock {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import emailSvg from "./assets/email.svg";
 import githubSvg from "./assets/github.svg";
 import linkedinSvg from "./assets/linkedin.svg";
+import IntroAnimation from "./components/IntroAnimation";
 
 const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 4000;
@@ -21,6 +22,7 @@ function clamp(value: number, min: number, max: number) {
 export default function App() {
   const [isTilted, setIsTilted] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [showIntro, setShowIntro] = useState(true);
 
   const lastScrollYRef = useRef(0);
 
@@ -154,6 +156,11 @@ export default function App() {
 
   return (
     <div className="bg-[#f4f1ea] text-[#111111] selection:bg-[#111111] selection:text-[#f4f1ea]">
+      {showIntro && <IntroAnimation
+        onComplete={() => setIsTilted(true)}
+        onExited={() => setShowIntro(false)}
+      />}
+
       <div
         className="fixed inset-x-0 top-0 z-[40] h-24"
         onMouseEnter={() => setIsNavVisible(true)}
@@ -161,13 +168,13 @@ export default function App() {
 
       <header
         onMouseEnter={() => setIsNavVisible(true)}
-        className={`fixed top-0 left-0 right-0 z-50 border-b border-black/15 bg-[#f4f1ea]/90 px-5 py-4 shadow-[0_1px_0_rgba(0,0,0,0.1)] backdrop-blur-md sm:px-8 lg:px-12
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-[rgba(80,62,44,0.16)] bg-[rgba(241,235,223,0.92)] px-5 py-4 shadow-[0_1px_0_rgba(80,62,44,0.08)] backdrop-blur-md sm:px-8 lg:px-12
           transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${(isNavVisible) ? "translate-y-0" : "-translate-y-full"}`}
+          ${isNavVisible ? "translate-y-0" : "-translate-y-full"}`}
       >
         <div className="flex items-start justify-between gap-6">
           <div>
-            <p className="hidden font-mono text-[11px] uppercase tracking-[0.35em] text-black/55 md:block">
+            <p className="hidden font-mono text-[11px] uppercase tracking-[0.35em] text-[rgba(80,62,44,0.66)] md:block">
               waffles-codes.github.io
             </p>
 
@@ -186,11 +193,7 @@ export default function App() {
                   onClick={() => setIsTilted((prev) => !prev)}
                   aria-pressed={isTilted}
                   aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
-                  className="grid h-11 w-11 place-items-center border border-black/80 text-[12px] font-semibold
-                              transition-[transform,box-shadow,filter] duration-200 ease-out
-                              hover:shadow-lg
-                              hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)]
-                              shadow-[0_1px_0_rgba(0,0,0,0.1)]"
+                  className="grid h-11 w-11 place-items-center border border-[rgba(80,62,44,0.82)] text-[12px] font-semibold transition-[transform,box-shadow,filter] duration-200 ease-out hover:shadow-lg hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)] shadow-[0_1px_0_rgba(80,62,44,0.1)]"
                 >
                   EL
                 </button>
@@ -200,18 +203,18 @@ export default function App() {
                 <h1 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl">
                   EVAN LU
                 </h1>
-                <p className="text-sm text-black/60">
-                  ← Inspired by y-n10.com
+                <p className="text-sm text-[rgba(80,62,44,0.72)]">
+                  Inspired by y-n10.com
                 </p>
               </div>
             </div>
           </div>
 
           <div className="space-y-2 text-right">
-            <div className="max-w-[58vw] h-[24px]">
+            <div className="h-[24px] max-w-[58vw]">
               <p
                 ref={headerTransformTextRef}
-                className="hidden overflow-hidden font-mono text-[11px] uppercase text-black/45 md:block"
+                className="hidden overflow-hidden font-mono text-[11px] uppercase text-[rgba(80,62,44,0.58)] md:block"
               />
             </div>
 
@@ -261,9 +264,7 @@ export default function App() {
                 <div className="mx-auto w-full max-w-[1320px] [perspective:2200px]">
                   <div
                     ref={paperRef}
-                    className="absolute left-1/2 top-1/2 -z-20 h-[420vmax] w-[420vmax] transform-gpu
-                                [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]
-                                transition-transform duration-500 ease-out"
+                    className="absolute -z-20 h-[420vmax] w-[420vmax] transform-gpu [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] transition-transform duration-500 ease-out"
                     style={{
                       transform: "translate3d(-50%, -50%, 0)",
                       transformOrigin: "top center",
@@ -272,18 +273,15 @@ export default function App() {
                     <div
                       className="absolute -left-[100vw] -right-[100vw] -top-[100vh] -bottom-[500vh]"
                       style={{
-                        backgroundColor: "#f1ebdf",
+                        backgroundColor: "#efe8dc",
                         backgroundImage: `
-                          linear-gradient(to right, rgba(80,62,44,0.11) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(80,62,44,0.11) 1px, transparent 1px),
-                          linear-gradient(to right, rgba(80,62,44,0.16) 1.5px, transparent 1.5px),
-                          linear-gradient(to bottom, rgba(80,62,44,0.16) 1.5px, transparent 1.5px)
+                          linear-gradient(to right, rgba(80,62,44,0.10) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(80,62,44,0.10) 1px, transparent 1px),
+                          linear-gradient(to right, rgba(80,62,44,0.14) 1.5px, transparent 1.5px),
+                          linear-gradient(to bottom, rgba(80,62,44,0.14) 1.5px, transparent 1.5px)
                         `,
-                        backgroundSize:
-                        //first two layers repeat every 24px, next two repeat every 96px, last two repeat every 48px
-                          `24px 24px, 24px 24px,
-                          96px 96px, 96px 96px`,
-                        backgroundPosition: "0 0, 0 0, 0 0, 0 0, 0 0, 0 0",
+                        backgroundSize: `24px 24px, 24px 24px, 96px 96px, 96px 96px`,
+                        backgroundPosition: "0 0, 0 0, 0 0, 0 0",
                       }}
                     />
                   </div>
@@ -296,43 +294,43 @@ export default function App() {
                       transformOrigin: "top center",
                     }}
                   >
-                      <div
-                        aria-hidden="true"
-                        className="absolute -inset-1 z-0 bg-black/5 transition-transform duration-500 ease-out"
-                        style={{
-                          transform: isTilted ? "translate(15px, 60px)" : "translate(0px, 0px)",
-                        }}
-                      />
+                    <div
+                      aria-hidden="true"
+                      className="absolute -inset-1 z-0 bg-[rgba(80,62,44,0.05)] transition-transform duration-500 ease-out"
+                      style={{
+                        transform: isTilted ? "translate(15px, 60px)" : "translate(0px, 0px)",
+                      }}
+                    />
 
-                    <div className="relative z-10 border border-black/80 bg-[#f5f1e8]/90 backdrop-blur-sm max-md:backdrop-blur-0">
+                    <div className="relative z-10 border border-[rgba(80,62,44,0.78)] bg-[rgba(241,235,223,0.92)] backdrop-blur-sm max-md:backdrop-blur-0">
                       <section className="grid min-h-[72vh] gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-                        <div className="border-b border-black/15 px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
+                        <div className="border-b border-[rgba(80,62,44,0.14)] px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
                           <div className="mb-3 flex items-center gap-3">
-                            <span className="h-px w-12 bg-black/70" />
-                            <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-black/55">
+                            <span className="h-px w-12 bg-[rgba(80,62,44,0.78)]" />
+                            <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-[rgba(80,62,44,0.66)]">
                               Main plane
                             </span>
                           </div>
 
-                          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-black/45">
+                          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[rgba(80,62,44,0.55)]">
                             scroll-driven tilted surface
                           </p>
 
-                          <h2 className="mt-3 max-w-[8ch] text-[clamp(3.6rem,12vw,8.5rem)] font-semibold leading-[0.88] tracking-[0.08em] text-black">
+                          <h2 className="mt-3 max-w-[8ch] text-[clamp(3.6rem,12vw,8.5rem)] font-semibold leading-[0.88] tracking-[0.08em] text-[#111111]">
                             EVAN LU
                           </h2>
 
-                          <p className="mt-6 max-w-[30rem] text-sm leading-7 text-black/60 sm:text-base">
+                          <p className="mt-6 max-w-[30rem] text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
                             Put some words here.
                           </p>
                         </div>
 
                         <div className="flex flex-col justify-between px-6 py-8 sm:px-10 sm:py-12">
                           <div>
-                            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-black/45">
+                            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
                               Scroll mapping
                             </p>
-                            <div className="mt-4 space-y-4 text-sm leading-7 text-black/60 sm:text-base">
+                            <div className="mt-4 space-y-4 text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
                               <p>
                                 The real page contains an invisible div with an arbitrary height.
                               </p>
@@ -343,32 +341,32 @@ export default function App() {
                             </div>
                           </div>
 
-                          <div className="mt-8 hidden border-t border-black/20 pt-3 md:block">
-                            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-black/45">
+                          <div className="mt-8 hidden border-t border-[rgba(80,62,44,0.18)] pt-3 md:block">
+                            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
                               Current transformation
                             </p>
                             <p
                               ref={transformTextRef}
-                              className="mt-2 h-[24px] break-all font-mono text-[12px] leading-6 text-black/55"
+                              className="mt-2 h-[24px] break-all font-mono text-[12px] leading-6 text-[rgba(80,62,44,0.66)]"
                             />
                           </div>
                         </div>
                       </section>
 
-                      <section className="border-t border-black/15 px-6 py-16 sm:px-10 lg:px-16">
+                      <section className="border-t border-[rgba(80,62,44,0.14)] px-6 py-16 sm:px-10 lg:px-16">
                         <div className="space-y-24">
                           {Array.from({ length: 8 }).map((_, i) => (
                             <div
                               key={i}
                               className="[content-visibility:auto] [contain-intrinsic-size:1px_420px] max-w-2xl"
                             >
-                              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-black/45">
+                              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
                                 Section {String(i + 1).padStart(2, "0")}
                               </p>
-                              <h3 className="mt-3 text-3xl font-semibold tracking-[0.06em]">
+                              <h3 className="mt-3 text-3xl font-semibold tracking-[0.06em] text-[#111111]">
                                 Visual overflow block
                               </h3>
-                              <p className="mt-4 text-sm leading-7 text-black/60 sm:text-base">
+                              <p className="mt-4 text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
                                 This content exists only inside the visual plane, so most of it can drift
                                 off-screen while the actual page scroll remains a hidden control surface
                                 underneath.
