@@ -145,23 +145,27 @@ export default function App() {
             </p>
 
             <div className="mt-1 flex items-end gap-3">
-              <button
-                type="button"
-                onClick={() => setIsTilted((prev) => !prev)}
-                aria-pressed={isTilted}
-                aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
-                className="grid h-11 w-11 place-items-center border border-black/80 text-[12px] font-semibold 
-                            transition-transform duration-500 ease-out
-                            hover:shadow-lg
-                            hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)]
-                            shadow-[0_1px_0_rgba(0,0,0,0.1)]"
+              <div
+                className="inline-block transition-transform duration-500 ease-out"
                 style={{
                   transform: matrixToCss(isTilted ? BUTTON_TILTED_MATRIX : IDENTITY_MATRIX),
                   transformOrigin: "50% 50%",
                 }}
               >
-                EL
-              </button>
+                <button
+                  type="button"
+                  onClick={() => setIsTilted((prev) => !prev)}
+                  aria-pressed={isTilted}
+                  aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
+                  className="grid h-11 w-11 place-items-center border border-black/80 text-[12px] font-semibold
+                            transition-[transform,box-shadow,filter] duration-200 ease-out
+                            hover:shadow-lg
+                            hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)]
+                            shadow-[0_1px_0_rgba(0,0,0,0.1)]"
+                >
+                  EL
+                </button>
+              </div>
 
               <div>
                 <h1 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl">
