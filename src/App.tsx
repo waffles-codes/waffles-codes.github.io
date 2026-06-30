@@ -1,44 +1,32 @@
 import { useEffect, useRef, useState } from "react";
-import emailSvg from './assets/email.svg';
-import githubSvg from './assets/github.svg';
-import linkedinSvg from './assets/linkedin.svg';
+import emailSvg from "./assets/email.svg";
+import githubSvg from "./assets/github.svg";
+import linkedinSvg from "./assets/linkedin.svg";
 
-const IDENTITY_MATRIX = [
-  1, 0, 0, 0,
-  0, 1, 0, 0,
-  0, 0, 1, 0,
-  0, 0, 0, 1,
-];
-
-const TILTED_MATRIX = [
-  0.9, 0.6, 0.6, 0,
-  -0.5, 0.9, 0.5, 0,
-  0, -0.5, 0.9, 0,
-  0, 200, 0, 1,
-];
-
-const BUTTON_TILTED_MATRIX = [
-  0.8, 0.4, 0.4, 0, 
-  -0.6, 0.6, 0.6, 0, 
-  0, -0.7, 0.7, 0, 
-  0, 0, 0, 1
-];
-
-const SCROLL_LENGTH = 4000;
+const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 4000;
+
+const TILT_ROTATE_X = 20;
+const TILT_ROTATE_Y = -10;
+const TILT_ROTATE_Z = 20;
+
+const BTN_TILT_ROTATE_X = 25;
+const BTN_TILT_ROTATE_Y = -10;
+const BTN_TILT_ROTATE_Z = 25;
 
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }
 
-function matrixToCss(values: number[]) {
-  return `matrix3d(${values.join(", ")})`;
-}
-
 export default function App() {
   const [isTilted, setIsTilted] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+
+  const lastScrollYRef = useRef(0);
 
   const planeRef = useRef<HTMLDivElement | null>(null);
+  const paperRef = useRef<HTMLDivElement | null>(null);
+
   const transformTextRef = useRef<HTMLParagraphElement | null>(null);
   const headerTransformTextRef = useRef<HTMLParagraphElement | null>(null);
 
@@ -50,35 +38,64 @@ export default function App() {
   const applyTransformRef = useRef<(scrollY: number) => void>(() => {});
 
   useEffect(() => {
+    const handleNavVisibility = () => {
+      const currentY = window.scrollY;
+      const delta = currentY - lastScrollYRef.current;
+
+      // make navbar always visible at top of page
+      if (currentY <= 24) {
+        setIsNavVisible(true);
+        lastScrollYRef.current = currentY;
+        return;
+      }
+
+      if (Math.abs(delta) < 1) return;
+
+      if (delta > 0) {
+        setIsNavVisible(false);
+      }
+
+      lastScrollYRef.current = currentY;
+    };
+
+    lastScrollYRef.current = window.scrollY;
+    window.addEventListener("scroll", handleNavVisibility, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleNavVisibility);
+    };
+  }, []);
+
+  useEffect(() => {
     applyTransformRef.current = (scrollY: number) => {
       const progress = clamp(scrollY / SCROLL_LENGTH, 0, 1);
       const planeOffsetY = Math.round(-progress * PLANE_TRAVEL);
 
-      let transform = "";
-
-      if (isTiltedRef.current) {
-        const base = [...TILTED_MATRIX];
-        base[12] += -0.5 * planeOffsetY;
-        base[13] += 0.9 * planeOffsetY;
-        base[14] += 0.5 * planeOffsetY;
-        transform = matrixToCss(base);
-      } else {
-        transform = `translate(0, ${planeOffsetY}px)`;
-      }
+      const planeTransform = isTiltedRef.current
+        ? `rotateX(${TILT_ROTATE_X}deg) rotateY(${TILT_ROTATE_Y}deg) rotateZ(${TILT_ROTATE_Z}deg) translate3d(50px, ${planeOffsetY + 100}px, 0)`
+        : `translate3d(0, ${planeOffsetY}px, 0)`;
 
       if (planeRef.current) {
-        planeRef.current.style.transform = transform;
+        planeRef.current.style.transform = planeTransform;
       }
 
       if (transformTextRef.current) {
-        transformTextRef.current.textContent = transform;
+        transformTextRef.current.textContent = planeTransform;
       }
 
       if (headerTransformTextRef.current) {
-        headerTransformTextRef.current.textContent = transform;
+        headerTransformTextRef.current.textContent = planeTransform;
       }
     };
-  });
+  }, []);
+
+  useEffect(() => {
+    if (!paperRef.current) return;
+
+    paperRef.current.style.transform = isTilted
+      ? `rotateX(${TILT_ROTATE_X}deg) rotateY(${TILT_ROTATE_Y}deg) rotateZ(${TILT_ROTATE_Z}deg) translate3d(-55%, -45%, 0)`
+      : `translate3d(-50%, -50%, 0)`;
+  }, [isTilted]);
 
   useEffect(() => {
     isTiltedRef.current = isTilted;
@@ -137,7 +154,17 @@ export default function App() {
 
   return (
     <div className="bg-[#f4f1ea] text-[#111111] selection:bg-[#111111] selection:text-[#f4f1ea]">
-      <header className="sticky top-0 z-50 border-b border-black/15 bg-[#f4f1ea]/90 px-5 py-4 shadow-[0_1px_0_rgba(0,0,0,0.1)] backdrop-blur-md sm:px-8 lg:px-12">
+      <div
+        className="fixed inset-x-0 top-0 z-[40] h-24"
+        onMouseEnter={() => setIsNavVisible(true)}
+      />
+
+      <header
+        onMouseEnter={() => setIsNavVisible(true)}
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-black/15 bg-[#f4f1ea]/90 px-5 py-4 shadow-[0_1px_0_rgba(0,0,0,0.1)] backdrop-blur-md sm:px-8 lg:px-12
+          transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
+          ${(isNavVisible) ? "translate-y-0" : "-translate-y-full"}`}
+      >
         <div className="flex items-start justify-between gap-6">
           <div>
             <p className="hidden font-mono text-[11px] uppercase tracking-[0.35em] text-black/55 md:block">
@@ -148,7 +175,9 @@ export default function App() {
               <div
                 className="inline-block transition-transform duration-500 ease-out"
                 style={{
-                  transform: matrixToCss(isTilted ? BUTTON_TILTED_MATRIX : IDENTITY_MATRIX),
+                  transform: isTilted
+                    ? `rotateX(${BTN_TILT_ROTATE_X}deg) rotateY(${BTN_TILT_ROTATE_Y}deg) rotateZ(${BTN_TILT_ROTATE_Z}deg)`
+                    : "none",
                   transformOrigin: "50% 50%",
                 }}
               >
@@ -158,10 +187,10 @@ export default function App() {
                   aria-pressed={isTilted}
                   aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
                   className="grid h-11 w-11 place-items-center border border-black/80 text-[12px] font-semibold
-                            transition-[transform,box-shadow,filter] duration-200 ease-out
-                            hover:shadow-lg
-                            hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)]
-                            shadow-[0_1px_0_rgba(0,0,0,0.1)]"
+                              transition-[transform,box-shadow,filter] duration-200 ease-out
+                              hover:shadow-lg
+                              hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)]
+                              shadow-[0_1px_0_rgba(0,0,0,0.1)]"
                 >
                   EL
                 </button>
@@ -185,10 +214,12 @@ export default function App() {
                 className="hidden overflow-hidden font-mono text-[11px] uppercase text-black/45 md:block"
               />
             </div>
+
             <div className="mt-3 flex items-center justify-end">
               <a
                 href="mailto:evalu802@gmail.com"
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Email"
                 className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
               >
@@ -221,7 +252,7 @@ export default function App() {
 
       <main className="relative">
         <div
-          className="pointer-events-none fixed left-0 top-0 w-full overflow-hidden"
+          className="pointer-events-none fixed left-0 top-0 w-full overflow-visible"
           style={{ height: stableViewportHeight }}
         >
           <div className="absolute inset-0 px-5 pt-24 pb-8 sm:px-8 lg:px-12">
@@ -229,17 +260,51 @@ export default function App() {
               <div className="relative h-full px-6 py-10 sm:px-10 lg:px-16">
                 <div className="mx-auto w-full max-w-[1320px] [perspective:2200px]">
                   <div
-                    ref={planeRef}
-                    className="relative origin-center transform-gpu will-change-transform [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] [contain:layout_paint_style] transition-transform duration-500 ease-out"
+                    ref={paperRef}
+                    className="absolute left-1/2 top-1/2 -z-20 h-[420vmax] w-[420vmax] transform-gpu
+                                [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]
+                                transition-transform duration-500 ease-out"
                     style={{
-                      transform: "translate(0, 0)",
+                      transform: "translate3d(-50%, -50%, 0)",
                       transformOrigin: "top center",
                     }}
                   >
-                    <div className="pointer-events-none absolute -inset-4 border border-black/12 sm:-inset-6" />
-                    <div className="pointer-events-none absolute -inset-8 border border-black/8 sm:-inset-10" />
+                    <div
+                      className="absolute -left-[100vw] -right-[100vw] -top-[100vh] -bottom-[500vh]"
+                      style={{
+                        backgroundColor: "#f1ebdf",
+                        backgroundImage: `
+                          linear-gradient(to right, rgba(80,62,44,0.11) 1px, transparent 1px),
+                          linear-gradient(to bottom, rgba(80,62,44,0.11) 1px, transparent 1px),
+                          linear-gradient(to right, rgba(80,62,44,0.16) 1.5px, transparent 1.5px),
+                          linear-gradient(to bottom, rgba(80,62,44,0.16) 1.5px, transparent 1.5px)
+                        `,
+                        backgroundSize:
+                        //first two layers repeat every 24px, next two repeat every 96px, last two repeat every 48px
+                          `24px 24px, 24px 24px,
+                          96px 96px, 96px 96px`,
+                        backgroundPosition: "0 0, 0 0, 0 0, 0 0, 0 0, 0 0",
+                      }}
+                    />
+                  </div>
 
-                    <div className="relative border border-black/80 bg-[#f5f1e8]/90 shadow-[18px_18px_0_rgba(0,0,0,0.08)] backdrop-blur-sm max-md:backdrop-blur-0 max-md:shadow-[10px_10px_0_rgba(0,0,0,0.05)]">
+                  <div
+                    ref={planeRef}
+                    className="relative origin-top transform-gpu will-change-transform [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] transition-transform duration-500 ease-out"
+                    style={{
+                      transform: "translate3d(0, 0, 0)",
+                      transformOrigin: "top center",
+                    }}
+                  >
+                      <div
+                        aria-hidden="true"
+                        className="absolute -inset-1 z-0 bg-black/5 transition-transform duration-500 ease-out"
+                        style={{
+                          transform: isTilted ? "translate(15px, 60px)" : "translate(0px, 0px)",
+                        }}
+                      />
+
+                    <div className="relative z-10 border border-black/80 bg-[#f5f1e8]/90 backdrop-blur-sm max-md:backdrop-blur-0">
                       <section className="grid min-h-[72vh] gap-0 lg:grid-cols-[1.15fr_0.85fr]">
                         <div className="border-b border-black/15 px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
                           <div className="mb-3 flex items-center gap-3">
@@ -269,12 +334,11 @@ export default function App() {
                             </p>
                             <div className="mt-4 space-y-4 text-sm leading-7 text-black/60 sm:text-base">
                               <p>
-                                The real page contains an invisible div with an
-                                arbitrary height.
+                                The real page contains an invisible div with an arbitrary height.
                               </p>
                               <p>
-                                Window scroll progress is converted into a negative
-                                Y translation and applied to the moving plane.
+                                Window scroll progress is converted into a negative Y translation and
+                                applied to the moving plane.
                               </p>
                             </div>
                           </div>
@@ -305,9 +369,9 @@ export default function App() {
                                 Visual overflow block
                               </h3>
                               <p className="mt-4 text-sm leading-7 text-black/60 sm:text-base">
-                                This content exists only inside the visual plane, so
-                                most of it can drift off-screen while the actual page
-                                scroll remains a hidden control surface underneath.
+                                This content exists only inside the visual plane, so most of it can drift
+                                off-screen while the actual page scroll remains a hidden control surface
+                                underneath.
                               </p>
                             </div>
                           ))}
