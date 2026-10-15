@@ -8,7 +8,7 @@ const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 4000;
 
 const BACKGROUND_SCROLL_SPEED = 0.5;
-const PAPER_SCROLL_SPEED = 1;
+const PLANE_SCROLL_SPEED = 1;
 
 const TILT_ROTATE_X = 20;
 const TILT_ROTATE_Y = -10;
@@ -31,7 +31,7 @@ export default function App() {
 
   const planeRef = useRef<HTMLDivElement | null>(null);
   const backgroundScrollRef = useRef<HTMLDivElement | null>(null);
-  const paperScrollRef = useRef<HTMLDivElement | null>(null);
+  const planeScrollRef = useRef<HTMLDivElement | null>(null);
 
   const transformTextRef = useRef<HTMLParagraphElement | null>(null);
   const headerTransformTextRef = useRef<HTMLParagraphElement | null>(null);
@@ -58,7 +58,7 @@ export default function App() {
   //       previousHeight !== null &&
   //       Math.abs(height - previousHeight) > 1
   //     ) {
-  //       console.warn("Paper height changed", {
+  //       console.warn("Plane height changed", {
   //         scrollY: window.scrollY,
   //         previousHeight,
   //         height,
@@ -107,19 +107,19 @@ export default function App() {
     applyTransformRef.current = (scrollY: number) => {
       const progress = clamp(scrollY / SCROLL_LENGTH, 0, 1);
 
-      const paperOffsetY = Math.round(-progress * PLANE_TRAVEL * PAPER_SCROLL_SPEED + 1500);
+      const planeOffsetY = Math.round(-progress * PLANE_TRAVEL * PLANE_SCROLL_SPEED + 1500);
 
       const backgroundOffsetY = Math.round(-progress * PLANE_TRAVEL * BACKGROUND_SCROLL_SPEED);
 
-      if (paperScrollRef.current) {
-        paperScrollRef.current.style.transform = `translate3d(0, ${paperOffsetY}px, 0)`;
+      if (planeScrollRef.current) {
+        planeScrollRef.current.style.transform = `translate3d(0, ${planeOffsetY}px, 0)`;
       }
 
       if (backgroundScrollRef.current) {
         backgroundScrollRef.current.style.transform = `translate3d(0, ${backgroundOffsetY}px, 0)`;
       }
 
-      const transformText = `paper: translate3d(0, ${paperOffsetY}px, 0) | background: translate3d(0, ${backgroundOffsetY}px, 0)`;
+      const transformText = `plane: translate3d(0, ${planeOffsetY}px, 0) | background: translate3d(0, ${backgroundOffsetY}px, 0)`;
 
       if (transformTextRef.current) {
         transformTextRef.current.textContent = transformText;
@@ -132,7 +132,7 @@ export default function App() {
       // const debug = {
       //   scrollY,
       //   progress,
-      //   paperOffsetY,
+      //   planeOffsetY,
       //   backgroundOffsetY,
       //   viewportHeight: latestViewportHeightRef.current,
       // };
@@ -342,7 +342,7 @@ export default function App() {
             </div>
 
             <div
-              ref={paperScrollRef}
+              ref={planeScrollRef}
               className="absolute inset-0 transform-gpu will-change-transform"
             >
               <div className="absolute inset-0 px-5 pt-24 pb-8 sm:px-8 lg:px-12">
@@ -399,9 +399,8 @@ export default function App() {
                                   </p>
                                   <p>
                                     Window scroll progress is converted into
-                                    separate translations for the paper and
-                                    background, both moving along the tilted
-                                    plane.
+                                    separate translations for the plane and
+                                    background.
                                   </p>
                                 </div>
                               </div>
