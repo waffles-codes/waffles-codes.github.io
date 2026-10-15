@@ -7,6 +7,9 @@ import IntroAnimation from "./components/IntroAnimation";
 const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 4000;
 
+const BACKGROUND_SCROLL_SPEED = 0.5;
+const PAPER_SCROLL_SPEED = 1;
+
 const TILT_ROTATE_X = 20;
 const TILT_ROTATE_Y = -10;
 const TILT_ROTATE_Z = 20;
@@ -27,7 +30,8 @@ export default function App() {
   const lastScrollYRef = useRef(0);
 
   const planeRef = useRef<HTMLDivElement | null>(null);
-  const paperRef = useRef<HTMLDivElement | null>(null);
+  const backgroundScrollRef = useRef<HTMLDivElement | null>(null);
+  const paperScrollRef = useRef<HTMLDivElement | null>(null);
 
   const transformTextRef = useRef<HTMLParagraphElement | null>(null);
   const headerTransformTextRef = useRef<HTMLParagraphElement | null>(null);
@@ -38,6 +42,37 @@ export default function App() {
   const isTiltedRef = useRef(isTilted);
 
   const applyTransformRef = useRef<(scrollY: number) => void>(() => {});
+
+  // useEffect(() => {
+  //   const plane = planeRef.current;
+  //   if (!plane) return;
+
+  //   let previousHeight: number | null = null;
+
+  //   const observer = new ResizeObserver(([entry]) => {
+  //     if (!entry) return;
+
+  //     const height = entry.contentRect.height;
+
+  //     if (
+  //       previousHeight !== null &&
+  //       Math.abs(height - previousHeight) > 1
+  //     ) {
+  //       console.warn("Paper height changed", {
+  //         scrollY: window.scrollY,
+  //         previousHeight,
+  //         height,
+  //         delta: height - previousHeight,
+  //       });
+  //     }
+
+  //     previousHeight = height;
+  //   });
+
+  //   observer.observe(plane);
+
+  //   return () => observer.disconnect();
+  // }, []);
 
   useEffect(() => {
     const handleNavVisibility = () => {
@@ -71,33 +106,44 @@ export default function App() {
   useEffect(() => {
     applyTransformRef.current = (scrollY: number) => {
       const progress = clamp(scrollY / SCROLL_LENGTH, 0, 1);
-      const planeOffsetY = Math.round(-progress * PLANE_TRAVEL);
 
-      const planeTransform = isTiltedRef.current
-        ? `rotateX(${TILT_ROTATE_X}deg) rotateY(${TILT_ROTATE_Y}deg) rotateZ(${TILT_ROTATE_Z}deg) translate3d(50px, ${planeOffsetY + 100}px, 0)`
-        : `translate3d(0, ${planeOffsetY}px, 0)`;
+      const paperOffsetY = Math.round(-progress * PLANE_TRAVEL * PAPER_SCROLL_SPEED + 1500);
 
-      if (planeRef.current) {
-        planeRef.current.style.transform = planeTransform;
+      const backgroundOffsetY = Math.round(-progress * PLANE_TRAVEL * BACKGROUND_SCROLL_SPEED);
+
+      if (paperScrollRef.current) {
+        paperScrollRef.current.style.transform = `translate3d(0, ${paperOffsetY}px, 0)`;
       }
 
+      if (backgroundScrollRef.current) {
+        backgroundScrollRef.current.style.transform = `translate3d(0, ${backgroundOffsetY}px, 0)`;
+      }
+
+      const transformText = `paper: translate3d(0, ${paperOffsetY}px, 0) | background: translate3d(0, ${backgroundOffsetY}px, 0)`;
+
       if (transformTextRef.current) {
-        transformTextRef.current.textContent = planeTransform;
+        transformTextRef.current.textContent = transformText;
       }
 
       if (headerTransformTextRef.current) {
-        headerTransformTextRef.current.textContent = planeTransform;
+        headerTransformTextRef.current.textContent = transformText;
       }
+
+      // const debug = {
+      //   scrollY,
+      //   progress,
+      //   paperOffsetY,
+      //   backgroundOffsetY,
+      //   viewportHeight: latestViewportHeightRef.current,
+      // };
+
+      // console.table([debug]);
+
+      // if (transformTextRef.current) {
+      //   transformTextRef.current.textContent = JSON.stringify(debug);
+      // }
     };
   }, []);
-
-  useEffect(() => {
-    if (!paperRef.current) return;
-
-    paperRef.current.style.transform = isTilted
-      ? `rotateX(${TILT_ROTATE_X}deg) rotateY(${TILT_ROTATE_Y}deg) rotateZ(${TILT_ROTATE_Z}deg) translate3d(-55%, -45%, 0)`
-      : `translate3d(-50%, -50%, 0)`;
-  }, [isTilted]);
 
   useEffect(() => {
     isTiltedRef.current = isTilted;
@@ -152,14 +198,14 @@ export default function App() {
     };
   }, []);
 
-  const stableViewportHeight = "var(--vvh, 100vh)";
-
   return (
     <div className="bg-[#f4f1ea] text-[#111111] selection:bg-[#111111] selection:text-[#f4f1ea]">
-      {showIntro && <IntroAnimation
-        onComplete={() => setIsTilted(true)}
-        onExited={() => setShowIntro(false)}
-      />}
+      {showIntro && (
+        <IntroAnimation
+          onComplete={() => setIsTilted(true)}
+          onExited={() => setShowIntro(false)}
+        />
+      )}
 
       <div
         className="fixed inset-x-0 top-0 z-[40] h-24"
@@ -255,126 +301,152 @@ export default function App() {
 
       <main className="relative">
         <div
-          className="pointer-events-none fixed left-0 top-0 w-full overflow-visible"
-          style={{ height: stableViewportHeight }}
+          className="pointer-events-none fixed inset-0 z-0 overflow-hidden"
+          style={{
+            perspective: "2200px",
+            perspectiveOrigin: "50% 50%",
+          }}
         >
-          <div className="absolute inset-0 px-5 pt-24 pb-8 sm:px-8 lg:px-12">
-            <div className="relative mx-auto h-full w-full max-w-[1600px]">
-              <div className="relative h-full px-6 py-10 sm:px-10 lg:px-16">
-                <div className="mx-auto w-full max-w-[1320px] [perspective:2200px]">
-                  <div
-                    ref={paperRef}
-                    className="absolute -z-20 h-[420vmax] w-[420vmax] transform-gpu [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] transition-transform duration-500 ease-out"
-                    style={{
-                      transform: "translate3d(-50%, -50%, 0)",
-                      transformOrigin: "top center",
-                    }}
-                  >
+          <div
+            className="absolute inset-0 transform-gpu [transform-style:preserve-3d]"
+            style={{
+              transform: isTilted
+                ? `rotateX(${TILT_ROTATE_X}deg) rotateY(${TILT_ROTATE_Y}deg) rotateZ(${TILT_ROTATE_Z}deg)`
+                : "rotateX(0deg) rotateY(0deg) rotateZ(0deg)",
+              transformOrigin: "50% 50%",
+              transition:
+                "transform 500ms cubic-bezier(0.16, 1, 0.3, 1)",
+            }}
+          >
+            <div
+              ref={backgroundScrollRef}
+              className="absolute inset-0 transform-gpu will-change-transform"
+            >
+              <div className="absolute left-1/2 top-1/2 h-[420vmax] w-[420vmax] -translate-x-1/2 -translate-y-1/2">
+                <div
+                  className="absolute -inset-[100vmax]"
+                  style={{
+                    backgroundColor: "#efe8dc",
+                    backgroundImage: `
+                      linear-gradient(to right, rgba(80,62,44,0.10) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(80,62,44,0.10) 1px, transparent 1px),
+                      linear-gradient(to right, rgba(80,62,44,0.14) 1.5px, transparent 1.5px),
+                      linear-gradient(to bottom, rgba(80,62,44,0.14) 1.5px, transparent 1.5px)
+                    `,
+                    backgroundSize:
+                      "24px 24px, 24px 24px, 96px 96px, 96px 96px",
+                    backgroundPosition: "0 0, 0 0, 0 0, 0 0",
+                  }}
+                />
+              </div>
+            </div>
+
+            <div
+              ref={paperScrollRef}
+              className="absolute inset-0 transform-gpu will-change-transform"
+            >
+              <div className="absolute inset-0 px-5 pt-24 pb-8 sm:px-8 lg:px-12">
+                <div className="relative mx-auto h-full w-full max-w-[1600px]">
+                  <div className="relative h-full px-6 py-10 sm:px-10 lg:px-16">
                     <div
-                      className="absolute -left-[100vw] -right-[100vw] -top-[100vh] -bottom-[500vh]"
-                      style={{
-                        backgroundColor: "#efe8dc",
-                        backgroundImage: `
-                          linear-gradient(to right, rgba(80,62,44,0.10) 1px, transparent 1px),
-                          linear-gradient(to bottom, rgba(80,62,44,0.10) 1px, transparent 1px),
-                          linear-gradient(to right, rgba(80,62,44,0.14) 1.5px, transparent 1.5px),
-                          linear-gradient(to bottom, rgba(80,62,44,0.14) 1.5px, transparent 1.5px)
-                        `,
-                        backgroundSize: `24px 24px, 24px 24px, 96px 96px, 96px 96px`,
-                        backgroundPosition: "0 0, 0 0, 0 0, 0 0",
-                      }}
-                    />
-                  </div>
+                      ref={planeRef}
+                      className="absolute left-1/2 top-0 w-full max-w-[1320px] -translate-x-1/2 -translate-y-1/2 transform-gpu [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]"
+                    >
+                      <div className="relative">
+                        <div
+                          aria-hidden="true"
+                          className="absolute -inset-1 z-0 bg-[rgba(80,62,44,0.05)] transition-transform duration-500 ease-out"
+                          style={{
+                            transform: isTilted
+                              ? "translate(15px, 60px)"
+                              : "translate(0px, 0px)",
+                          }}
+                        />
 
-                  <div
-                    ref={planeRef}
-                    className="relative origin-top transform-gpu will-change-transform [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden] transition-transform duration-500 ease-out"
-                    style={{
-                      transform: "translate3d(0, 0, 0)",
-                      transformOrigin: "top center",
-                    }}
-                  >
-                    <div
-                      aria-hidden="true"
-                      className="absolute -inset-1 z-0 bg-[rgba(80,62,44,0.05)] transition-transform duration-500 ease-out"
-                      style={{
-                        transform: isTilted ? "translate(15px, 60px)" : "translate(0px, 0px)",
-                      }}
-                    />
+                        <div className="relative z-10 border border-[rgba(80,62,44,0.78)] bg-[rgba(241,235,223,1)]">
+                          <section className="grid min-h-[72vh] gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+                            <div className="border-b border-[rgba(80,62,44,0.14)] px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
+                              <div className="mb-3 flex items-center gap-3">
+                                <span className="h-px w-12 bg-[rgba(80,62,44,0.78)]" />
+                                <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-[rgba(80,62,44,1)]">
+                                  Main plane
+                                </span>
+                              </div>
 
-                    <div className="relative z-10 border border-[rgba(80,62,44,0.78)] bg-[rgba(241,235,223,0.92)] backdrop-blur-sm max-md:backdrop-blur-0">
-                      <section className="grid min-h-[72vh] gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-                        <div className="border-b border-[rgba(80,62,44,0.14)] px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
-                          <div className="mb-3 flex items-center gap-3">
-                            <span className="h-px w-12 bg-[rgba(80,62,44,0.78)]" />
-                            <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-[rgba(80,62,44,0.66)]">
-                              Main plane
-                            </span>
-                          </div>
-
-                          <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[rgba(80,62,44,0.55)]">
-                            scroll-driven tilted surface
-                          </p>
-
-                          <h2 className="mt-3 max-w-[8ch] text-[clamp(3.6rem,12vw,8.5rem)] font-semibold leading-[0.88] tracking-[0.08em] text-[#111111]">
-                            EVAN LU
-                          </h2>
-
-                          <p className="mt-6 max-w-[30rem] text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
-                            Put some words here.
-                          </p>
-                        </div>
-
-                        <div className="flex flex-col justify-between px-6 py-8 sm:px-10 sm:py-12">
-                          <div>
-                            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
-                              Scroll mapping
-                            </p>
-                            <div className="mt-4 space-y-4 text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
-                              <p>
-                                The real page contains an invisible div with an arbitrary height.
+                              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[rgba(80,62,44,1)]">
+                                scroll-driven tilted surface
                               </p>
-                              <p>
-                                Window scroll progress is converted into a negative Y translation and
-                                applied to the moving plane.
+
+                              <h2 className="mt-3 max-w-[8ch] text-[clamp(3.6rem,12vw,8.5rem)] font-semibold leading-[0.88] tracking-[0.08em] text-[#111111]">
+                                EVAN LU
+                              </h2>
+
+                              <p className="mt-6 max-w-[30rem] text-sm leading-7 text-[rgba(80,62,44,1)] sm:text-base">
+                                Put some words here.
                               </p>
                             </div>
-                          </div>
 
-                          <div className="mt-8 hidden border-t border-[rgba(80,62,44,0.18)] pt-3 md:block">
-                            <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
-                              Current transformation
-                            </p>
-                            <p
-                              ref={transformTextRef}
-                              className="mt-2 h-[24px] break-all font-mono text-[12px] leading-6 text-[rgba(80,62,44,0.66)]"
-                            />
-                          </div>
-                        </div>
-                      </section>
+                            <div className="flex flex-col justify-between px-6 py-8 sm:px-10 sm:py-12">
+                              <div>
+                                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
+                                  Scroll mapping
+                                </p>
 
-                      <section className="border-t border-[rgba(80,62,44,0.14)] px-6 py-16 sm:px-10 lg:px-16">
-                        <div className="space-y-24">
-                          {Array.from({ length: 8 }).map((_, i) => (
-                            <div
-                              key={i}
-                              className="[content-visibility:auto] [contain-intrinsic-size:1px_420px] max-w-2xl"
-                            >
-                              <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
-                                Section {String(i + 1).padStart(2, "0")}
-                              </p>
-                              <h3 className="mt-3 text-3xl font-semibold tracking-[0.06em] text-[#111111]">
-                                Visual overflow block
-                              </h3>
-                              <p className="mt-4 text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
-                                This content exists only inside the visual plane, so most of it can drift
-                                off-screen while the actual page scroll remains a hidden control surface
-                                underneath.
-                              </p>
+                                <div className="mt-4 space-y-4 text-sm leading-7 text-[rgba(80,62,44,1)] sm:text-base">
+                                  <p>
+                                    The real page contains an invisible div
+                                    with an arbitrary height.
+                                  </p>
+                                  <p>
+                                    Window scroll progress is converted into
+                                    separate translations for the paper and
+                                    background, both moving along the tilted
+                                    plane.
+                                  </p>
+                                </div>
+                              </div>
+
+                              <div className="mt-8 hidden border-t border-[rgba(80,62,44,0.18)] pt-3 md:block">
+                                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
+                                  Current transformation
+                                </p>
+
+                                <p
+                                  ref={transformTextRef}
+                                  className="mt-2 h-[24px] break-all font-mono text-[12px] leading-6 text-[rgba(80,62,44,0.66)]"
+                                />
+                              </div>
                             </div>
-                          ))}
+                          </section>
+
+                          <section className="border-t border-[rgba(80,62,44,0.14)] px-6 py-16 sm:px-10 lg:px-16">
+                            <div className="space-y-24">
+                              {Array.from({ length: 8 }).map((_, i) => (
+                                <div
+                                  key={i}
+                                  className="max-w-2xl"
+                                >
+                                  <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
+                                    Section{" "}
+                                    {String(i + 1).padStart(2, "0")}
+                                  </p>
+
+                                  <h3 className="mt-3 text-3xl font-semibold tracking-[0.06em] text-[#111111]">
+                                    Visual overflow block
+                                  </h3>
+
+                                  <p className="mt-4 text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
+                                    This content exists only inside the visual
+                                    plane, so most of it can drift off-screen
+                                    while the actual page scroll remains a
+                                    hidden control surface underneath.
+                                  </p>
+                                </div>
+                              ))}
+                            </div>
+                          </section>
                         </div>
-                      </section>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -386,7 +458,9 @@ export default function App() {
         <div
           aria-hidden="true"
           className="pointer-events-none select-none opacity-0"
-          style={{ height: `calc(${SCROLL_LENGTH}px + var(--vvh, 100vh))` }}
+          style={{
+            height: `calc(${SCROLL_LENGTH}px + var(--vvh, 100vh))`,
+          }}
         />
       </main>
     </div>

@@ -17,11 +17,14 @@ export default function WaffleParticles() {
     camera.position.z = 5;
 
     const renderer = new THREE.WebGLRenderer({
-      antialias: true,
+      antialias: false,
       alpha: true,
+      powerPreference: "high-performance",
     });
 
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    const getDpr = () => Math.min(window.devicePixelRatio || 1, 1.25);
+
+    renderer.setPixelRatio(getDpr());
     renderer.setSize(width, height);
     renderer.setClearColor(0x000000, 0);
     container.appendChild(renderer.domElement);
@@ -38,27 +41,31 @@ export default function WaffleParticles() {
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(PARTICLE_COUNT * 3);
 
-    const annularArea = Math.PI * (OUTER_RADIUS ** 2 - INNER_RADIUS ** 2);
+    const annularArea =
+      Math.PI * (OUTER_RADIUS * OUTER_RADIUS - INNER_RADIUS * INNER_RADIUS);
     const rectangleArea = RECTANGLE_WIDTH * RECTANGLE_LENGTH * RECTANGLES;
     const totalArea = annularArea + rectangleArea;
 
     let annularParticles = Math.round(
-      PARTICLE_COUNT * (annularArea / totalArea)
+      PARTICLE_COUNT * (annularArea / totalArea),
     );
     let rectangleParticles = PARTICLE_COUNT - annularParticles;
 
-    if (annularParticles + rectangleParticles !== PARTICLE_COUNT) {
-      annularParticles +=
-        PARTICLE_COUNT - (annularParticles + rectangleParticles);
-    }
+    annularParticles +=
+      PARTICLE_COUNT - (annularParticles + rectangleParticles);
 
     let index = 0;
 
-    for (let i = 0; i < annularParticles && index < PARTICLE_COUNT; i += 1) {
+    for (
+      let i = 0;
+      i < annularParticles && index < PARTICLE_COUNT;
+      i += 1
+    ) {
       const angle = Math.random() * Math.PI * 2;
       const radius = Math.sqrt(
-        Math.random() * (OUTER_RADIUS ** 2 - INNER_RADIUS ** 2) +
-          INNER_RADIUS ** 2
+        Math.random() *
+          (OUTER_RADIUS * OUTER_RADIUS - INNER_RADIUS * INNER_RADIUS) +
+          INNER_RADIUS * INNER_RADIUS,
       );
 
       positions[index * 3] = radius * Math.cos(angle);
@@ -69,7 +76,8 @@ export default function WaffleParticles() {
 
     const pushPoint = (x: number, y: number) => {
       if (index >= PARTICLE_COUNT) return;
-      const distance = Math.sqrt(x ** 2 + y ** 2);
+
+      const distance = Math.sqrt(x * x + y * y);
       if (distance > INNER_RADIUS) return;
 
       positions[index * 3] = x;
@@ -79,38 +87,45 @@ export default function WaffleParticles() {
     };
 
     while (index < PARTICLE_COUNT) {
-      for (let i = 0; i < rectangleParticles && index < PARTICLE_COUNT; i += 1) {
+      for (
+        let i = 0;
+        i < rectangleParticles && index < PARTICLE_COUNT;
+        i += 1
+      ) {
         for (let j = 0; j < RECTANGLES; j += 1) {
           pushPoint(
             (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5,
-            (Math.random() - 0.5) * RECTANGLE_LENGTH
+            (Math.random() - 0.5) * RECTANGLE_LENGTH,
           );
         }
 
         for (let j = 1; j < RECTANGLES; j += 1) {
           pushPoint(
             (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5,
-            (Math.random() - 0.5) * RECTANGLE_LENGTH
+            (Math.random() - 0.5) * RECTANGLE_LENGTH,
           );
         }
 
         for (let j = 0; j < RECTANGLES; j += 1) {
           pushPoint(
             (Math.random() - 0.5) * RECTANGLE_LENGTH,
-            (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5
+            (Math.random() - 0.5) * RECTANGLE_WIDTH + SPACING * j * 1.5,
           );
         }
 
         for (let j = 1; j < RECTANGLES; j += 1) {
           pushPoint(
             (Math.random() - 0.5) * RECTANGLE_LENGTH,
-            (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5
+            (Math.random() - 0.5) * RECTANGLE_WIDTH - SPACING * j * 1.5,
           );
         }
       }
     }
 
-    geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute(
+      "position",
+      new THREE.BufferAttribute(positions, 3),
+    );
 
     const material = new THREE.PointsMaterial({
       size: 0.03,
@@ -118,70 +133,123 @@ export default function WaffleParticles() {
       transparent: true,
       opacity: 0.9,
       depthWrite: false,
+      sizeAttenuation: true,
     });
 
     const particles = new THREE.Points(geometry, material);
     scene.add(particles);
 
-    const cameraDistance = 5;
-    let mouseX = 0;
-    let mouseY = 0;
-    let rafId = 0;
+    const CAMERA_DISTANCE = 5;
+    const targetPosition = new THREE.Vector3(0, 0, CAMERA_DISTANCE);
+    const normalizedPosition = new THREE.Vector3();
 
-    const handleMouseMove = (event: MouseEvent) => {
-      mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+    let pointerX = 0;
+    let pointerY = 0;
+    let rafId = 0;
+    let isRunning = false;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      pointerX = (event.clientX / window.innerWidth) * 2 - 1;
+      pointerY = -(event.clientY / window.innerHeight) * 2 + 1;
     };
 
-    const handleResize = () => {
+    const resize = () => {
       const nextWidth = container.clientWidth || window.innerWidth;
       const nextHeight = container.clientHeight || window.innerHeight;
 
       camera.aspect = nextWidth / nextHeight;
       camera.updateProjectionMatrix();
+
+      renderer.setPixelRatio(getDpr());
       renderer.setSize(nextWidth, nextHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
+    };
+
+    // Coalesce resize events into one layout read/write per frame.
+    let resizeFrameId: number | null = null;
+
+    const handleResize = () => {
+      if (resizeFrameId !== null) return;
+
+      resizeFrameId = requestAnimationFrame(() => {
+        resizeFrameId = null;
+        resize();
+      });
     };
 
     const animate = () => {
-      rafId = window.requestAnimationFrame(animate);
+      rafId = requestAnimationFrame(animate);
 
       particles.rotation.y += 0.0025;
       particles.rotation.z += 0.001;
 
-      const verticalAngle = -mouseY * Math.PI * 0.3;
-      const horizontalAngle = -mouseX * Math.PI * 0.3;
+      const verticalAngle = -pointerY * Math.PI * 0.3;
+      const horizontalAngle = -pointerX * Math.PI * 0.3;
 
-      const nextX =
-        cameraDistance * Math.sin(horizontalAngle) * Math.cos(verticalAngle);
-      const nextY = cameraDistance * Math.sin(verticalAngle);
-      const nextZ =
-        cameraDistance * Math.cos(horizontalAngle) * Math.cos(verticalAngle);
+      targetPosition.set(
+        CAMERA_DISTANCE *
+          Math.sin(horizontalAngle) *
+          Math.cos(verticalAngle),
+        CAMERA_DISTANCE * Math.sin(verticalAngle),
+        CAMERA_DISTANCE *
+          Math.cos(horizontalAngle) *
+          Math.cos(verticalAngle),
+      );
 
-      camera.position.x += (nextX - camera.position.x) * 0.01;
-      camera.position.y += (nextY - camera.position.y) * 0.01;
-      camera.position.z += (nextZ - camera.position.z) * 0.01;
+      camera.position.lerp(targetPosition, 0.01);
 
-      const direction = new THREE.Vector3()
-        .copy(camera.position)
-        .normalize()
-        .multiplyScalar(cameraDistance);
+      normalizedPosition.copy(camera.position).normalize();
+      camera.position
+        .copy(normalizedPosition)
+        .multiplyScalar(CAMERA_DISTANCE);
 
-      camera.position.copy(direction);
       camera.lookAt(0, 0, 0);
 
       renderer.render(scene, camera);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("resize", handleResize);
+    const start = () => {
+      if (isRunning) return;
 
-    animate();
+      isRunning = true;
+      rafId = requestAnimationFrame(animate);
+    };
+
+    const stop = () => {
+      if (!isRunning) return;
+
+      isRunning = false;
+      cancelAnimationFrame(rafId);
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        stop();
+      } else {
+        start();
+      }
+    };
+
+    window.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    window.addEventListener("resize", handleResize, { passive: true });
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
+    start();
 
     return () => {
-      window.cancelAnimationFrame(rafId);
-      window.removeEventListener("mousemove", handleMouseMove);
+      stop();
+
+      if (resizeFrameId !== null) {
+        cancelAnimationFrame(resizeFrameId);
+      }
+
+      window.removeEventListener("pointermove", handlePointerMove);
       window.removeEventListener("resize", handleResize);
+      document.removeEventListener(
+        "visibilitychange",
+        handleVisibilityChange,
+      );
 
       geometry.dispose();
       material.dispose();
@@ -198,6 +266,7 @@ export default function WaffleParticles() {
     <div
       ref={containerRef}
       className="h-full w-full pointer-events-none select-none opacity-90"
+      style={{ contain: "strict" }}
     />
   );
 }
