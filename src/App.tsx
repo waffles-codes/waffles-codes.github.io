@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import emailSvg from "./assets/email.svg";
 import githubSvg from "./assets/github.svg";
 import linkedinSvg from "./assets/linkedin.svg";
+import arrowSvg from "./assets/arrow.svg";
 import IntroAnimation from "./components/IntroAnimation";
 
 const SCROLL_LENGTH = 2000;
@@ -43,36 +44,18 @@ export default function App() {
 
   const applyTransformRef = useRef<(scrollY: number) => void>(() => {});
 
-  // useEffect(() => {
-  //   const plane = planeRef.current;
-  //   if (!plane) return;
+  type TooltipPhase = "visible" | "fading" | "hidden";
+  const [tooltipPhase, setTooltipPhase] = useState<TooltipPhase>("visible");
 
-  //   let previousHeight: number | null = null;
+  const handleTooltipDismiss = () => {
+    if (tooltipPhase !== "visible") return;
 
-  //   const observer = new ResizeObserver(([entry]) => {
-  //     if (!entry) return;
+    setTooltipPhase("fading");
 
-  //     const height = entry.contentRect.height;
-
-  //     if (
-  //       previousHeight !== null &&
-  //       Math.abs(height - previousHeight) > 1
-  //     ) {
-  //       console.warn("Plane height changed", {
-  //         scrollY: window.scrollY,
-  //         previousHeight,
-  //         height,
-  //         delta: height - previousHeight,
-  //       });
-  //     }
-
-  //     previousHeight = height;
-  //   });
-
-  //   observer.observe(plane);
-
-  //   return () => observer.disconnect();
-  // }, []);
+    window.setTimeout(() => {
+      setTooltipPhase("hidden");
+    }, 500);
+  };
 
   useEffect(() => {
     const handleNavVisibility = () => {
@@ -90,6 +73,7 @@ export default function App() {
 
       if (delta > 0) {
         setIsNavVisible(false);
+        handleTooltipDismiss();
       }
 
       lastScrollYRef.current = currentY;
@@ -225,25 +209,48 @@ export default function App() {
             </p>
 
             <div className="mt-1 flex items-end gap-3">
-              <div
-                className="inline-block transition-transform duration-500 ease-out"
-                style={{
-                  transform: isTilted
-                    ? `rotateX(${BTN_TILT_ROTATE_X}deg) rotateY(${BTN_TILT_ROTATE_Y}deg) rotateZ(${BTN_TILT_ROTATE_Z}deg)`
-                    : "none",
-                  transformOrigin: "50% 50%",
-                }}
-              >
-                <button
-                  type="button"
-                  onClick={() => setIsTilted((prev) => !prev)}
-                  aria-pressed={isTilted}
-                  aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
-                  className="grid h-11 w-11 place-items-center border border-[rgba(80,62,44,0.82)] text-[12px] font-semibold transition-[transform,box-shadow,filter] duration-200 ease-out hover:shadow-lg hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)] shadow-[0_1px_0_rgba(80,62,44,0.1)]"
+              <div className="relative inline-block">
+                <div
+                  className="inline-block transition-transform duration-500 ease-out"
+                  style={{
+                    transform: isTilted
+                      ? `rotateX(${BTN_TILT_ROTATE_X}deg) rotateY(${BTN_TILT_ROTATE_Y}deg) rotateZ(${BTN_TILT_ROTATE_Z}deg)`
+                      : "none",
+                    transformOrigin: "50% 50%",
+                  }}
                 >
-                  EL
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => setIsTilted((prev) => !prev)}
+                    onMouseEnter={handleTooltipDismiss}
+                    onFocus={handleTooltipDismiss}
+                    aria-pressed={isTilted}
+                    aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
+                    className="grid h-11 w-11 place-items-center border border-[rgba(80,62,44,0.82)] text-[12px] font-semibold transition-[transform,box-shadow,filter] duration-200 ease-out hover:shadow-lg hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)] shadow-[0_1px_0_rgba(80,62,44,0.1)]"
+                  >
+                    EL
+                  </button>
+                </div>
+
+                {tooltipPhase !== "hidden" && (
+                  <div
+                    role="tooltip"
+                    onMouseEnter={handleTooltipDismiss}
+                    className={`pointer-events-auto absolute left-full top-16 ml-3 cursor-default whitespace-nowrap comic-relief-regular text-[12px] uppercase tracking-[0.22em] text-black transition-opacity duration-500 ease-out ${
+                      tooltipPhase === "fading" || !isNavVisible ? "opacity-0" : "opacity-100"
+                    }`}
+                  >
+                    <img
+                      src={arrowSvg}
+                      alt=""
+                      aria-hidden="true"
+                      className="absolute right-full mr-1 -top-4 h-8 w-8 shrink-0 -rotate-20"
+                    />
+                    I'm boring and hate fun button
+                  </div>
+                )}
               </div>
+
 
               <div>
                 <h1 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl">
