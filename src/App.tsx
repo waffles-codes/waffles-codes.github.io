@@ -5,12 +5,12 @@ import linkedinSvg from "./assets/linkedin.svg";
 import IntroAnimation from "./components/IntroAnimation";
 
 const SCROLL_LENGTH = 2000;
-const PLANE_TRAVEL = 4000;
+const PLANE_TRAVEL = 2000;
 
 const BACKGROUND_SCROLL_SPEED = 0.5;
 const PLANE_SCROLL_SPEED = 1;
 
-const TILT_ROTATE_X = 20;
+const TILT_ROTATE_X = 25;
 const TILT_ROTATE_Y = -10;
 const TILT_ROTATE_Z = 20;
 
@@ -107,7 +107,7 @@ export default function App() {
     applyTransformRef.current = (scrollY: number) => {
       const progress = clamp(scrollY / SCROLL_LENGTH, 0, 1);
 
-      const planeOffsetY = Math.round(-progress * PLANE_TRAVEL * PLANE_SCROLL_SPEED + 1500);
+      const planeOffsetY = Math.round(-progress * PLANE_TRAVEL * PLANE_SCROLL_SPEED + 100);
 
       const backgroundOffsetY = Math.round(-progress * PLANE_TRAVEL * BACKGROUND_SCROLL_SPEED);
 
@@ -322,7 +322,7 @@ export default function App() {
               ref={backgroundScrollRef}
               className="absolute inset-0 transform-gpu will-change-transform"
             >
-              <div className="absolute left-1/2 top-1/2 h-[420vmax] w-[420vmax] -translate-x-1/2 -translate-y-1/2">
+              <div className="absolute left-1/2 top-1/2 h-[420vmax] w-[420vmax] -translate-x-1/2">
                 <div
                   className="absolute -inset-[100vmax]"
                   style={{
@@ -350,7 +350,7 @@ export default function App() {
                   <div className="relative h-full px-6 py-10 sm:px-10 lg:px-16">
                     <div
                       ref={planeRef}
-                      className="absolute left-1/2 top-0 w-full max-w-[1320px] -translate-x-1/2 -translate-y-1/2 transform-gpu [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]"
+                      className="absolute left-1/2 top-0 w-full max-w-[1320px] -translate-x-1/2 transform-gpu [transform-style:preserve-3d] [backface-visibility:hidden] [-webkit-backface-visibility:hidden]"
                     >
                       <div className="relative">
                         <div
