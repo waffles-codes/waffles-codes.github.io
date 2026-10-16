@@ -1,3 +1,5 @@
+"""converts png and jpg to webp"""
+
 import os
 from PIL import Image
 

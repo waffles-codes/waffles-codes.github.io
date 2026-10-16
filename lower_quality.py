@@ -1,3 +1,5 @@
+"lowers quality of a specified file"
+
 import os
 from PIL import Image
 

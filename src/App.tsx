@@ -3,7 +3,9 @@ import emailSvg from "./assets/email.svg";
 import githubSvg from "./assets/github.svg";
 import linkedinSvg from "./assets/linkedin.svg";
 import arrowSvg from "./assets/arrow.svg";
+import profilePhoto from "./assets/Evan_Lu_Professional_Profile_Confident_Cropped.webp"
 import IntroAnimation from "./components/IntroAnimation";
+import Polaroid from "./components/Polaroid";
 
 const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 2000;
@@ -236,7 +238,7 @@ export default function App() {
                   <div
                     role="tooltip"
                     onMouseEnter={handleTooltipDismiss}
-                    className={`pointer-events-auto absolute left-full top-16 ml-3 cursor-default whitespace-nowrap comic-relief-regular text-[12px] uppercase tracking-[0.22em] text-black transition-opacity duration-500 ease-out ${
+                    className={`pointer-events-auto absolute left-full top-16 ml-3 cursor-default whitespace-nowrap comic-relief-regular text-[14px] tracking-[0.22em] text-black transition-opacity duration-500 ease-out ${
                       tooltipPhase === "fading" || !isNavVisible ? "opacity-0" : "opacity-100"
                     }`}
                   >
@@ -371,26 +373,51 @@ export default function App() {
                         />
 
                         <div className="relative z-10 border border-[rgba(80,62,44,0.78)] bg-[rgba(241,235,223,1)]">
-                          <section className="grid min-h-[72vh] gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-                            <div className="border-b border-[rgba(80,62,44,0.14)] px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
-                              <div className="mb-3 flex items-center gap-3">
-                                <span className="h-px w-12 bg-[rgba(80,62,44,0.78)]" />
-                                <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-[rgba(80,62,44,1)]">
-                                  Main plane
-                                </span>
+                          <section className="grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
+                            <div className="relative">
+                              <div className="border-b border-[rgba(80,62,44,0.14)] px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
+                                <div className="mb-3 flex items-center gap-3">
+                                  <span className="h-px w-12 bg-[rgba(80,62,44,0.78)]" />
+                                  <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-[rgba(80,62,44,1)]">
+                                    Main plane
+                                  </span>
+                                </div>
+
+                                <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[rgba(80,62,44,1)]">
+                                  scroll-driven tilted surface
+                                </p>
+
+                                <h2 className="mt-3 max-w-[8ch] text-[clamp(3.6rem,7vw,8.5rem)] font-semibold leading-[0.88] tracking-[0.08em] text-[#111111]">
+                                  EVAN LU
+                                </h2>
+
+                                <p className="mt-6 max-w-[30rem] text-sm leading-7 text-[rgba(80,62,44,1)] sm:text-base">
+                                  Put some words here.
+                                </p>
                               </div>
 
-                              <p className="font-mono text-[11px] uppercase tracking-[0.35em] text-[rgba(80,62,44,1)]">
-                                scroll-driven tilted surface
-                              </p>
+                              <Polaroid
+                                image={profilePhoto}
+                                alt="Profile Photo"
+                                caption="Evan Lu #IrisBooth"
+                                className="left-[60%] top-[40%] z-20"
 
-                              <h2 className="mt-3 max-w-[8ch] text-[clamp(3.6rem,12vw,8.5rem)] font-semibold leading-[0.88] tracking-[0.08em] text-[#111111]">
-                                EVAN LU
-                              </h2>
+                                width="clamp(160px, 15vw, 240px)"
+                                height="clamp(200px, 20vw, 320px)"
 
-                              <p className="mt-6 max-w-[30rem] text-sm leading-7 text-[rgba(80,62,44,1)] sm:text-base">
-                                Put some words here.
-                              </p>
+                                z={55}
+                                rotate={10}
+
+                                shadowX="8px"
+                                shadowY="8px"
+                                shadowRotate={0}
+
+                                tiltedShadowX="15px"
+                                tiltedShadowY="15px"
+                                tiltedShadowRotate={5}
+
+                                isTilted={isTilted}
+                              />
                             </div>
 
                             <div className="flex flex-col justify-between px-6 py-8 sm:px-10 sm:py-12">
