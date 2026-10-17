@@ -3,7 +3,7 @@
 import os
 from PIL import Image
 
-file = "Evan_Lu_Professional_Profile_Confident_Cropped.webp"
+file = "robot hand wiring closeup.webp"
 
 directory = "D:/Programming/Github Desktop/waffles-codes.github.io/src/assets"
 print(f'Current working directory = {directory}')

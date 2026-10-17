@@ -3,9 +3,14 @@ import emailSvg from "./assets/email.svg";
 import githubSvg from "./assets/github.svg";
 import linkedinSvg from "./assets/linkedin.svg";
 import arrowSvg from "./assets/arrow.svg";
-import profilePhoto from "./assets/Evan_Lu_Professional_Profile_Confident_Cropped.webp"
 import IntroAnimation from "./components/IntroAnimation";
 import Polaroid from "./components/Polaroid";
+import profilePhoto from "./assets/Evan_Lu_Professional_Profile_Confident_Cropped.webp"
+import henryPhoto from "./assets/H-enry henry frc 4186 robot 2023.webp"
+import whWiring from "./assets/robot hand wiring closeup.webp"
+import whCAD from "./assets/robot hand cad fusion 360.webp"
+import whPrototype from "./assets/robot hand first iteration.webp"
+import whRaspSide from "./assets/robot hand raspberry pi side.webp"
 
 const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 2000;
