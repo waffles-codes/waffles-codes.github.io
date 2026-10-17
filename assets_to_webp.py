@@ -7,7 +7,7 @@ from pillow_heif import register_heif_opener
 directory = "D:/Programming/Github Desktop/waffles-codes.github.io/src/assets"
 print(f'Current working directory = {directory}')
 for filename in os.scandir(directory):
-    # Ensure only PNG and JPG files are processed
+    # Ensure only PNG, JPG, and HEIC files are processed
     if filename.is_file() and (filename.name.endswith('.png') or filename.name.endswith('.jpg') or filename.name.endswith('.HEIC')):  
         print(filename)
         print(filename.path)
