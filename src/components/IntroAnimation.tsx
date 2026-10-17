@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from "react";
-import WaffleParticles from "./WaffleParticles";
+import { useEffect, useRef, useState, lazy, Suspense  } from "react";
+const WaffleParticles = lazy(() => import("./WaffleParticles"));
 
 type IntroOverlayProps = {
   onComplete: () => void;
@@ -154,7 +154,9 @@ export default function IntroOverlay({
         onTransitionEnd={handleTransitionEnd}
       >
         <div className="absolute inset-0 opacity-90">
-          <WaffleParticles />
+          <Suspense fallback={null}>
+            <WaffleParticles />
+          </Suspense>
         </div>
 
         <div className="relative z-10 flex h-full items-center justify-center px-6">
