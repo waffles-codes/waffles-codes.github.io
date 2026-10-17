@@ -11,6 +11,8 @@ import whWiring from "./assets/robot hand wiring closeup.webp"
 import whCAD from "./assets/robot hand cad fusion 360.webp"
 import whPrototype from "./assets/robot hand first iteration.webp"
 import whRaspSide from "./assets/robot hand raspberry pi side.webp"
+import hhForearm from "./assets/arm forearm assembly.webp"
+import hhScrewCloseup from "./assets/arm unfortunate screw placement.webp"
 
 const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 2000;
