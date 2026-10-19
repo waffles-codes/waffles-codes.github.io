@@ -1,18 +1,21 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+
 import emailSvg from "./assets/email.svg";
 import githubSvg from "./assets/github.svg";
 import linkedinSvg from "./assets/linkedin.svg";
 import arrowSvg from "./assets/arrow.svg";
+
 import IntroAnimation from "./components/IntroAnimation";
 import Polaroid from "./components/Polaroid";
-import profilePhoto from "./assets/Evan_Lu_Professional_Profile_Confident_Cropped.webp"
-import henryPhoto from "./assets/H-enry henry frc 4186 robot 2023.webp"
-import whWiring from "./assets/robot hand wiring closeup.webp"
-import whCAD from "./assets/robot hand cad fusion 360.webp"
-import whPrototype from "./assets/robot hand first iteration.webp"
-import whRaspSide from "./assets/robot hand raspberry pi side.webp"
-import hhForearm from "./assets/arm forearm assembly.webp"
-import hhScrewCloseup from "./assets/arm unfortunate screw placement.webp"
+import Blurb from "./components/Blurb";
+
+import profilePhoto from "./assets/Evan_Lu_Professional_Profile_Confident_Cropped.webp";
+import whWiring from "./assets/robot hand wiring closeup.webp";
+import whCAD from "./assets/robot hand cad fusion 360.webp";
+import whPrototype from "./assets/robot hand first iteration.webp";
+import whRaspSide from "./assets/robot hand raspberry pi side.webp";
+import hhForearm from "./assets/arm forearm assembly.webp";
+import hhScrewCloseup from "./assets/arm unfortunate screw placement.webp";
 
 const SCROLL_LENGTH = 2000;
 const PLANE_TRAVEL = 2000;
@@ -28,6 +31,8 @@ const BTN_TILT_ROTATE_X = 25;
 const BTN_TILT_ROTATE_Y = -10;
 const BTN_TILT_ROTATE_Z = 25;
 
+type TooltipPhase = "visible" | "fading" | "hidden";
+
 function clamp(value: number, min: number, max: number) {
   return Math.max(min, Math.min(max, value));
 }
@@ -37,6 +42,12 @@ export default function App() {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [showIntro, setShowIntro] = useState(true);
 
+  const [tooltipPhase, setTooltipPhase] =
+    useState<TooltipPhase>("visible");
+
+  const tooltipDismissedRef = useRef(false);
+  const tooltipTimeoutRef = useRef<number | null>(null);
+
   const lastScrollYRef = useRef(0);
 
   const planeRef = useRef<HTMLDivElement | null>(null);
@@ -44,75 +55,95 @@ export default function App() {
   const planeScrollRef = useRef<HTMLDivElement | null>(null);
 
   const transformTextRef = useRef<HTMLParagraphElement | null>(null);
-  const headerTransformTextRef = useRef<HTMLParagraphElement | null>(null);
+  const headerTransformTextRef =
+    useRef<HTMLParagraphElement | null>(null);
 
   const rafIdRef = useRef(0);
   const latestScrollYRef = useRef(0);
   const latestViewportHeightRef = useRef(0);
-  const isTiltedRef = useRef(isTilted);
 
-  const applyTransformRef = useRef<(scrollY: number) => void>(() => {});
+  const applyTransformRef =
+    useRef<(scrollY: number) => void>(() => {});
 
-  type TooltipPhase = "visible" | "fading" | "hidden";
-  const [tooltipPhase, setTooltipPhase] = useState<TooltipPhase>("visible");
+  const handleTooltipDismiss = useCallback(() => {
+    if (tooltipDismissedRef.current) return;
 
-  const handleTooltipDismiss = () => {
-    if (tooltipPhase !== "visible") return;
-
+    tooltipDismissedRef.current = true;
     setTooltipPhase("fading");
 
-    window.setTimeout(() => {
+    tooltipTimeoutRef.current = window.setTimeout(() => {
+      tooltipTimeoutRef.current = null;
       setTooltipPhase("hidden");
     }, 500);
-  };
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (tooltipTimeoutRef.current !== null) {
+        window.clearTimeout(tooltipTimeoutRef.current);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     const handleNavVisibility = () => {
       const currentY = window.scrollY;
       const delta = currentY - lastScrollYRef.current;
 
-      // make navbar always visible at top of page
       if (currentY <= 24) {
         setIsNavVisible(true);
         lastScrollYRef.current = currentY;
         return;
       }
 
-      if (Math.abs(delta) < 1) return;
+      if (Math.abs(delta) < 5) return;
 
       if (delta > 0) {
         setIsNavVisible(false);
         handleTooltipDismiss();
+      } else {
+        setIsNavVisible(true);
       }
 
       lastScrollYRef.current = currentY;
     };
 
     lastScrollYRef.current = window.scrollY;
-    window.addEventListener("scroll", handleNavVisibility, { passive: true });
+
+    window.addEventListener("scroll", handleNavVisibility, {
+      passive: true,
+    });
 
     return () => {
       window.removeEventListener("scroll", handleNavVisibility);
     };
-  }, []);
+  }, [handleTooltipDismiss]);
 
   useEffect(() => {
     applyTransformRef.current = (scrollY: number) => {
       const progress = clamp(scrollY / SCROLL_LENGTH, 0, 1);
 
-      const planeOffsetY = Math.round(-progress * PLANE_TRAVEL * PLANE_SCROLL_SPEED + 100);
+      const planeOffsetY = Math.round(
+        -progress * PLANE_TRAVEL * PLANE_SCROLL_SPEED + 100
+      );
 
-      const backgroundOffsetY = Math.round(-progress * PLANE_TRAVEL * BACKGROUND_SCROLL_SPEED);
+      const backgroundOffsetY = Math.round(
+        -progress * PLANE_TRAVEL * BACKGROUND_SCROLL_SPEED
+      );
 
       if (planeScrollRef.current) {
-        planeScrollRef.current.style.transform = `translate3d(0, ${planeOffsetY}px, 0)`;
+        planeScrollRef.current.style.transform =
+          `translate3d(0, ${planeOffsetY}px, 0)`;
       }
 
       if (backgroundScrollRef.current) {
-        backgroundScrollRef.current.style.transform = `translate3d(0, ${backgroundOffsetY}px, 0)`;
+        backgroundScrollRef.current.style.transform =
+          `translate3d(0, ${backgroundOffsetY}px, 0)`;
       }
 
-      const transformText = `plane: translate3d(0, ${planeOffsetY}px, 0) | background: translate3d(0, ${backgroundOffsetY}px, 0)`;
+      const transformText =
+        `plane: translate3d(0, ${planeOffsetY}px, 0) | ` +
+        `background: translate3d(0, ${backgroundOffsetY}px, 0)`;
 
       if (transformTextRef.current) {
         transformTextRef.current.textContent = transformText;
@@ -121,38 +152,25 @@ export default function App() {
       if (headerTransformTextRef.current) {
         headerTransformTextRef.current.textContent = transformText;
       }
-
-      // const debug = {
-      //   scrollY,
-      //   progress,
-      //   planeOffsetY,
-      //   backgroundOffsetY,
-      //   viewportHeight: latestViewportHeightRef.current,
-      // };
-
-      // console.table([debug]);
-
-      // if (transformTextRef.current) {
-      //   transformTextRef.current.textContent = JSON.stringify(debug);
-      // }
     };
   }, []);
 
   useEffect(() => {
-    isTiltedRef.current = isTilted;
-    applyTransformRef.current(latestScrollYRef.current);
-  }, [isTilted]);
-
-  useEffect(() => {
     const readViewportHeight = () => {
-      const vv = window.visualViewport;
-      return Math.round(vv?.height ?? window.innerHeight);
+      return Math.round(
+        window.visualViewport?.height ?? window.innerHeight
+      );
     };
 
     const writeViewportHeight = (height: number) => {
       if (latestViewportHeightRef.current === height) return;
+
       latestViewportHeightRef.current = height;
-      document.documentElement.style.setProperty("--vvh", `${height}px`);
+
+      document.documentElement.style.setProperty(
+        "--vvh",
+        `${height}px`
+      );
     };
 
     const updateScene = () => {
@@ -171,22 +189,29 @@ export default function App() {
       });
     };
 
+    const visualViewport = window.visualViewport;
+
     latestScrollYRef.current = window.scrollY;
     updateScene();
 
-    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("scroll", scheduleUpdate, {
+      passive: true,
+    });
     window.addEventListener("resize", scheduleUpdate);
-    window.visualViewport?.addEventListener("resize", scheduleUpdate);
-    window.visualViewport?.addEventListener("scroll", scheduleUpdate);
+
+    visualViewport?.addEventListener("resize", scheduleUpdate);
+    visualViewport?.addEventListener("scroll", scheduleUpdate);
 
     return () => {
       window.removeEventListener("scroll", scheduleUpdate);
       window.removeEventListener("resize", scheduleUpdate);
-      window.visualViewport?.removeEventListener("resize", scheduleUpdate);
-      window.visualViewport?.removeEventListener("scroll", scheduleUpdate);
+
+      visualViewport?.removeEventListener("resize", scheduleUpdate);
+      visualViewport?.removeEventListener("scroll", scheduleUpdate);
 
       if (rafIdRef.current) {
         window.cancelAnimationFrame(rafIdRef.current);
+        rafIdRef.current = 0;
       }
     };
   }, []);
@@ -207,9 +232,9 @@ export default function App() {
 
       <header
         onMouseEnter={() => setIsNavVisible(true)}
-        className={`fixed top-0 left-0 right-0 z-50 border-b border-[rgba(80,62,44,0.16)] bg-[rgba(241,235,223,0.92)] px-5 py-4 shadow-[0_1px_0_rgba(80,62,44,0.08)] backdrop-blur-md sm:px-8 lg:px-12
-          transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]
-          ${isNavVisible ? "translate-y-0" : "-translate-y-full"}`}
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-[rgba(80,62,44,0.16)] bg-[rgba(241,235,223,0.92)] px-5 py-4 shadow-[0_1px_0_rgba(80,62,44,0.08)] backdrop-blur-md sm:px-8 lg:px-12 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          isNavVisible ? "translate-y-0" : "-translate-y-full"
+        }`}
       >
         <div className="flex items-start justify-between gap-6">
           <div>
@@ -234,7 +259,11 @@ export default function App() {
                     onMouseEnter={handleTooltipDismiss}
                     onFocus={handleTooltipDismiss}
                     aria-pressed={isTilted}
-                    aria-label={isTilted ? "Reset website tilt" : "Tilt website"}
+                    aria-label={
+                      isTilted
+                        ? "Reset website tilt"
+                        : "Tilt website"
+                    }
                     className="grid h-11 w-11 place-items-center border border-[rgba(80,62,44,0.82)] text-[12px] font-semibold transition-[transform,box-shadow,filter] duration-200 ease-out hover:shadow-lg hover:[filter:invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(60%)_contrast(87%)] shadow-[0_1px_0_rgba(80,62,44,0.1)]"
                   >
                     EL
@@ -246,7 +275,9 @@ export default function App() {
                     role="tooltip"
                     onMouseEnter={handleTooltipDismiss}
                     className={`pointer-events-auto absolute left-full top-16 ml-3 cursor-default whitespace-nowrap comic-relief-regular text-[14px] tracking-[0.22em] text-black transition-opacity duration-500 ease-out ${
-                      tooltipPhase === "fading" || !isNavVisible ? "opacity-0" : "opacity-100"
+                      tooltipPhase === "fading" || !isNavVisible
+                        ? "opacity-0"
+                        : "opacity-100"
                     }`}
                   >
                     <img
@@ -260,11 +291,11 @@ export default function App() {
                 )}
               </div>
 
-
               <div>
                 <h1 className="text-2xl font-semibold tracking-[0.08em] sm:text-3xl">
                   EVAN LU
                 </h1>
+
                 <p className="text-sm text-[rgba(80,62,44,0.72)]">
                   Inspired by y-n10.com
                 </p>
@@ -288,7 +319,11 @@ export default function App() {
                 aria-label="Email"
                 className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
               >
-                <img src={emailSvg} alt="" className="h-5 w-5 shrink-0" />
+                <img
+                  src={emailSvg}
+                  alt=""
+                  className="h-5 w-5 shrink-0"
+                />
               </a>
 
               <a
@@ -298,7 +333,11 @@ export default function App() {
                 aria-label="GitHub"
                 className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
               >
-                <img src={githubSvg} alt="" className="h-5 w-5 shrink-0" />
+                <img
+                  src={githubSvg}
+                  alt=""
+                  className="h-5 w-5 shrink-0"
+                />
               </a>
 
               <a
@@ -308,7 +347,11 @@ export default function App() {
                 aria-label="LinkedIn"
                 className="relative mx-2 shrink-0 no-underline transition duration-300 hover:filter-[invert(63%)_sepia(21%)_saturate(478%)_hue-rotate(352deg)_brightness(91%)_contrast(87%)]"
               >
-                <img src={linkedinSvg} alt="" className="h-5 w-5 shrink-0" />
+                <img
+                  src={linkedinSvg}
+                  alt=""
+                  className="h-5 w-5 shrink-0"
+                />
               </a>
             </div>
           </div>
@@ -371,7 +414,7 @@ export default function App() {
                       <div className="relative">
                         <div
                           aria-hidden="true"
-                          className="absolute -inset-1 z-0 bg-[rgba(80,62,44,0.05)] transition-transform duration-500 ease-out"
+                          className="absolute -inset-1 z-0 bg-[rgba(80,62,44,0.16)] transition-transform duration-500 ease-out"
                           style={{
                             transform: isTilted
                               ? "translate(15px, 60px)"
@@ -385,6 +428,7 @@ export default function App() {
                               <div className="border-b border-[rgba(80,62,44,0.14)] px-6 py-8 sm:px-10 sm:py-12 lg:border-b-0 lg:border-r">
                                 <div className="mb-3 flex items-center gap-3">
                                   <span className="h-px w-12 bg-[rgba(80,62,44,0.78)]" />
+
                                   <span className="font-mono text-[11px] uppercase tracking-[0.32em] text-[rgba(80,62,44,1)]">
                                     Main plane
                                   </span>
@@ -407,22 +451,30 @@ export default function App() {
                                 image={profilePhoto}
                                 alt="Profile Photo"
                                 caption="Evan Lu #IrisBooth"
-                                className="left-[60%] top-[40%] z-20"
-
-                                width="clamp(160px, 15vw, 240px)"
-                                height="clamp(200px, 20vw, 320px)"
-
-                                z={55}
+                                className="z-20"
+                                width="clamp(160px,15vw,240px)"
+                                height="clamp(200px,20vw,320px)"
+                                style={{
+                                  left: "60%",
+                                  top: "30%",
+                                }}
+                                smallScreen={{
+                                  width: "clamp(100px,32vw,200px)",
+                                  height: "clamp(140px,42vw,240px)",
+                                  left: "auto",
+                                  right: "0",
+                                  top: "40%",
+                                }}
                                 rotate={10}
-
-                                shadowX="8px"
-                                shadowY="8px"
-                                shadowRotate={0}
-
-                                tiltedShadowX="15px"
-                                tiltedShadowY="15px"
-                                tiltedShadowRotate={5}
-
+                                shadowX="0px"
+                                shadowY="0px"
+                                shadowRotate={5}
+                                tiltedRotate={10}
+                                tiltedPositionX="clamp(10px,2vw,30px)"
+                                tiltedPositionY="0px"
+                                tiltedShadowX="0px"
+                                tiltedShadowY="0px"
+                                tiltedShadowRotate={15}
                                 isTilted={isTilted}
                               />
                             </div>
@@ -435,13 +487,14 @@ export default function App() {
 
                                 <div className="mt-4 space-y-4 text-sm leading-7 text-[rgba(80,62,44,1)] sm:text-base">
                                   <p>
-                                    The real page contains an invisible div
-                                    with an arbitrary height.
+                                    The real page contains an invisible
+                                    div with an arbitrary height.
                                   </p>
+
                                   <p>
-                                    Window scroll progress is converted into
-                                    separate translations for the plane and
-                                    background.
+                                    Window scroll progress is converted
+                                    into separate translations for the
+                                    plane and background.
                                   </p>
                                 </div>
                               </div>
@@ -459,30 +512,246 @@ export default function App() {
                             </div>
                           </section>
 
-                          <section className="border-t border-[rgba(80,62,44,0.14)] px-6 py-16 sm:px-10 lg:px-16">
-                            <div className="space-y-24">
-                              {Array.from({ length: 8 }).map((_, i) => (
-                                <div
-                                  key={i}
-                                  className="max-w-2xl"
-                                >
-                                  <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-[rgba(80,62,44,0.55)]">
-                                    Section{" "}
-                                    {String(i + 1).padStart(2, "0")}
-                                  </p>
+                          <section className="border-t border-[rgba(80,62,44,0.14)] px-14 py-12 sm:px-10 sm:py-8 lg:px-16 lg:py-16">
+                            <div className="space-y-10">
+                              <div className="relative">
+                                <Blurb
+                                  label="Projects 01 / Humanoid Robot Arm"
+                                  title="Humanoid Robot Arm"
+                                  leftOffset="clamp(75px, 25vw, 450px)"
+                                  rightOffset="0px"
+                                  isTilted={isTilted}
+                                  tiltedPositionX="clamp(-225px, -12.5vw, 0px)"
+                                  tiltedPositionY="0px"
+                                  body="Introduce the robot arm project and its main goals."
+                                  sections={[
+                                    {
+                                      id: "assembly",
+                                      title: "Mechanical assembly",
+                                      body: "Describe the forearm assembly and design decisions.",
+                                    },
+                                    {
+                                      id: "revisions",
+                                      title: "Design revisions",
+                                      bullets: [
+                                        "Assembly access and fastener placement.",
+                                        "Cable routing and component clearances.",
+                                      ],
+                                    },
+                                    {
+                                      id: "technologies",
+                                      title: "Technologies",
+                                      bullets: [
+                                        "Assembly access and fastener placement.",
+                                        "Cable routing and component clearances.",
+                                      ],
+                                    },
+                                  ]}
+                                  polaroids={
+                                    <>
+                                      <Polaroid
+                                        image={hhForearm}
+                                        alt="Robot arm forearm assembly"
+                                        caption="#completed forearm assembly"
+                                        anchorSide="left"
+                                        width="clamp(180px, 12vw, 240px)"
+                                        height="clamp(240px, 16vw, 320px)"
+                                        style={{
+                                          top: "-10px",
+                                          right: "clamp(0px, 12vw, 200px)",
+                                          zIndex: 65,
+                                        }}
+                                        smallScreen={{
+                                          width: "clamp(120px, 24vw, 156px)",
+                                          height: "clamp(160px, 32vw, 208px)",
+                                          top: "-20px",
+                                          right: "clamp(0px, 9vw, 156px)",
+                                        }}
+                                        rotate={-5}
+                                        shadowX="0px"
+                                        shadowY="0px"
+                                        shadowRotate={0}
+                                        tiltedShadowX="0px"
+                                        tiltedShadowY="0px"
+                                        tiltedShadowRotate={-17}
+                                        tiltedPositionX="-20px"
+                                        tiltedPositionY="-10px"
+                                        tiltedRotate={-12}
+                                        isTilted={isTilted}
+                                      />
 
-                                  <h3 className="mt-3 text-3xl font-semibold tracking-[0.06em] text-[#111111]">
-                                    Visual overflow block
-                                  </h3>
+                                      <Polaroid
+                                        image={hhScrewCloseup}
+                                        alt="Robot arm screw placement"
+                                        caption="Umm... didn't think about that"
+                                        anchorSide="left"
+                                        width="clamp(180px, 12vw, 240px)"
+                                        height="clamp(240px, 16vw, 320px)"
+                                        style={{
+                                          top: "60px",
+                                          right: "0px",
+                                          zIndex: 64,
+                                        }}
+                                        smallScreen={{
+                                          width: "clamp(120px, 24vw, 156px)",
+                                          height: "clamp(160px, 32vw, 208px)",
+                                          top: "150px",
+                                          right: "0px",
+                                        }}
+                                        rotate={3}
+                                        shadowX="8px"
+                                        shadowY="8px"
+                                        shadowRotate={-2}
+                                        tiltedShadowX="0px"
+                                        tiltedShadowY="0px"
+                                        tiltedShadowRotate={10}
+                                        tiltedPositionX="0px"
+                                        tiltedPositionY="10px"
+                                        tiltedRotate={5}
+                                        isTilted={isTilted}
+                                      />
+                                    </>
+                                  }
+                                />
+                              </div>
 
-                                  <p className="mt-4 text-sm leading-7 text-[rgba(80,62,44,0.72)] sm:text-base">
-                                    This content exists only inside the visual
-                                    plane, so most of it can drift off-screen
-                                    while the actual page scroll remains a
-                                    hidden control surface underneath.
-                                  </p>
-                                </div>
-                              ))}
+                              <div className="relative">
+                                <Blurb
+                                  label="Projects 02 / Wooden Robot Hand"
+                                  title="Wooden Robot Hand"
+                                  leftOffset="0px"
+                                  rightOffset="clamp(100px, 30vw, 800px)"
+                                  isTilted={isTilted}
+                                  tiltedPositionX="0px"
+                                  tiltedPositionY="0px"
+                                  body="Introduce the project and its main goals."
+                                  sections={[
+                                    {
+                                      id: "assembly",
+                                      title: "Mechanical assembly",
+                                      body: "Describe the forearm assembly and design decisions.",
+                                    },
+                                    {
+                                      id: "revisions",
+                                      title: "Design revisions",
+                                      bullets: [
+                                        "Assembly access and fastener placement.",
+                                        "Cable routing and component clearances.",
+                                      ],
+                                    },
+                                  ]}
+                                  polaroids={
+                                    <>
+                                      <Polaroid
+                                        image={whRaspSide}
+                                        alt="Wooden robot hand displaying motor layout and Raspberry Pi"
+                                        caption="Raspberry Pi and Motor Layout"
+                                        anchorSide="right"
+                                        anchorGap="0px"
+                                        width="clamp(240px, 16vw, 320px)"
+                                        height="clamp(180px, 12vw, 240px)"
+                                        style={{
+                                          top: "0px",
+                                          zIndex: 65,
+                                        }}
+                                        smallScreen={{
+                                          width: "clamp(160px, 32vw, 208px)",
+                                          height: "clamp(120px, 24vw, 156px)",
+                                          top: "0px",
+                                          left: "25px"
+                                        }}
+                                        rotate={-7.5}
+                                        tiltedPositionX="0px"
+                                        tiltedPositionY="0px"
+                                        tiltedRotate={-12.5}
+                                        doShadow={false}
+                                        isTilted={isTilted}
+                                      />
+
+                                      <Polaroid
+                                        image={whPrototype}
+                                        alt="Wooden robot hand living hinge prototype"
+                                        caption="#Prototyping"
+                                        anchorSide="right"
+                                        anchorGap="0px"
+                                        width="clamp(180px, 12vw, 240px)"
+                                        height="clamp(240px, 16vw, 320px)"
+                                        style={{
+                                          top: "-3vw",
+                                          left: "20vw",
+                                          zIndex: 64,
+                                        }}
+                                        smallScreen={{
+                                          width: "clamp(120px, 24vw, 156px)",
+                                          height: "clamp(160px, 32vw, 208px)",
+                                          top: "150px",
+                                          left: "50px"
+                                        }}
+                                        rotate={5}
+                                        doShadow={false}
+                                        tiltedPositionX="7vw"
+                                        tiltedPositionY="-50px"
+                                        tiltedRotate={2.5}
+                                        isTilted={isTilted}
+                                      />
+
+                                      <Polaroid
+                                        image={whWiring}
+                                        alt="Wooden robot hand motor controller wiring close-up"
+                                        caption="We love motor controller wiring"
+                                        anchorSide="right"
+                                        anchorGap="0px"
+                                        width="clamp(180px, 12vw, 240px)"
+                                        height="clamp(240px, 16vw, 320px)"
+                                        style={{
+                                          top: "0px",
+                                          left: "11vw",
+                                          zIndex: 63,
+                                        }}
+                                        smallScreen={{
+                                          width: "clamp(120px, 24vw, 156px)",
+                                          height: "clamp(160px, 32vw, 208px)",
+                                          top: "325px",
+                                          left: "50px"
+                                        }}
+                                        rotate={5}
+                                        doShadow={false}
+                                        tiltedPositionX="4vw"
+                                        tiltedPositionY="-90px"
+                                        tiltedRotate={-7.5}
+                                        isTilted={isTilted}
+                                      />
+
+                                      <Polaroid
+                                        image={whCAD}
+                                        alt="Wooden robot hand CAD"
+                                        caption="First taste of Fusion 360"
+                                        anchorSide="right"
+                                        anchorGap="0px"
+                                        width="clamp(240px, 16vw, 320px)"
+                                        height="clamp(180px, 12vw, 240px)"
+                                        style={{
+                                          top: "8vw",
+                                          left: "12vw",
+                                          zIndex: 62,
+                                        }}
+                                        smallScreen={{
+                                          width: "clamp(160px, 32vw, 208px)",
+                                          height: "clamp(120px, 24vw, 156px)",
+                                          top: "500px",
+                                          left: "25px"
+                                        }}
+                                        rotate={-2.5}
+                                        tiltedPositionX="2vw"
+                                        tiltedPositionY="20px"
+                                        tiltedRotate={12.5}
+                                        doShadow={false}
+                                        isTilted={isTilted}
+                                      />
+                                    </>
+                                  }
+                                />
+                              </div>
                             </div>
                           </section>
                         </div>
